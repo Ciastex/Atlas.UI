@@ -74,9 +74,10 @@ namespace Atlas.UI
 
         private void AddTabButton_Click(object sender, RoutedEventArgs e)
         {
-            AddTabButtonPressed?.Invoke(this, new TabAddButtonClickEventArgs());
+            var eventArgs = new TabAddButtonClickEventArgs();
+            AddTabButtonPressed?.Invoke(this, eventArgs);
 
-            if (e.Handled) return;
+            if (eventArgs.Handled) return;
 
             var createdTabItem = new TabItem { Header = "New Tab" };
             Items.Add(createdTabItem);
