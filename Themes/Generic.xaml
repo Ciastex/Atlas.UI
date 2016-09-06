@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Window.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/MenuItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TabItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBox.xaml" /> 
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBoxItem.xaml" /> 
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
