@@ -19,5 +19,11 @@ namespace Atlas.UI.Extensions
 
         [DllImport("dwmapi.dll")]
         internal static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref Margins pMarInset);
+
+        [DllImport("user32.dll")]
+        internal static extern int GetWindowLong(IntPtr handle, int index);
+
+        [DllImport("user32.dll")]
+        internal static extern int SetWindowLong(IntPtr handle, int index, int newLong);
     }
 }

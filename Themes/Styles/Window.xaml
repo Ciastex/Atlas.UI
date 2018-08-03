@@ -17,7 +17,6 @@
 
                     </Grid>
 
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PART_MainGrid" Property="Background" Value="#3F3F41" />
@@ -152,6 +151,18 @@
 
                         <Trigger Property="ResizeMode" Value="CanMinimize">
                             <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="CanMaximize" Value="False">
+                            <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="ShowCloseButton" Value="False">
+                            <Setter TargetName="PART_Close" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="ShowMinimizeButton" Value="False">
+                            <Setter TargetName="PART_Minimize" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
