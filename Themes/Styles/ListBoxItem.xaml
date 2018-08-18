@@ -7,6 +7,7 @@
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ListBoxItem}">
@@ -16,7 +17,7 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="fillColor" Storyboard.TargetProperty="Opacity" Duration="0" To=".35"/>
+                                        <DoubleAnimation Storyboard.TargetName="fillColor" Storyboard.TargetProperty="Opacity" Duration="0" To=".50"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -48,15 +49,15 @@
                                 <VisualState x:Name="Unfocused"/>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="fillColor" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
-                        <Rectangle x:Name="fillColor2" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
+                        <Rectangle x:Name="fillColor" Opacity="0" Fill="#1D1D20" IsHitTestVisible="False"/>
+                        <Rectangle x:Name="fillColor2" Opacity="0" Fill="#1D1D20" IsHitTestVisible="False"/>
                         <ContentPresenter
                               x:Name="contentPresenter"
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               Margin="{TemplateBinding Padding}"/>
-                        <Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed" RadiusX="1" RadiusY="1" />
+                        <Rectangle x:Name="FocusVisualElement" Stroke="#555559" StrokeThickness="1" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -7,7 +7,7 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/MenuItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TabItem.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBox.xaml" /> 
-        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBoxItem.xaml" /> 
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBoxItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
