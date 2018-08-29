@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Atlas.UI
@@ -7,13 +6,21 @@ namespace Atlas.UI
     public class TabItem : System.Windows.Controls.TabItem
     {
         private System.Windows.Controls.Button CloseButton { get; set; }
+        private System.Windows.Controls.TextBox EditableHeader { get; set; }
 
-        public static readonly DependencyProperty IsClosableProperty = DependencyProperty.Register("IsClosable", typeof(bool), typeof(TabItem), new PropertyMetadata(true));
+        public static readonly DependencyProperty IsClosableProperty = DependencyProperty.Register(nameof(IsClosable), typeof(bool), typeof(TabItem), new PropertyMetadata(true));
+        public static readonly DependencyProperty IsHeaderEditableProperty = DependencyProperty.Register(nameof(IsHeaderEditable), typeof(bool), typeof(TabItem), new PropertyMetadata(false));
 
         public bool IsClosable
         {
             get { return (bool)GetValue(IsClosableProperty); }
             set { SetValue(IsClosableProperty, value); }
+        }
+
+        public bool IsHeaderEditable
+        {
+            get { return (bool)GetValue(IsHeaderEditableProperty); }
+            set { SetValue(IsHeaderEditableProperty, value); }
         }
 
         static TabItem()
@@ -23,6 +30,8 @@ namespace Atlas.UI
 
         public TabItem()
         {
+            Focusable = false;
+
             MouseMove += AtlasTabItem_MouseMove;
             MouseDown += AtlasTabItem_MouseDown;
             Drop += AtlasTabItem_Drop;
@@ -73,6 +82,9 @@ namespace Atlas.UI
             if (tabItem == null)
                 return;
 
+            if (EditableHeader.IsFocused)
+                return;
+            
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
@@ -86,6 +98,19 @@ namespace Atlas.UI
 
             if (CloseButton != null)
                 CloseButton.Click += CloseButton_Click;
+
+            EditableHeader = GetTemplateChild("PART_Content") as System.Windows.Controls.TextBox;
+
+            if (EditableHeader != null)
+            {
+                EditableHeader.KeyDown += EditableHeader_KeyDown;
+            }
+        }
+
+        private void EditableHeader_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+                EditableHeader.MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous));
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
