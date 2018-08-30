@@ -30,8 +30,6 @@ namespace Atlas.UI
 
         public TabItem()
         {
-            Focusable = false;
-
             MouseMove += AtlasTabItem_MouseMove;
             MouseDown += AtlasTabItem_MouseDown;
             Drop += AtlasTabItem_Drop;
@@ -40,8 +38,12 @@ namespace Atlas.UI
         private void AtlasTabItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.MiddleButton == MouseButtonState.Pressed && IsClosable)
-            {
                 Close();
+            else if(e.RightButton == MouseButtonState.Pressed && IsHeaderEditable)
+            {
+                EditableHeader.Focus();
+                EditableHeader.SelectAll();
+                EditableHeader.IsHitTestVisible = true;
             }
         }
 
@@ -82,9 +84,9 @@ namespace Atlas.UI
             if (tabItem == null)
                 return;
 
-            if (EditableHeader.IsFocused)
+            if (EditableHeader.IsKeyboardFocused)
                 return;
-            
+
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
@@ -104,7 +106,13 @@ namespace Atlas.UI
             if (EditableHeader != null)
             {
                 EditableHeader.KeyDown += EditableHeader_KeyDown;
+                EditableHeader.LostFocus += EditableHeader_LostFocus;
             }
+        }
+
+        private void EditableHeader_LostFocus(object sender, RoutedEventArgs e)
+        {
+            EditableHeader.IsHitTestVisible = false;
         }
 
         private void EditableHeader_KeyDown(object sender, KeyEventArgs e)

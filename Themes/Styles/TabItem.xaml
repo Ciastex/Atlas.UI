@@ -10,7 +10,12 @@
         <Setter Property="Padding" Value="0" />
         <Setter Property="CaretBrush" Value="White" />
         <Setter Property="IsReadOnlyCaretVisible" Value="False" />
-        
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu Visibility="Collapsed" />
+            </Setter.Value>
+        </Setter>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -68,7 +73,8 @@
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Left"
                                      Text="{TemplateBinding Header}"
-                                     Style="{StaticResource EditableHeader}" />
+                                     Style="{StaticResource EditableHeader}"
+                                     IsHitTestVisible="False" />
                             <Button x:Name="PART_CloseButton"
                                     Width="15"
                                     Height="15"
