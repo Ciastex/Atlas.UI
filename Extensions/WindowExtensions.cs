@@ -13,9 +13,35 @@ namespace Atlas.UI.Extensions
             var currentWindowLong = WinAPI.GetWindowLong(handle, style);
 
             if (!enable)
-                WinAPI.SetWindowLong(handle, style, currentWindowLong & ~maximizeBox);
+            {
+                currentWindowLong &= ~maximizeBox;
+            }
             else
-                WinAPI.SetWindowLong(handle, style, currentWindowLong & maximizeBox);
+            {
+                currentWindowLong |= maximizeBox;
+            }
+
+            WinAPI.SetWindowLong(handle, style, currentWindowLong);
+        }
+
+        public static void SetResizing(this Window window, bool enable)
+        {
+            int style = -16;
+            int sizeBox = 0x00040000;
+
+            var handle = new WindowInteropHelper(window).Handle;
+            var currentWindowLong = WinAPI.GetWindowLong(handle, style);
+
+            if (!enable)
+            {
+                currentWindowLong &= ~sizeBox;
+            }
+            else
+            {
+                currentWindowLong |= sizeBox;
+            }
+
+            WinAPI.SetWindowLong(handle, style, currentWindowLong);
         }
     }
 }

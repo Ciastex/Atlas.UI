@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="CheckBox.cs" />
+    <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
@@ -135,6 +136,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ListBoxItem.cs" />
+    <Compile Include="WindowStates\ShadeState.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -159,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TabPanel\tabpanel_tabmenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CaptionButtons\caption_shade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CaptionButtons\caption_unshade.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

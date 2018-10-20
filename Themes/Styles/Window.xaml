@@ -25,6 +25,10 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_MainGrid" Property="Background" Value="#007ACC" />
                         </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_MainGrid" Property="Opacity" Value="0.3" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -90,6 +94,19 @@
                                                 Orientation="Horizontal"
                                                 VerticalAlignment="Top"
                                                 HorizontalAlignment="Right">
+                                        <Button x:Name="PART_Shade"
+                                                Width="30"
+                                                Height="30"
+                                                Style="{StaticResource CaptionButtonStyle}">
+                                            <Image x:Name="PART_ShadeImage"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   SnapsToDevicePixels="True"
+                                                   Height="16"
+                                                   Width="17"
+                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_shade.png" />
+                                        </Button>
                                         <Button x:Name="PART_Minimize"
                                                 Width="30"
                                                 Height="30"
@@ -130,7 +147,7 @@
                                 </Grid>
                             </Border>
 
-                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" Margin="0" />
                         </Grid>
                     </Border>
 
@@ -153,12 +170,31 @@
                             <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed" />
                         </Trigger>
 
-                        <Trigger Property="CanMaximize" Value="False">
+                        <Trigger Property="ShowMaximizeButton" Value="False">
                             <Setter TargetName="PART_Maximize" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="ShadeState" Value="Shaded">
+                            <Setter TargetName="PART_ShadeImage" Property="Source" Value="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_unshade.png" />
+                            
+                            <Setter Property="CanMaximize" Value="False" />
+                            <Setter Property="CanResize" Value="False" />
+                        </Trigger>
+
+                        <Trigger Property="CanShade" Value="False">
+                            <Setter TargetName="PART_Shade" Property="IsEnabled" Value="False" />
+                        </Trigger>
+
+                        <Trigger Property="CanMaximize" Value="False">
+                            <Setter TargetName="PART_Maximize" Property="IsEnabled" Value="False" />
                         </Trigger>
 
                         <Trigger Property="ShowCloseButton" Value="False">
                             <Setter TargetName="PART_Close" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="ShowShadeButton" Value="False">
+                            <Setter TargetName="PART_Shade" Property="Visibility" Value="Collapsed" />
                         </Trigger>
 
                         <Trigger Property="ShowMinimizeButton" Value="False">
