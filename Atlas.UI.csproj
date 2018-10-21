@@ -123,6 +123,7 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="TabControl.cs" />
     <Compile Include="TabItem.cs" />
+    <Compile Include="TextBox.cs" />
     <Compile Include="Window.cs" />
     <Compile Include="Events\TabCloseEventArgs.cs" />
     <Compile Include="Extensions\WinAPI.cs" />
@@ -171,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CaptionButtons\caption_unshade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\textbox_clearbutton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
