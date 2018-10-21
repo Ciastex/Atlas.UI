@@ -200,6 +200,10 @@
                         <Trigger Property="ShowMinimizeButton" Value="False">
                             <Setter TargetName="PART_Minimize" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="PART_MainBorder" Property="Margin" Value="8" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

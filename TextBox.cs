@@ -1,10 +1,12 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Atlas.UI
 {
     public class TextBox : System.Windows.Controls.TextBox
     {
         public static readonly DependencyProperty ShowClearButtonProperty = DependencyProperty.Register(nameof(ShowClearButton), typeof(bool), typeof(TextBox));
+        public static readonly DependencyProperty ShowPlaceholderProperty = DependencyProperty.Register(nameof(ShowPlaceholder), typeof(bool), typeof(TextBox));
         public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox));
         public static readonly DependencyProperty HasTextProperty = DependencyProperty.Register(nameof(HasText), typeof(bool), typeof(TextBox));
 
@@ -12,6 +14,12 @@ namespace Atlas.UI
         {
             get => (bool)GetValue(ShowClearButtonProperty);
             set => SetValue(ShowClearButtonProperty, value);
+        }
+
+        public bool ShowPlaceholder
+        {
+            get => (bool)GetValue(ShowPlaceholderProperty);
+            set => SetValue(ShowPlaceholderProperty, value);
         }
 
         public string Placeholder
@@ -22,15 +30,8 @@ namespace Atlas.UI
 
         public bool HasText
         {
-            get
-            {
-                if (Text.Length > 0)
-                    SetValue(HasTextProperty, true);
-                else
-                    SetValue(HasTextProperty, false);
-
-                return (bool)GetValue(HasTextProperty);
-            }
+            get => (bool)GetValue(HasTextProperty);
+            private set => SetValue(HasTextProperty, value);
         }
 
         private System.Windows.Controls.Button ClearButton { get; set; }
@@ -48,6 +49,16 @@ namespace Atlas.UI
 
             if(ClearButton != null)
                 ClearButton.Click += ClearButton_Click;
+        }
+
+        protected override void OnTextChanged(TextChangedEventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            if (Text.Length > 0)
+                HasText = true;
+            else
+                HasText = false;
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

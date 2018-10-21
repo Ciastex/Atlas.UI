@@ -18,7 +18,7 @@ namespace Atlas.UI
         private System.Windows.Controls.Button ShadeButton { get; set; }
 
         private double PreviousHeight { get; set; }
-        private WindowStyle PreviousStyle { get; set; }
+        private bool PreviousCanMaximize { get; set; }
 
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
@@ -94,7 +94,8 @@ namespace Atlas.UI
                 if (value == ShadeState.Shaded)
                 {
                     PreviousHeight = Height;
-                    
+                    PreviousCanMaximize = CanMaximize;
+
                     Height = 31;
                     MainBorder.Height = 31;
 
@@ -106,11 +107,11 @@ namespace Atlas.UI
                 {
                     MainBorder.Height = double.NaN;
                     Height = PreviousHeight;
-                    
+
 
                     this.SetBorder(true);
                     this.SetResizing(true);
-                    CanMaximize = true;
+                    CanMaximize = PreviousCanMaximize;
                 }
 
                 SetValue(ShadeStateProperty, value);
@@ -270,14 +271,10 @@ namespace Atlas.UI
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-            {
                 DragMove();
-            }
 
             if (e.ClickCount == 2 && CanMaximize)
-            {
                 ToggleMaximizedState();
-            }
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -305,15 +302,11 @@ namespace Atlas.UI
             if (WindowState == WindowState.Maximized)
             {
                 CanShade = true;
-
-                MainBorder.Margin = new Thickness(0);
                 WindowState = WindowState.Normal;
             }
             else
             {
                 CanShade = false;
-
-                MainBorder.Margin = new Thickness(6);
                 WindowState = WindowState.Maximized;
             }
         }

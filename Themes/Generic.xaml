@@ -10,5 +10,6 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBoxItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
