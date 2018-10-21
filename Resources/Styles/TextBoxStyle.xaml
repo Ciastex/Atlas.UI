@@ -5,6 +5,7 @@
         <Setter Property="BorderBrush" Value="#4E4E4E" />
         <Setter Property="Background" Value="#1D1D20" />
         <Setter Property="Foreground" Value="#9C9C9C" />
+        <Setter Property="Height" Value="24" />
 
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -15,11 +16,34 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="2,0,0,0"
-                            CornerRadius="0">
-                        <ScrollViewer x:Name="PART_ContentHost" 
-                                      VerticalAlignment="Center" />
+                            Padding="2"
+                            CornerRadius="0"
+                            Cursor="IBeam">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#6E6E6E" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#007ACC" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="False">
+                            <Setter Property="CaretBrush" Value="#00000000"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="IsReadOnly" Value="True" />
+                            <Setter Property="Foreground" Value="#669C9C9C" />
+                            <Setter Property="BorderBrush" Value="#3E3E3E" />
+                            <Setter Property="Background" Value="#202020" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
