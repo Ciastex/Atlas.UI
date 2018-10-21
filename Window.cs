@@ -18,6 +18,7 @@ namespace Atlas.UI
         private System.Windows.Controls.Button ShadeButton { get; set; }
 
         private double PreviousHeight { get; set; }
+        private WindowStyle PreviousStyle { get; set; }
 
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
@@ -93,18 +94,21 @@ namespace Atlas.UI
                 if (value == ShadeState.Shaded)
                 {
                     PreviousHeight = Height;
-
-                    Height = 30;
-                    MainBorder.Height = 39;
                     
+                    Height = 31;
+                    MainBorder.Height = 31;
+
+                    this.SetBorder(false);
                     this.SetResizing(false);
                     CanMaximize = false;
                 }
                 else
                 {
-                    Height = PreviousHeight;
                     MainBorder.Height = double.NaN;
+                    Height = PreviousHeight;
+                    
 
+                    this.SetBorder(true);
                     this.SetResizing(true);
                     CanMaximize = true;
                 }
