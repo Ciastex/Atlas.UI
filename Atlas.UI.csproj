@@ -67,6 +67,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +125,7 @@
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="ListBox.cs" />
     <Compile Include="MenuItem.cs" />
+    <Compile Include="ProgressBar.cs" />
     <Compile Include="TabControl.cs" />
     <Compile Include="TabItem.cs" />
     <Compile Include="TextBox.cs" />
