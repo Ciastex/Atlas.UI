@@ -12,34 +12,54 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ProgressBar}">
-                    <Border x:Name="PART_Track"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{TemplateBinding Background}">
-                        
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Determinate" />
-                                <VisualState x:Name="Indeterminate">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetName="PART_Indicator" Storyboard.TargetProperty="Width" From="0" To="{Binding Width, ElementName=PART_Track}" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        
-                        <Border x:Name="PART_Indicator" 
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                Background="{TemplateBinding Foreground}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Stretch" />
-                    </Border>
+                    <Grid>
+                        <Border x:Name="PART_Track"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Determinate" />
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:1.5" AutoReverse="True" RepeatBehavior="Forever" Storyboard.TargetName="PART_Indicator" Storyboard.TargetProperty="Width" From="0" To="{Binding Width, ElementName=PART_Track}" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Border x:Name="PART_Indicator" 
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Background="{TemplateBinding Foreground}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Stretch" />
+                        </Border>
+
+                        <TextBlock x:Name="PART_ProgressText"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" 
+                                   Margin="0,0,0,1"
+                                   Visibility="Collapsed">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}%">
+                                    <Binding Path="Value" RelativeSource="{RelativeSource Mode=TemplatedParent}" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
+
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="PART_Indicator" Property="HorizontalAlignment" Value="Stretch" />
+                        </Trigger>
+
+                        <Trigger Property="ShowProgressText" Value="True">
+                            <Setter TargetName="PART_ProgressText" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

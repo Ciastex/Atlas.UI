@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}">
         <Setter Property="Background" Value="#555559" />
+        <Setter Property="BorderBrush" Value="#555559" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Margin" Value="3,1" />
 
@@ -14,7 +15,8 @@
                             VerticalAlignment="Top"
                             Margin="{TemplateBinding Margin}" 
                             Padding="{TemplateBinding Padding}" 
-                            BorderBrush="#555559" />
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

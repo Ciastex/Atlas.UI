@@ -1,8 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/ComboBoxItemStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/ListBoxItemStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/SeparatorStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/ScrollbarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/TextBlockStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/ScrollViewerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Resources/Styles/ToolTipStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

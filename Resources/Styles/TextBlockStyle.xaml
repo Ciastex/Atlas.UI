@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Atlas.UI.Resources.Styles">
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#999999" />
+    </Style>
+</ResourceDictionary>

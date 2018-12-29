@@ -7,9 +7,8 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderThickness" Value="1" />
 
-        <Setter Property="Width" Value="120" />
-        <Setter Property="Height" Value="24" />
-        
+        <Setter Property="Padding" Value="6,4" />
+
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
 
@@ -22,10 +21,15 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}">
-                        <ContentPresenter x:Name="PART_Content"
+                        <!--<ContentPresenter x:Name="PART_Content"
                                           Content="{TemplateBinding Content}" 
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" /> -->
+                        <TextBlock x:Name="PART_Content"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{TemplateBinding Content}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     
                     <ControlTemplate.Triggers>
@@ -40,7 +44,7 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="BorderBrush" Value="#515167" />
                             <Setter Property="Background" Value="#1B1B1C" />
-                            <Setter TargetName="PART_Content" Property="Opacity" Value="0.5" />
+                            <Setter TargetName="PART_Content" Property="Opacity" Value="0.3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

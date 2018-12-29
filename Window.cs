@@ -2,6 +2,7 @@
 using Atlas.UI.Extensions;
 using Atlas.UI.WindowStates;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,7 @@ namespace Atlas.UI
 
         public static readonly DependencyProperty CaptionMenuProperty = DependencyProperty.RegisterAttached(
             nameof(CaptionMenu),
-            typeof(List<MenuItem>),
+            typeof(ObservableCollection<MenuItem>),
             typeof(Window)
         );
 
@@ -120,9 +121,9 @@ namespace Atlas.UI
             }
         }
 
-        public List<MenuItem> CaptionMenu
+        public ObservableCollection<MenuItem> CaptionMenu
         {
-            get { return (List<MenuItem>)GetValue(CaptionMenuProperty); }
+            get { return (ObservableCollection<MenuItem>)GetValue(CaptionMenuProperty); }
             set
             {
                 SetValue(CaptionMenuProperty, value);
@@ -223,7 +224,7 @@ namespace Atlas.UI
 
         public Window()
         {
-            CaptionMenu = new List<MenuItem>();
+            CaptionMenu = new ObservableCollection<MenuItem>();
             SourceInitialized += Window_SourceInitialized;
         }
 
@@ -257,7 +258,10 @@ namespace Atlas.UI
                 ShadeButton.Click += ShadeButton_Click;
 
             if (CaptionBorder != null)
+            {
                 CaptionBorder.MouseDown += Border_MouseDown;
+                CaptionBorder.MouseMove += CaptionBorder_MouseMove;
+            }
         }
 
         public void SetWindowBorderColor(Color color)
@@ -275,6 +279,17 @@ namespace Atlas.UI
 
             if (e.ClickCount == 2 && CanMaximize)
                 ToggleMaximizedState();
+        }
+
+        private void CaptionBorder_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && WindowState == WindowState.Maximized)
+            {
+                Top = e.MouseDevice.GetPosition(e.Device.Target).Y;
+
+                ToggleMaximizedState();
+                DragMove();
+            }
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
