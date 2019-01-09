@@ -10,12 +10,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="PART_Main">
-                        <Image VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               SnapsToDevicePixels="True"
+                        <Image Width="17"
                                Height="16"
-                               Width="17"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               SnapsToDevicePixels="True"
                                Source="pack://application:,,,/Atlas.UI;component/Resources/TabPanel/tabpanel_scroll_left.png" />
                     </Grid>
 
@@ -41,12 +41,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="PART_Main">
-                        <Image VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               SnapsToDevicePixels="True"
+                        <Image Width="17"
                                Height="16"
-                               Width="17"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               SnapsToDevicePixels="True"
                                Source="pack://application:,,,/Atlas.UI;component/Resources/TabPanel/tabpanel_scroll_right.png" />
                     </Grid>
 
@@ -72,15 +72,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <Grid x:Name="PART_Main">
-                        <Image VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               SnapsToDevicePixels="True"
+                        <Image Width="17"
                                Height="16"
-                               Width="17"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               SnapsToDevicePixels="True"
                                Source="pack://application:,,,/Atlas.UI;component/Resources/TabPanel/tabpanel_tabmenu.png" />
-                        <Popup Placement="Bottom" 
-                               IsOpen="{TemplateBinding IsSubmenuOpen}"
+                        <Popup IsOpen="{TemplateBinding IsSubmenuOpen}"
+                               Placement="Bottom"
                                SnapsToDevicePixels="True">
                             <Border Background="Transparent"
                                     BorderBrush="#333337"
@@ -132,16 +132,16 @@
                                 <ColumnDefinition Width="3" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle Grid.Column="0"
-                                       x:Name="PART_SelectionMark"
-                                       Fill="#007ACC" 
-                                       VerticalAlignment="Stretch" />
+                            <Rectangle x:Name="PART_SelectionMark"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Stretch"
+                                       Fill="#007ACC" />
 
                             <ContentPresenter Grid.Column="1"
-                                              Content="{TemplateBinding Header}"
+                                              Margin="5,3,20,3"
                                               HorizontalAlignment="Stretch"
                                               VerticalAlignment="Center"
-                                              Margin="5,3,20,3" />
+                                              Content="{TemplateBinding Header}" />
                         </Grid>
                     </Border>
 
@@ -150,7 +150,7 @@
                         <Trigger Property="IsHighlighted" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="#333334" />
                         </Trigger>
-                        
+
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="PART_SelectionMark" Property="Visibility" Value="Hidden" />
                         </Trigger>
@@ -171,22 +171,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid Background="{TemplateBinding Background}">
-                        <TextBlock Foreground="White"
-                                   Text="+"
-                                   SnapsToDevicePixels="True"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Stretch" 
-                                   TextAlignment="Center"
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Stretch"
+                                   FontFamily="Segoe UI"
                                    FontSize="12"
                                    FontWeight="Bold"
-                                   FontFamily="Segoe UI" />
+                                   Foreground="White"
+                                   SnapsToDevicePixels="True"
+                                   Text="+"
+                                   TextAlignment="Center" />
                     </Grid>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#3E3E40" />
                         </Trigger>
-                        
+
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="#1B1B1C" />
                         </Trigger>
@@ -209,33 +209,31 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" HorizontalAlignment="Stretch">
-                            <Menu x:Name="PART_TabMenuParent"
-                                    Background="Transparent">
+                            <Menu x:Name="PART_TabMenuParent" Background="Transparent">
                                 <MenuItem x:Name="PART_TabMenu"
-                                            Style="{StaticResource TabMenuButton}"
-                                            Width="15"
-                                            Height="20"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Stretch"
-                                            ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TabControl}}, Path=Items}"
-                                            ItemContainerStyle="{StaticResource TabMenuItem}" />
+                                          Width="15"
+                                          Height="20"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Stretch"
+                                          ItemContainerStyle="{StaticResource TabMenuItem}"
+                                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TabControl}}, Path=Items}"
+                                          Style="{StaticResource TabMenuButton}" />
                             </Menu>
 
                             <ScrollViewer x:Name="PART_Scroller"
-                                            HorizontalScrollBarVisibility="Hidden"
-                                            VerticalScrollBarVisibility="Hidden"
-                                            Height="21"
-                                            Margin="15,0,39,0">
+                                          Height="20"
+                                          Margin="15,0,39,0"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden">
                                 <StackPanel Orientation="Horizontal">
                                     <TabPanel x:Name="PART_TabPanel"
-                                                Background="#2D2D30" 
-                                                HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Top" 
-                                                IsItemsHost="True" 
-                                                Height="20" />
+                                              Height="20"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Top"
+                                              Background="#2D2D30"
+                                              IsItemsHost="True" />
 
-                                    <Button x:Name="PART_AddTabButton"
-                                            Style="{StaticResource AddTabButton}" />
+                                    <Button x:Name="PART_AddTabButton" Style="{StaticResource AddTabButton}" />
                                 </StackPanel>
                             </ScrollViewer>
 
@@ -245,39 +243,38 @@
                                     Margin="0,0,19,0"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Stretch"
-                                    Visibility="Visible"
-                                    Style="{StaticResource ScrollLeftTabPanelButton}" />
+                                    Style="{StaticResource ScrollLeftTabPanelButton}"
+                                    Visibility="Visible" />
 
                             <Button x:Name="PART_ScrollRight"
                                     Width="20"
                                     Height="20"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Stretch"
-                                    Visibility="Visible"
-                                    Style="{StaticResource ScrollRightTabPanelButton}" />
+                                    Style="{StaticResource ScrollRightTabPanelButton}"
+                                    Visibility="Visible" />
                         </Grid>
 
                         <Rectangle Grid.Row="1"
-                              VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch" 
-                              Margin="0,-1,0,0"
-                              Fill="#0079CB" />
+                                   Margin="0,-1,0,0"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Fill="#0079CB" />
 
                         <Border Grid.Row="2"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
                             <Grid>
                                 <ContentPresenter x:Name="PART_Content"
-                                              ContentSource="SelectedContent"
-                                              VerticalAlignment="Stretch"
-                                              HorizontalAlignment="Stretch" />
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch"
+                                                  ContentSource="SelectedContent" />
                                 <TextBlock x:Name="PART_NoTabsInfo"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       TextAlignment="Center"
-                                       Foreground="#6D6D70"
-                                       Text="{Binding Path=PlaceholderText, RelativeSource={RelativeSource TemplatedParent}}">
-                                </TextBlock>
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="#6D6D70"
+                                           Text="{Binding Path=PlaceholderText, RelativeSource={RelativeSource TemplatedParent}}"
+                                           TextAlignment="Center" />
                             </Grid>
                         </Border>
                     </Grid>
@@ -286,7 +283,7 @@
                         <Trigger Property="HasItems" Value="True">
                             <Setter TargetName="PART_NoTabsInfo" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition SourceName="PART_Scroller" Property="ScrollableWidth" Value="0" />
@@ -307,14 +304,14 @@
                             <Setter TargetName="PART_ScrollLeft" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_ScrollRight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_TabMenuParent" Property="Visibility" Value="Visible" />
-                            
+
                             <Setter TargetName="PART_Scroller" Property="Margin" Value="15,0,39,0" />
                         </MultiTrigger>
 
                         <Trigger Property="ShowAddButton" Value="False">
                             <Setter TargetName="PART_AddTabButton" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        
+
                         <Trigger Property="ShowTabMenu" Value="False">
                             <Setter TargetName="PART_TabMenuParent" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_Scroller" Property="Margin" Value="0,0,39,0" />

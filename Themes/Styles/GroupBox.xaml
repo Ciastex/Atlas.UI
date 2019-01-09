@@ -7,7 +7,7 @@
         <Setter Property="BorderBrush" Value="#4E4E4E" />
         <Setter Property="BorderThickness" Value="1" />
 
-        <Setter Property="Padding" Value="5" />
+        <Setter Property="Padding" Value="8" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
 
         <Setter Property="Template">
@@ -18,32 +18,32 @@
                             <RowDefinition Height="4" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Grid.Row="0"
-                                   HorizontalAlignment="{TemplateBinding HeaderAlignment}" 
-                                   VerticalAlignment="Top"
+                                   Grid.RowSpan="2"
                                    Margin="{TemplateBinding Margin}"
                                    Padding="2,0"
-                                   FontSize="{TemplateBinding FontSize}"
+                                   HorizontalAlignment="{TemplateBinding HeaderAlignment}"
+                                   VerticalAlignment="Top"
+                                   Panel.ZIndex="1"
+                                   Background="{TemplateBinding Background}"
                                    FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
                                    Foreground="{TemplateBinding Foreground}"
-                                   Background="{TemplateBinding Background}" 
-                                   Text="{TemplateBinding Header}" 
-                                   Grid.RowSpan="2"
-                                   Panel.ZIndex="1" />
+                                   Text="{TemplateBinding Header}" />
 
                         <Border Grid.Row="1"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Grid.RowSpan="2"
                                 Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}"
-                                Grid.RowSpan="2">
-                            <ContentPresenter HorizontalAlignment="Stretch"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter Margin="0,5,0,0"
+                                              HorizontalAlignment="Stretch"
                                               VerticalAlignment="Stretch"
-                                              Margin="0,5,0,0"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              Content="{TemplateBinding Content}" />
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
                         </Border>
                     </Grid>
                 </ControlTemplate>

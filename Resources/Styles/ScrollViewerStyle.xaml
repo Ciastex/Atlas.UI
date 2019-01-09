@@ -3,41 +3,50 @@
                     xmlns:local="clr-namespace:Atlas.UI.Resources.Styles">
     <Style x:Key="{x:Type ScrollViewer}" TargetType="{x:Type ScrollViewer}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid>
+                    <Grid Background="{TemplateBinding Background}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <Grid.RowDefinitions>
-                            <RowDefinition />
+                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <ScrollContentPresenter />
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="{TemplateBinding Padding}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                CanHorizontallyScroll="False"
+                                                CanVerticallyScroll="False"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
 
                         <ScrollBar x:Name="PART_VerticalScrollBar"
                                    Grid.Row="0"
                                    Grid.Column="1"
                                    Cursor="Arrow"
-                                   Value="{TemplateBinding VerticalOffset}"
                                    Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
-                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                        
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                   Orientation="Horizontal"
                                    Grid.Row="1"
                                    Grid.Column="0"
                                    Cursor="Arrow"
-                                   Value="{TemplateBinding HorizontalOffset}"
                                    Maximum="{TemplateBinding ScrollableWidth}"
+                                   Orientation="Horizontal"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
-                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

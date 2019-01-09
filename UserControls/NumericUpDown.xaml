@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Atlas.UI.UserControls.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:atlas="clr-namespace:Atlas.UI"
+             mc:Ignorable="d" 
+             x:Name="ThisControl"
+             d:DesignHeight="24" d:DesignWidth="60">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <atlas:TextBox x:Name="NumericDisplay"
+                       Grid.Column="0"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       HorizontalContentAlignment="Right"
+                       Padding="4,0,4,4"
+                       BorderThickness="1,1,0,1"
+                       Text="{Binding Value, ElementName=ThisControl}"
+                       Grid.RowSpan="2" />
+
+        <atlas:Button x:Name="NumericUp" 
+                      Grid.Column="1"
+                      Grid.Row="0"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Content="+"
+                      Padding="0"
+                      Width="24"
+                      Height="12" 
+                      BorderThickness="0,1,1,0"
+                      Click="NumericUp_Click" />
+        
+        <atlas:Button x:Name="NumericDown" 
+                      Grid.Column="1"
+                      Grid.Row="1"
+                      BorderThickness="0,0,1,1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Content="-"
+                      Padding="0"
+                      Width="24"
+                      Height="12"
+                      Click="NumericDown_Click"/>
+    </Grid>
+</UserControl>

@@ -9,10 +9,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                     <Border x:Name="PART_Border"
+                            Margin="1,1,0,0"
                             Background="#2D2D30"
-                            SnapsToDevicePixels="True"
-                            Margin="1,1,0,0">
-                        <ContentPresenter Margin="3,0,0,0" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter Margin="3,0,0,0"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Border>
 
                     <ControlTemplate.Triggers>

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:atlas="clr-namespace:Atlas.UI">
+
     <Style TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
@@ -15,31 +16,35 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Rectangle Grid.Column="1" Grid.Row="1" Fill="#2D2D30" StrokeThickness="1" Stroke="#434346" />
+                        <Rectangle Grid.Row="1"
+                                   Grid.Column="1"
+                                   Fill="#2D2D30"
+                                   Stroke="#434346"
+                                   StrokeThickness="1" />
 
-                        <ScrollContentPresenter Grid.Column="0" 
-                                                Grid.Row="0" 
-                                                Margin="{TemplateBinding Padding}" 
-                                                Content="{TemplateBinding Content}" 
-                                                ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                                CanContentScroll="{TemplateBinding CanContentScroll}" />
-                        
-                        <ScrollBar x:Name="PART_VerticalScrollBar" 
-                                   Grid.Row="0" 
-                                   Grid.Column="1" 
-                                   Value="{TemplateBinding VerticalOffset}"
-                                   Maximum="{TemplateBinding ScrollableHeight}" 
-                                   ViewportSize="{TemplateBinding ViewportHeight}" 
-                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                        
-                        <ScrollBar x:Name="PART_HorizontalScrollBar" 
-                                   Orientation="Horizontal" 
-                                   Grid.Row="1" 
-                                   Grid.Column="0" 
-                                   Value="{TemplateBinding HorizontalOffset}" 
+                        <ScrollContentPresenter Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="{TemplateBinding Padding}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{TemplateBinding VerticalOffset}" />
+
+                        <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
                                    Maximum="{TemplateBinding ScrollableWidth}"
+                                   Orientation="Horizontal"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
-                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{TemplateBinding HorizontalOffset}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -57,67 +62,118 @@
                     <Border Margin="3,2,2,2"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="0"/>
+                            BorderThickness="0" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Grid>
-            <Border CornerRadius="0" BorderThickness="1,0,0,0" BorderBrush="#434346" Background="#2D2D30" />
+        <Border Background="#2D2D30"
+                BorderBrush="#434346"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <Track x:Name="PART_Track" IsDirectionReversed="True">
-                <Track.Thumb>
-                    <Thumb x:Name="TrackThumb" Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0">
-                        <Thumb.BorderBrush>
-                            <SolidColorBrush Color="#686868"/>
-                        </Thumb.BorderBrush>
+                <atlas:ImageButton Width="{TemplateBinding Width}"
+                                   Height="20"
+                                   Padding="0"
+                                   Command="ScrollBar.LineUpCommand"
+                                   Image="pack://application:,,,/Atlas.UI;component/Resources/Images/scrollbar_arrow_u.png" />
 
-                        <Thumb.Background>
-                            <SolidColorBrush Color="#686868"/>
-                        </Thumb.Background>
-                    </Thumb>
-                </Track.Thumb>
-            </Track>
-        </Grid>
+                <Track x:Name="PART_Track"
+                       Grid.Row="1"
+                       IsDirectionReversed="True">
+                    <Track.Thumb>
+                        <Thumb x:Name="TrackThumb"
+                               Margin="1,0,1,0"
+                               Style="{StaticResource ScrollBarThumb}">
+                            <Thumb.BorderBrush>
+                                <SolidColorBrush Color="#686868" />
+                            </Thumb.BorderBrush>
+
+                            <Thumb.Background>
+                                <SolidColorBrush Color="#686868" />
+                            </Thumb.Background>
+                        </Thumb>
+                    </Track.Thumb>
+                </Track>
+
+                <atlas:ImageButton Grid.Row="2"
+                                   Width="{TemplateBinding Width}"
+                                   Height="20"
+                                   Padding="0"
+                                   Command="ScrollBar.LineDownCommand"
+                                   Image="pack://application:,,,/Atlas.UI;component/Resources/Images/scrollbar_arrow_d.png" />
+            </Grid>
+        </Border>
 
         <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" SourceName="TrackThumb" Value="True">
+            <Trigger SourceName="TrackThumb" Property="IsMouseOver" Value="True">
                 <Setter TargetName="TrackThumb" Property="Background" Value="#9E9E9E" />
             </Trigger>
 
-            <Trigger Property="IsDragging" SourceName="TrackThumb" Value="True">
+            <Trigger SourceName="TrackThumb" Property="IsDragging" Value="True">
                 <Setter TargetName="TrackThumb" Property="Background" Value="#F0F0F0" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Grid>
-            <Border CornerRadius="0" BorderThickness="0,1,0,0" BorderBrush="#434346" Background="#2D2D30" />
+        <Border Grid.ColumnSpan="3"
+                Background="#2D2D30"
+                BorderBrush="#434346"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <Track x:Name="PART_Track" IsDirectionReversed="False">
-                <Track.Thumb>
-                    <Thumb x:Name="TrackThumb" Style="{StaticResource ScrollBarThumb}" Margin="0,2,0,1">
-                        <Thumb.BorderBrush>
-                            <SolidColorBrush Color="#686868"/>
-                        </Thumb.BorderBrush>
+                <atlas:ImageButton Width="20"
+                                   Height="{TemplateBinding Height}"
+                                   Command="ScrollBar.LineLeftCommand"
+                                   Image="pack://application:,,,/Atlas.UI;component/Resources/Images/scrollbar_arrow_l.png" />
 
-                        <Thumb.Background>
-                            <SolidColorBrush Color="#686868"/>
-                        </Thumb.Background>
-                    </Thumb>
-                </Track.Thumb>
-            </Track>
-        </Grid>
+                <Track x:Name="PART_Track"
+                       Grid.Column="1"
+                       IsDirectionReversed="False">
+                    <Track.Thumb>
+                        <Thumb x:Name="TrackThumb"
+                               Margin="0,2,0,1"
+                               Style="{StaticResource ScrollBarThumb}">
+                            <Thumb.BorderBrush>
+                                <SolidColorBrush Color="#686868" />
+                            </Thumb.BorderBrush>
+
+                            <Thumb.Background>
+                                <SolidColorBrush Color="#686868" />
+                            </Thumb.Background>
+                        </Thumb>
+                    </Track.Thumb>
+                </Track>
+
+                <atlas:ImageButton Grid.Column="2"
+                                   Width="20"
+                                   Height="{TemplateBinding Height}"
+                                   Command="ScrollBar.LineRightCommand"
+                                   Image="pack://application:,,,/Atlas.UI;component/Resources/Images/scrollbar_arrow_r.png" />
+            </Grid>
+        </Border>
 
         <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" SourceName="TrackThumb" Value="True">
+            <Trigger SourceName="TrackThumb" Property="IsMouseOver" Value="True">
                 <Setter TargetName="TrackThumb" Property="Background" Value="#9E9E9E" />
             </Trigger>
 
-            <Trigger Property="IsDragging" SourceName="TrackThumb" Value="True">
+            <Trigger SourceName="TrackThumb" Property="IsDragging" Value="True">
                 <Setter TargetName="TrackThumb" Property="Background" Value="#F0F0F0" />
             </Trigger>
         </ControlTemplate.Triggers>
@@ -127,13 +183,18 @@
         <Setter Property="Background" Value="#2D2D30" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
+
+        <Setter Property="ContextMenu" Value="{x:Null}" />
+
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="BorderThickness" Value="0,1,0,0" />
                 <Setter Property="Width" Value="Auto" />
                 <Setter Property="Height" Value="16" />
                 <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
             </Trigger>
             <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="BorderThickness" Value="1,0,0,0" />
                 <Setter Property="Width" Value="16" />
                 <Setter Property="Height" Value="Auto" />
                 <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
