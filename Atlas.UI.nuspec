@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Atlas.UI</id>
+    <version>0.5.0</version>
+    <title>Atlas.UI</title>
+    <authors>Ciastex</authors>
+    <owners>Ciastex</owners>
+    <license type="expression">MIT</license>
+	<repository type="git" url="https://github.com/Ciastex/Atlas.UI" />
+    <iconUrl>https://github.com/Ciastex/Atlas.UI/raw/master/ProjectLogoNoBackground.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>UI toolkit wpf GUI</tags>
+	
+	<references>
+		<group targetFramework="net461">
+			<reference file="Atlas.UI.dll" />
+		</group>
+	</references>
+	
+	<dependencies>
+		<group targetFramework="net461">
+			<dependency id="Expression.Blend.Sdk.WPF" version="1.0.1" />
+		</group>
+	</dependencies>
+  </metadata>
+  
+  <files>
+	<file src="bin\Release\**\*.dll" target="lib\net461" />
+	<file src="bin\Release\**\*.pdb" target="lib\net461" />
+  </files>
+</package>
