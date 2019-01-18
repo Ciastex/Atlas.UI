@@ -185,6 +185,7 @@
     <Compile Include="CheckBox.cs" />
     <Compile Include="ComboBox.cs" />
     <Compile Include="ComboBoxItem.cs" />
+    <Compile Include="Converters\ProgressTextFormatConverter.cs" />
     <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
