@@ -56,7 +56,9 @@
                                    Visibility="Collapsed">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource ProgressTextFormatConverter}">
-                                    <Binding Path="ProgressTextTemplate" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="ProgressTextTemplate"
+                                             RelativeSource="{RelativeSource TemplatedParent}"
+                                             TargetNullValue="%val%" />
                                     <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>
                             </TextBlock.Text>

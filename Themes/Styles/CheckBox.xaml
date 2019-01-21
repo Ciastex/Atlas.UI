@@ -7,42 +7,41 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CheckBox}">
-                    <Border x:Name="PART_Main"
-                            Background="{TemplateBinding Background}">
+                    <Border x:Name="PART_Main" Background="{TemplateBinding Background}">
                         <StackPanel Orientation="Horizontal">
                             <Border x:Name="PART_CheckMarkBorder"
-                                    BorderBrush="#777777"
-                                    BorderThickness="1"
-                                    Background="#1E1E1E"
                                     Width="16"
                                     Height="16"
-                                    Padding="2">
+                                    Padding="0"
+                                    Background="#1E1E1E"
+                                    BorderBrush="#777777"
+                                    BorderThickness="1">
 
-                                <Path Visibility="Collapsed"
+                                <Path x:Name="PART_CheckMark"
                                       Width="7"
                                       Height="7"
-                                      x:Name="PART_CheckMark"
-                                      SnapsToDevicePixels="True"
-                                      VerticalAlignment="Center"
                                       HorizontalAlignment="Center"
-                                      StrokeThickness="2"
-                                      Data="M 0 0 L 7 7 M 0 7 L 7 0" 
-                                      Stroke="#666666" />
+                                      VerticalAlignment="Center"
+                                      Data="M -0.5 3.5 L 3 7 M 3 7 L 7 0"
+                                      SnapsToDevicePixels="True"
+                                      Stroke="#999999"
+                                      StrokeThickness="1"
+                                      Visibility="Collapsed" />
                             </Border>
 
                             <TextBlock x:Name="PART_Label"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Margin="4,0,0,0"
-                                   Text="{TemplateBinding Content}" />
+                                       Margin="4,0,0,0"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{TemplateBinding Content}" />
                         </StackPanel>
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.Setters>
@@ -58,7 +57,7 @@
 
                         <Trigger Property="IsPressed" Value="True">
                             <Trigger.Setters>
-                                <Setter TargetName="PART_CheckMarkBorder" Property="BorderBrush" Value="#777777"/>
+                                <Setter TargetName="PART_CheckMarkBorder" Property="BorderBrush" Value="#777777" />
                             </Trigger.Setters>
                         </Trigger>
 

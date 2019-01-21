@@ -1,7 +1,7 @@
-﻿using Atlas.UI.Events;
+﻿using Atlas.UI.Enums;
+using Atlas.UI.Events;
 using Atlas.UI.Extensions;
 using Atlas.UI.WindowStates;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -30,7 +30,7 @@ namespace Atlas.UI
             typeof(Window)
         );
 
-        public static readonly DependencyProperty CaptionMenuProperty = DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty CaptionMenuProperty = DependencyProperty.Register(
             nameof(CaptionMenu),
             typeof(ObservableCollection<MenuItem>),
             typeof(Window)
@@ -81,6 +81,24 @@ namespace Atlas.UI
         public static readonly DependencyProperty ShowMaximizeButtonProperty = DependencyProperty.Register(
             nameof(ShowMaximizeButton),
             typeof(bool),
+            typeof(Window)
+        );
+
+        public static readonly DependencyProperty CaptionMenuAlignmentProperty = DependencyProperty.Register(
+            nameof(CaptionMenuAlignment),
+            typeof(CaptionElementAlignment),
+            typeof(Window)
+        );
+
+        public static readonly DependencyProperty CaptionTitleAlignmentProperty = DependencyProperty.Register(
+            nameof(CaptionTitleAlignment),
+            typeof(CaptionElementAlignment),
+            typeof(Window)
+        );
+
+        public static readonly DependencyProperty CaptionButtonsAlignmentProperty = DependencyProperty.Register(
+            nameof(CaptionButtonsAlignment),
+            typeof(CaptionElementAlignment),
             typeof(Window)
         );
 
@@ -211,6 +229,36 @@ namespace Atlas.UI
             {
                 SetValue(ShowMinimizeButtonProperty, value);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowMinimizeButton)));
+            }
+        }
+
+        public CaptionElementAlignment CaptionMenuAlignment
+        {
+            get => (CaptionElementAlignment)GetValue(CaptionMenuAlignmentProperty);
+            set
+            {
+                SetValue(CaptionMenuAlignmentProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionMenuAlignment)));
+            }
+        }
+
+        public CaptionElementAlignment CaptionTitleAlignment
+        {
+            get => (CaptionElementAlignment)GetValue(CaptionTitleAlignmentProperty);
+            set
+            {
+                SetValue(CaptionTitleAlignmentProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionTitleAlignment)));
+            }
+        }
+
+        public CaptionElementAlignment CaptionButtonsAlignment
+        {
+            get => (CaptionElementAlignment)GetValue(CaptionButtonsAlignmentProperty);
+            set
+            {
+                SetValue(CaptionButtonsAlignmentProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
             }
         }
 
