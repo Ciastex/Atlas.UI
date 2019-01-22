@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atlas.UI.Extensions;
+using System;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -17,15 +13,12 @@ namespace Atlas.UI
         private bool _alreadyLoaded;
         private System.Windows.Window _parentWindow;
 
-        public static DependencyProperty IsTopMostProperty = DependencyProperty.Register(nameof(IsTopMost), typeof(bool), typeof(ParentedPopup));
+        public static DependencyProperty IsTopMostProperty = Dependency.Register<bool>(nameof(IsTopMost));
 
         public bool IsTopMost
         {
             get => (bool)GetValue(IsTopMostProperty);
-            set
-            {
-                SetValue(IsTopMostProperty, value);
-            }
+            set => SetValue(IsTopMostProperty, value);
         }
 
         public ParentedPopup()
@@ -33,7 +26,6 @@ namespace Atlas.UI
             Loaded += OnPopupLoaded;
             Unloaded += OnPopupUnloaded;
         }
-
 
         void OnPopupLoaded(object sender, RoutedEventArgs e)
         {
@@ -43,9 +35,7 @@ namespace Atlas.UI
             _alreadyLoaded = true;
 
             if (Child != null)
-            {
                 Child.AddHandler(PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(OnChildPreviewMouseLeftButtonDown), true);
-            }
 
             _parentWindow = System.Windows.Window.GetWindow(this);
 
@@ -65,18 +55,18 @@ namespace Atlas.UI
             _parentWindow.Deactivated -= OnParentWindowDeactivated;
         }
 
-        void OnParentWindowActivated(object sender, EventArgs e)
+        private void OnParentWindowActivated(object sender, EventArgs e)
         {
             SetTopmostState(true);
         }
 
-        void OnParentWindowDeactivated(object sender, EventArgs e)
+        private void OnParentWindowDeactivated(object sender, EventArgs e)
         {
             if (IsTopMost == false)
                 SetTopmostState(IsTopMost);
         }
 
-        void OnChildPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnChildPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SetTopmostState(true);
 
@@ -86,9 +76,8 @@ namespace Atlas.UI
 
         private static void OnIsTopmostChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            var thisobj = (ParentedPopup)obj;
-
-            thisobj.SetTopmostState(thisobj.IsTopMost);
+            var popUp = (ParentedPopup)obj;
+            popUp.SetTopmostState(popUp.IsTopMost);
         }
 
         protected override void OnOpened(EventArgs e)
@@ -105,65 +94,25 @@ namespace Atlas.UI
             if (Child == null)
                 return;
 
-
             if (!((PresentationSource.FromVisual(Child)) is HwndSource hwndSource))
                 return;
 
             var hwnd = hwndSource.Handle;
 
-
-            if (!GetWindowRect(hwnd, out Rect rect))
+            if (!WinAPI.GetWindowRect(hwnd, out WinAPI.Rect rect))
                 return;
 
             if (isTop)
-            {
-                SetWindowPos(hwnd, HWND_TOPMOST, rect.Left, rect.Top, (int)Width, (int)Height, TOPMOST_FLAGS);
-            }
+                WinAPI.SetWindowPos(hwnd, WinAPI.HWND_TOPMOST, rect.Left, rect.Top, (int)Width, (int)Height, WinAPI.TOPMOST_FLAGS);
+
             else
             {
-                SetWindowPos(hwnd, HWND_BOTTOM, rect.Left, rect.Top, (int)Width, (int)Height, TOPMOST_FLAGS);
-                SetWindowPos(hwnd, HWND_TOP, rect.Left, rect.Top, (int)Width, (int)Height, TOPMOST_FLAGS);
-                SetWindowPos(hwnd, HWND_NOTOPMOST, rect.Left, rect.Top, (int)Width, (int)Height, TOPMOST_FLAGS);
+                WinAPI.SetWindowPos(hwnd, WinAPI.HWND_BOTTOM, rect.Left, rect.Top, (int)Width, (int)Height, WinAPI.TOPMOST_FLAGS);
+                WinAPI.SetWindowPos(hwnd, WinAPI.HWND_TOP, rect.Left, rect.Top, (int)Width, (int)Height, WinAPI.TOPMOST_FLAGS);
+                WinAPI.SetWindowPos(hwnd, WinAPI.HWND_NOTOPMOST, rect.Left, rect.Top, (int)Width, (int)Height, WinAPI.TOPMOST_FLAGS);
             }
 
             _appliedTopMost = isTop;
         }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Rect
-
-        {
-            public int Left;
-            public int Top;
-            public int Right;
-            public int Bottom;
-        }
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool GetWindowRect(IntPtr hwnd, out Rect rect);
-
-        [DllImport("user32.dll")]
-        private static extern bool SetWindowPos(IntPtr hwnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint flags);
-
-        static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
-        static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
-        static readonly IntPtr HWND_TOP = new IntPtr(0);
-        static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
-
-        private const uint SWP_NOSIZE = 0x0001;
-        const uint SWP_NOMOVE = 0x0002;
-        const uint SWP_NOZORDER = 0x0004;
-        const uint SWP_NOREDRAW = 0x0008;
-        const uint SWP_NOACTIVATE = 0x0010;
-
-        const uint SWP_FRAMECHANGED = 0x0020;
-        const uint SWP_SHOWWINDOW = 0x0040;
-        const uint SWP_HIDEWINDOW = 0x0080;
-        const uint SWP_NOCOPYBITS = 0x0100;
-        const uint SWP_NOOWNERZORDER = 0x0200;
-        const uint SWP_NOSENDCHANGING = 0x0400;
-
-        const uint TOPMOST_FLAGS = SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_NOSIZE | SWP_NOMOVE | SWP_NOREDRAW | SWP_NOSENDCHANGING;
     }
 }

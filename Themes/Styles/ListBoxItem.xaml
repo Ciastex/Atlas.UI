@@ -6,20 +6,26 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ListBoxItem}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle x:Name="FillColor" Opacity="0" Fill="#1D1D20" IsHitTestVisible="False"/>
-                        <Rectangle x:Name="FillColor2" Opacity="0" Fill="#1D1D20" IsHitTestVisible="False"/>
+                        <Rectangle x:Name="FillColor"
+                                   Fill="#1D1D20"
+                                   IsHitTestVisible="False"
+                                   Opacity="0" />
+                        <Rectangle x:Name="FillColor2"
+                                   Fill="#1D1D20"
+                                   IsHitTestVisible="False"
+                                   Opacity="0" />
 
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" />
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Grid>
 
                     <ControlTemplate.Triggers>

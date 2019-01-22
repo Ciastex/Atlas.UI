@@ -40,7 +40,7 @@
                                                              Storyboard.TargetName="PART_Indicator"
                                                              Storyboard.TargetProperty="Width"
                                                              From="0"
-                                                             To="{Binding Width, ElementName=PART_Track}"
+                                                             To="{Binding ActualWidth, ElementName=PART_Track}"
                                                              Duration="0:0:1.5" />
                                         </Storyboard>
                                     </VisualState>

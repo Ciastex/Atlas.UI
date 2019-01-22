@@ -25,11 +25,6 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Content="{TemplateBinding Content}" />
-                        <!--<TextBlock x:Name="PART_Content"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   Text="{TemplateBinding Content}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />-->
                     </Border>
 
                     <ControlTemplate.Triggers>

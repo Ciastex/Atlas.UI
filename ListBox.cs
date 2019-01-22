@@ -9,14 +9,7 @@ namespace Atlas.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBox), new FrameworkPropertyMetadata(typeof(ListBox)));
         }
 
-        protected override DependencyObject GetContainerForItemOverride()
-        {
-            return new ListBoxItem();
-        }
-
-        protected override bool IsItemItsOwnContainerOverride(object item)
-        {
-            return item is ListBoxItem;
-        }
+        protected override DependencyObject GetContainerForItemOverride() => new ListBoxItem();
+        protected override bool IsItemItsOwnContainerOverride(object item) => item is ListBoxItem;
     }
 }

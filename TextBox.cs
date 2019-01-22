@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using Atlas.UI.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,10 +6,13 @@ namespace Atlas.UI
 {
     public class TextBox : System.Windows.Controls.TextBox
     {
-        public static readonly DependencyProperty ShowPlaceholderProperty = DependencyProperty.Register(nameof(ShowPlaceholder), typeof(bool), typeof(TextBox));
-        public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox));
-        public static readonly DependencyProperty HasTextProperty = DependencyProperty.Register(nameof(HasText), typeof(bool), typeof(TextBox));
-        public static readonly DependencyProperty ScrollToEndOnInputProperty = DependencyProperty.Register(nameof(ScrollToEndOnInput), typeof(bool), typeof(TextBox));
+        public static readonly DependencyProperty ShowPlaceholderProperty = Dependency.Register<bool>(nameof(ShowPlaceholder));
+        public static readonly DependencyProperty PlaceholderProperty = Dependency.Register<string>(nameof(Placeholder));
+        public static readonly DependencyProperty HasTextProperty = Dependency.Register<bool>(nameof(HasText));
+        public static readonly DependencyProperty HorizontalPlaceholderAlignmentProperty = Dependency.Register<HorizontalAlignment>(nameof(HorizontalPlaceholderAlignment));
+        public static readonly DependencyProperty VerticalPlaceholderAlignmentProperty = Dependency.Register<VerticalAlignment>(nameof(VerticalPlaceholderAlignment));
+        public static readonly DependencyProperty PlaceholderTextAlignmentProperty = Dependency.Register<TextAlignment>(nameof(PlaceholderTextAlignment));
+        public static readonly DependencyProperty PlaceholderPaddingProperty = Dependency.Register<Thickness>(nameof(PlaceholderPadding));
 
         public bool ShowPlaceholder
         {
@@ -29,10 +32,28 @@ namespace Atlas.UI
             private set => SetValue(HasTextProperty, value);
         }
 
-        public bool ScrollToEndOnInput
+        public HorizontalAlignment HorizontalPlaceholderAlignment
         {
-            get => (bool)GetValue(ScrollToEndOnInputProperty);
-            set => SetValue(HasTextProperty, value);
+            get => (HorizontalAlignment)GetValue(HorizontalPlaceholderAlignmentProperty);
+            set => SetValue(HorizontalPlaceholderAlignmentProperty, value);
+        }
+
+        public VerticalAlignment VerticalPlaceholderAlignment
+        {
+            get => (VerticalAlignment)GetValue(VerticalPlaceholderAlignmentProperty);
+            set => SetValue(VerticalPlaceholderAlignmentProperty, value);
+        }
+
+        public TextAlignment PlaceholderTextAlignment
+        {
+            get => (TextAlignment)GetValue(VerticalPlaceholderAlignmentProperty);
+            set => SetValue(VerticalPlaceholderAlignmentProperty, value);
+        }
+
+        public Thickness PlaceholderPadding
+        {
+            get => (Thickness)GetValue(PlaceholderPaddingProperty);
+            set => SetValue(PlaceholderPaddingProperty, value);
         }
 
         private System.Windows.Controls.Button ClearButton { get; set; }
@@ -44,20 +65,12 @@ namespace Atlas.UI
 
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
-            base.OnTextChanged(e);
-
             if (Text.Length > 0)
                 HasText = true;
             else
                 HasText = false;
 
-            if (e?.Changes?.Any(x => x.AddedLength > 0) == true)
-            {
-                if (CaretIndex == Text.Length)
-                {
-                    ScrollToHorizontalOffset(double.PositiveInfinity);
-                }
-            }
+            base.OnTextChanged(e);
         }
     }
 }

@@ -3,11 +3,10 @@
                     xmlns:local="clr-namespace:Atlas.UI">
 
     <ControlTemplate x:Key="TopLevelItemTemplate" TargetType="{x:Type local:MenuItem}">
-        <Grid x:Name="PART_Main"
-                Background="#2D2D30">
-            <TextBlock Padding="7,2" 
-                       Foreground="WhiteSmoke" 
-                       Text="{TemplateBinding Header}"/>
+        <Grid x:Name="PART_Main" Background="#2D2D30">
+            <TextBlock Padding="7,2"
+                       Foreground="WhiteSmoke"
+                       Text="{TemplateBinding Header}" />
         </Grid>
 
         <ControlTemplate.Triggers>
@@ -45,7 +44,7 @@
                     <Condition Property="HasItems" Value="False" />
                     <Condition Property="IsPressed" Value="True" />
                 </MultiTrigger.Conditions>
-                
+
                 <Setter TargetName="PART_Main" Property="Background" Value="#1E1E20" />
             </MultiTrigger>
         </ControlTemplate.Triggers>
@@ -55,17 +54,17 @@
         <Grid x:Name="PART_Main"
               Background="#2D2D30"
               SnapsToDevicePixels="True">
-            <TextBlock Padding="7,2" 
-                       Foreground="WhiteSmoke" 
-                       Text="{TemplateBinding Header}"/>
+            <TextBlock Padding="7,2"
+                       Foreground="WhiteSmoke"
+                       Text="{TemplateBinding Header}" />
 
-            <Popup Placement="Bottom" 
-                   IsOpen="{TemplateBinding IsSubmenuOpen}"
+            <Popup IsOpen="{TemplateBinding IsSubmenuOpen}"
+                   Placement="Bottom"
                    SnapsToDevicePixels="True">
-                <Border Background="#1B1B1C"
+                <Border Padding="2"
+                        Background="#1B1B1C"
                         BorderBrush="#333337"
                         BorderThickness="1"
-                        Padding="2"
                         Focusable="False"
                         SnapsToDevicePixels="True">
                     <StackPanel IsItemsHost="True" />
@@ -106,25 +105,25 @@
 
             <Rectangle Name="CheckMark"
                        Grid.Column="0"
+                       Width="4"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Stretch"
-                       Width="4"
+                       Fill="#3E3E40"
                        SnapsToDevicePixels="True"
-                       Fill="#3E3E40" 
                        Visibility="Collapsed" />
 
-            <Image Grid.Column="1"
-                   x:Name="PART_Icon"
+            <Image x:Name="PART_Icon"
+                   Grid.Column="1"
                    Width="16"
                    Height="16"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"
                    SnapsToDevicePixels="True"
-                   RenderOptions.BitmapScalingMode="NearestNeighbor" 
                    Source="{TemplateBinding Icon}" />
 
             <TextBlock Grid.Column="2"
-                       Padding="5,4,10,4" 
-                       Foreground="WhiteSmoke" 
-                       Text="{TemplateBinding Header}"/>
+                       Padding="5,4,10,4"
+                       Foreground="WhiteSmoke"
+                       Text="{TemplateBinding Header}" />
 
         </Grid>
 
@@ -134,13 +133,13 @@
             </Trigger>
 
             <Trigger Property="Icon" Value="{x:Null}">
-                <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />   
+                <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
             </Trigger>
 
             <Trigger Property="IsCheckable" Value="True">
                 <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
             </Trigger>
-            
+
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="CheckMark" Property="Fill" Value="#007ACC" />
             </Trigger>
@@ -157,38 +156,38 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <Image Grid.Column="0"
-                   x:Name="PART_Icon"
+
+            <Image x:Name="PART_Icon"
+                   Grid.Column="0"
                    Width="16"
                    Height="16"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"
                    SnapsToDevicePixels="True"
-                   RenderOptions.BitmapScalingMode="NearestNeighbor" 
                    Source="{TemplateBinding Icon}" />
-            
+
             <TextBlock Grid.Column="1"
-                       Padding="10,4" 
                        Margin="0,0,8,0"
-                       Foreground="WhiteSmoke" 
-                       Text="{TemplateBinding Header}"/>
+                       Padding="10,4"
+                       Foreground="WhiteSmoke"
+                       Text="{TemplateBinding Header}" />
 
             <Path Grid.Column="2"
+                  Margin="4,0,7,0"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Center"
-                  Data="M 0 0 L 0 7 L 4 3.5 Z" 
-                  Fill="#6D6D70"
-                  Margin="4,0,7,0" />
+                  Data="M 0 0 L 0 7 L 4 3.5 Z"
+                  Fill="#6D6D70" />
 
-            <Popup Placement="Right" 
-                   IsOpen="{TemplateBinding IsSubmenuOpen}"
-                   SnapsToDevicePixels="True"
-                   VerticalOffset="-3"
+            <Popup Focusable="False"
                    HorizontalOffset="2"
-                   Focusable="False">
-                <Border BorderBrush="#333337"
-                        BorderThickness="1"
-                        Padding="2"
+                   IsOpen="{TemplateBinding IsSubmenuOpen}"
+                   Placement="Right"
+                   SnapsToDevicePixels="True"
+                   VerticalOffset="-3">
+                <Border Padding="2"
                         Background="#1B1B1C"
+                        BorderBrush="#333337"
+                        BorderThickness="1"
                         SnapsToDevicePixels="True">
                     <StackPanel IsItemsHost="True" />
                 </Border>
@@ -199,7 +198,7 @@
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
             </Trigger>
-            
+
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
             </Trigger>
@@ -209,7 +208,7 @@
 
     <Style TargetType="{x:Type local:MenuItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        
+
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template" Value="{StaticResource TopLevelHeaderTemplate}" />

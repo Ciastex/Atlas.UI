@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Atlas.UI.Extensions;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Atlas.UI
@@ -7,12 +8,12 @@ namespace Atlas.UI
     {
         private System.Windows.Controls.Button CloseButton { get; set; }
 
-        public static readonly DependencyProperty IsClosableProperty = DependencyProperty.Register(nameof(IsClosable), typeof(bool), typeof(TabItem), new PropertyMetadata(true));
+        public static readonly DependencyProperty CanCloseProperty = Dependency.Register<bool>(nameof(CanClose));
 
-        public bool IsClosable
+        public bool CanClose
         {
-            get { return (bool)GetValue(IsClosableProperty); }
-            set { SetValue(IsClosableProperty, value); }
+            get { return (bool)GetValue(CanCloseProperty); }
+            set { SetValue(CanCloseProperty, value); }
         }
 
         static TabItem()
@@ -32,7 +33,7 @@ namespace Atlas.UI
 
         private void AtlasTabItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.MiddleButton == MouseButtonState.Pressed && IsClosable)
+            if (e.MiddleButton == MouseButtonState.Pressed && CanClose)
                 Close();
         }
 

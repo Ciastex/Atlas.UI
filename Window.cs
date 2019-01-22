@@ -24,83 +24,19 @@ namespace Atlas.UI
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
 
-        public static readonly DependencyProperty ShadeStateProperty = DependencyProperty.Register(
-            nameof(ShadeState),
-            typeof(ShadeState),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CaptionMenuProperty = DependencyProperty.Register(
-            nameof(CaptionMenu),
-            typeof(ObservableCollection<MenuItem>),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty ShowCaptionBorderProperty = DependencyProperty.Register(
-            nameof(ShowCaptionBorder),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CanMaximizeProperty = DependencyProperty.Register(
-            nameof(CanMaximize),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CanShadeProperty = DependencyProperty.Register(
-            nameof(CanShade),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CanResizeProperty = DependencyProperty.Register(
-            nameof(CanResize),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty ShowCloseButtonProperty = DependencyProperty.Register(
-            nameof(ShowCloseButton),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty ShowShadeButtonProperty = DependencyProperty.Register(
-            nameof(ShowShadeButton),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty ShowMinimizeButtonProperty = DependencyProperty.Register(
-            nameof(ShowMinimizeButton),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty ShowMaximizeButtonProperty = DependencyProperty.Register(
-            nameof(ShowMaximizeButton),
-            typeof(bool),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CaptionMenuAlignmentProperty = DependencyProperty.Register(
-            nameof(CaptionMenuAlignment),
-            typeof(CaptionElementAlignment),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CaptionTitleAlignmentProperty = DependencyProperty.Register(
-            nameof(CaptionTitleAlignment),
-            typeof(CaptionElementAlignment),
-            typeof(Window)
-        );
-
-        public static readonly DependencyProperty CaptionButtonsAlignmentProperty = DependencyProperty.Register(
-            nameof(CaptionButtonsAlignment),
-            typeof(CaptionElementAlignment),
-            typeof(Window)
-        );
+        public static readonly DependencyProperty ShadeStateProperty = Dependency.Register<ShadeState>(nameof(ShadeState));
+        public static readonly DependencyProperty CaptionMenuProperty = Dependency.Register<ObservableCollection<MenuItem>>(nameof(CaptionMenu));
+        public static readonly DependencyProperty ShowCaptionBorderProperty = Dependency.Register<bool>(nameof(ShowCaptionBorder));
+        public static readonly DependencyProperty CanMaximizeProperty = Dependency.Register<bool>(nameof(CanMaximize));
+        public static readonly DependencyProperty CanShadeProperty = Dependency.Register<bool>(nameof(CanShade));
+        public static readonly DependencyProperty CanResizeProperty = Dependency.Register<bool>(nameof(CanResize));
+        public static readonly DependencyProperty ShowCloseButtonProperty = Dependency.Register<bool>(nameof(ShowCloseButton));
+        public static readonly DependencyProperty ShowShadeButtonProperty = Dependency.Register<bool>(nameof(ShowShadeButton));
+        public static readonly DependencyProperty ShowMinimizeButtonProperty = Dependency.Register<bool>(nameof(ShowMinimizeButton));
+        public static readonly DependencyProperty ShowMaximizeButtonProperty = Dependency.Register<bool>(nameof(ShowMaximizeButton));
+        public static readonly DependencyProperty CaptionMenuAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionMenuAlignment));
+        public static readonly DependencyProperty CaptionTitleAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionTitleAlignment));
+        public static readonly DependencyProperty CaptionButtonsAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionButtonsAlignment));
 
         public ShadeState ShadeState
         {
@@ -340,25 +276,10 @@ namespace Atlas.UI
             }
         }
 
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            OnMinimizeButtonClicked(sender, e);
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            OnMaximizeButtonClicked(sender, e);
-        }
-
-        private void ShadeButton_Click(object sender, RoutedEventArgs e)
-        {
-            OnShadeButtonClicked(sender, e);
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            OnCloseButtonClicked(sender, e);
-        }
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e) => OnMinimizeButtonClicked(sender, e);
+        private void MaximizeButton_Click(object sender, RoutedEventArgs e) => OnMaximizeButtonClicked(sender, e);
+        private void ShadeButton_Click(object sender, RoutedEventArgs e) => OnShadeButtonClicked(sender, e);
+        private void CloseButton_Click(object sender, RoutedEventArgs e) => OnCloseButtonClicked(sender, e);
 
         private void ToggleMaximizedState()
         {

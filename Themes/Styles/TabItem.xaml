@@ -35,7 +35,6 @@
 
     <Style TargetType="{x:Type local:TabItem}">
         <Setter Property="Background" Value="#2D2D30" />
-        <Setter Property="AllowDrop" Value="True" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -57,7 +56,8 @@
                                     Margin="5,2,5,2"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Style="{StaticResource CloseTabButton}" />
+                                    Style="{StaticResource CloseTabButton}"
+                                    Visibility="Collapsed" />
                         </StackPanel>
                     </Grid>
 
@@ -66,8 +66,8 @@
                             <Setter TargetName="PART_Tab" Property="Background" Value="#0079CB" />
                         </Trigger>
 
-                        <Trigger Property="IsClosable" Value="False">
-                            <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Collapsed" />
+                        <Trigger Property="CanClose" Value="True">
+                            <Setter TargetName="PART_CloseButton" Property="Visibility" Value="Visible" />
                         </Trigger>
 
                         <MultiTrigger>

@@ -20,17 +20,28 @@
                                     Background="#1E1E1E"
                                     BorderBrush="#777777"
                                     BorderThickness="1">
+                                <Grid>
+                                    <Rectangle x:Name="PART_CheckMarkNull"
+                                               Width="6"
+                                               Height="6"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Fill="#999999"
+                                               Stroke="#999999"
+                                               StrokeThickness="1"
+                                               Visibility="Collapsed" />
 
-                                <Path x:Name="PART_CheckMark"
-                                      Width="7"
-                                      Height="7"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Data="M -0.5 3.5 L 3 7 M 3 7 L 7 0"
-                                      SnapsToDevicePixels="True"
-                                      Stroke="#999999"
-                                      StrokeThickness="1"
-                                      Visibility="Collapsed" />
+                                    <Path x:Name="PART_CheckMarkTrue"
+                                          Width="7"
+                                          Height="7"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Data="M -0.5 3.5 L 3 7 M 3 7 L 7 0"
+                                          SnapsToDevicePixels="False"
+                                          Stroke="#999999"
+                                          StrokeThickness="1"
+                                          Visibility="Collapsed" />
+                                </Grid>
                             </Border>
 
                             <TextBlock x:Name="PART_Label"
@@ -51,7 +62,7 @@
 
                         <Trigger Property="IsChecked" Value="True">
                             <Trigger.Setters>
-                                <Setter TargetName="PART_CheckMark" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="PART_CheckMarkTrue" Property="Visibility" Value="Visible" />
                             </Trigger.Setters>
                         </Trigger>
 
@@ -67,13 +78,22 @@
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsChecked" Value="True" />
                                 <Condition Property="IsPressed" Value="True" />
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
-                                <Setter TargetName="PART_CheckMark" Property="Visibility" Value="Visible" />
-                                <Setter TargetName="PART_CheckMark" Property="Opacity" Value="0.8" />
+                                <Setter TargetName="PART_CheckMarkNull" Property="Opacity" Value="0.885" />
+                                <Setter TargetName="PART_CheckMarkTrue" Property="Opacity" Value="0.885" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_CheckMarkTrue" Property="Visibility" Value="Visible" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
 
@@ -84,7 +104,7 @@
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
-                                <Setter TargetName="PART_CheckMark" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="PART_CheckMarkNull" Property="Visibility" Value="Visible" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>

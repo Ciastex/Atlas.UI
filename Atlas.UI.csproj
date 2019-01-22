@@ -191,6 +191,7 @@
     <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
+    <Compile Include="Extensions\Dependency.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GroupBox.cs" />
     <Compile Include="ImageButton.cs" />

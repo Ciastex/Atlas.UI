@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Atlas.UI.Events;
+using Atlas.UI.Extensions;
 
 namespace Atlas.UI
 {
@@ -22,21 +23,22 @@ namespace Atlas.UI
 
         public event EventHandler TabPanelDoubleClick;
 
-        public static readonly DependencyProperty PlaceholderTextProperty = DependencyProperty.Register("PlaceholderText", typeof(string), typeof(TabControl));
+        public static readonly DependencyProperty PlaceholderTextProperty = Dependency.Register<string>(nameof(PlaceholderText));
+        public static readonly DependencyProperty ShowAddButtonProperty = Dependency.Register<bool>(nameof(ShowAddButton));
+        public static readonly DependencyProperty ShowTabMenuProperty = Dependency.Register<bool>(nameof(ShowTabMenu));
+
         public string PlaceholderText
         {
             get { return (string)GetValue(PlaceholderTextProperty); }
             set { SetValue(PlaceholderTextProperty, value); }
         }
 
-        public static readonly DependencyProperty ShowAddButtonProperty = DependencyProperty.Register("ShowAddButton", typeof(bool), typeof(TabControl), new PropertyMetadata(false));
         public bool ShowAddButton
         {
             get { return (bool)GetValue(ShowAddButtonProperty); }
             set { SetValue(ShowAddButtonProperty, value); }
         }
 
-        public static readonly DependencyProperty ShowTabMenuProperty = DependencyProperty.Register("ShowTabMenu", typeof(bool), typeof(TabControl), new PropertyMetadata(false));
         public bool ShowTabMenu
         {
             get { return (bool)GetValue(ShowTabMenuProperty); }

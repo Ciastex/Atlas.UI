@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using Atlas.UI.Extensions;
+using System.Windows;
 
 namespace Atlas.UI
 {
     public class ProgressBar : System.Windows.Controls.ProgressBar
     {
-        public static readonly DependencyProperty ShowProgressTextProperty = DependencyProperty.Register(nameof(ShowProgressText), typeof(bool), typeof(ProgressBar));
-        public static readonly DependencyProperty ProgressTextTemplateProperty = DependencyProperty.Register(nameof(ProgressTextTemplate), typeof(string), typeof(ProgressBar));
+        public static readonly DependencyProperty ShowProgressTextProperty = Dependency.Register<bool>(nameof(ShowProgressText));
+        public static readonly DependencyProperty ProgressTextTemplateProperty = Dependency.Register<string>(nameof(ProgressTextTemplate));
 
         public bool ShowProgressText
         {
