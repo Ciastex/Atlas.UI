@@ -90,7 +90,7 @@
                                           HorizontalAlignment="{TemplateBinding CaptionMenuAlignment,
                                                                                 Converter={StaticResource CaptionToHorizontalConverter}}"
                                           VerticalAlignment="Center"
-                                          Background="#2D2D30"
+                                          Background="{TemplateBinding Background}"
                                           DockPanel.Dock="Left"
                                           ItemsSource="{TemplateBinding CaptionMenu}" />
 

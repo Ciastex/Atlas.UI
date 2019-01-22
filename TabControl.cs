@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Atlas.UI.Enums;
 using Atlas.UI.Events;
 using Atlas.UI.Extensions;
 
@@ -26,23 +27,30 @@ namespace Atlas.UI
         public static readonly DependencyProperty PlaceholderTextProperty = Dependency.Register<string>(nameof(PlaceholderText));
         public static readonly DependencyProperty ShowAddButtonProperty = Dependency.Register<bool>(nameof(ShowAddButton));
         public static readonly DependencyProperty ShowTabMenuProperty = Dependency.Register<bool>(nameof(ShowTabMenu));
+        public static readonly DependencyProperty NewTabBehaviorProperty = Dependency.Register<NewTabBehavior>(nameof(NewTabBehavior));
 
         public string PlaceholderText
         {
-            get { return (string)GetValue(PlaceholderTextProperty); }
-            set { SetValue(PlaceholderTextProperty, value); }
+            get => (string)GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
         }
 
         public bool ShowAddButton
         {
-            get { return (bool)GetValue(ShowAddButtonProperty); }
-            set { SetValue(ShowAddButtonProperty, value); }
+            get => (bool)GetValue(ShowAddButtonProperty);
+            set => SetValue(ShowAddButtonProperty, value);
         }
 
         public bool ShowTabMenu
         {
-            get { return (bool)GetValue(ShowTabMenuProperty); }
-            set { SetValue(ShowTabMenuProperty, value); }
+            get => (bool)GetValue(ShowTabMenuProperty);
+            set => SetValue(ShowTabMenuProperty, value);
+        }
+
+        public NewTabBehavior NewTabBehavior
+        {
+            get => (NewTabBehavior)GetValue(NewTabBehaviorProperty);
+            set => SetValue(NewTabBehaviorProperty, value);
         }
 
         static TabControl()
@@ -82,6 +90,10 @@ namespace Atlas.UI
             if (eventArgs.Handled) return;
 
             var createdTabItem = new TabItem { Header = "New Tab" };
+
+            if (NewTabBehavior.HasFlag(NewTabBehavior.CanClose))
+                createdTabItem.CanClose = true;
+
             Items.Add(createdTabItem);
             ScrollView.ScrollToRightEnd();
 

@@ -2,11 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Atlas.UI">
     <Style TargetType="{x:Type local:CheckBox}">
-        <Setter Property="Background" Value="#2D2D30" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#999999" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="4" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -17,17 +18,18 @@
                                     Width="16"
                                     Height="16"
                                     Padding="0"
-                                    Background="#1E1E1E"
-                                    BorderBrush="#777777"
-                                    BorderThickness="1">
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding Foreground}"
+                                    BorderThickness="1"
+                                    Opacity="0.75">
                                 <Grid>
                                     <Rectangle x:Name="PART_CheckMarkNull"
                                                Width="6"
                                                Height="6"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Fill="#999999"
-                                               Stroke="#999999"
+                                               Fill="{TemplateBinding Foreground}"
+                                               Stroke="{TemplateBinding Foreground}"
                                                StrokeThickness="1"
                                                Visibility="Collapsed" />
 
@@ -38,25 +40,24 @@
                                           VerticalAlignment="Center"
                                           Data="M -0.5 3.5 L 3 7 M 3 7 L 7 0"
                                           SnapsToDevicePixels="False"
-                                          Stroke="#999999"
+                                          Stroke="{TemplateBinding Foreground}"
                                           StrokeThickness="1"
                                           Visibility="Collapsed" />
                                 </Grid>
                             </Border>
 
-                            <TextBlock x:Name="PART_Label"
-                                       Margin="4,0,0,0"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       Text="{TemplateBinding Content}" />
+                            <ContentPresenter x:Name="PART_Label"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}" />
                         </StackPanel>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.Setters>
-                                <Setter TargetName="PART_CheckMarkBorder" Property="BorderBrush" Value="#999999" />
+                                <Setter TargetName="PART_CheckMarkBorder" Property="Opacity" Value="1.0" />
                             </Trigger.Setters>
                         </Trigger>
 
@@ -68,12 +69,12 @@
 
                         <Trigger Property="IsPressed" Value="True">
                             <Trigger.Setters>
-                                <Setter TargetName="PART_CheckMarkBorder" Property="BorderBrush" Value="#777777" />
+                                <Setter TargetName="PART_CheckMarkBorder" Property="Opacity" Value="0.4" />
                             </Trigger.Setters>
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_Main" Property="Opacity" Value="0.3" />
+                            <Setter TargetName="PART_Main" Property="Opacity" Value="0.4" />
                         </Trigger>
 
                         <MultiTrigger>
