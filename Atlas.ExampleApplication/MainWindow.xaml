@@ -1,0 +1,131 @@
+﻿<atlas:Window x:Class="Atlas.ExampleApplication.MainWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:atlas="clr-namespace:Atlas.UI;assembly=Atlas.UI"
+              xmlns:local="clr-namespace:Atlas.ExampleApplication"
+              Title="MainWindow"
+              Width="800"
+              Height="450"
+              Background="#2D2D30">
+    <atlas:Window.CaptionMenu>
+        <atlas:MenuItem Header="Menu Button 1" />
+        <atlas:MenuItem Header="Menu 1">
+            <atlas:MenuItem Header="Menu Item 1" />
+            <atlas:MenuItem Header="Checkable Menu Item 1" IsCheckable="True" />
+        </atlas:MenuItem>
+        <atlas:MenuItem Header="Menu 2">
+            <atlas:MenuItem Header="Submenu 1">
+                <atlas:MenuItem Header="Submenu Item 1" />
+                <atlas:MenuItem Header="Checkable Submenu Item 1" />
+            </atlas:MenuItem>
+        </atlas:MenuItem>
+    </atlas:Window.CaptionMenu>
+
+    <atlas:TabControl NewTabBehavior="CanClose"
+                      PlaceholderText="This is an empty space. Add some tabs!"
+                      ShowAddButton="True"
+                      ShowTabMenu="True">
+        <atlas:TabItem Header="Tab Item 1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Margin="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                    <atlas:RadioButton Content="Radio Button 1" Foreground="Red" />
+                    <atlas:RadioButton Content="Radio Button 2" Foreground="Orange" />
+                    <atlas:RadioButton Content="Radio Button 3" Foreground="Yellow" />
+                    <atlas:RadioButton Content="Radio Button 4" Foreground="Green" />
+                    <atlas:RadioButton Content="Radio Button 5" Foreground="CornflowerBlue" />
+                    <atlas:RadioButton Content="Radio Button 6" Foreground="BlueViolet" />
+                    <atlas:RadioButton Content="Radio Button 7" Foreground="Violet" />
+                    <atlas:RadioButton Content="Radio Button 8" />
+                    <atlas:RadioButton Content="Disabled Radio Button" IsEnabled="False" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Margin="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                    <atlas:CheckBox Content="Check Box 1" Foreground="Red" />
+                    <atlas:CheckBox Content="Check Box 2" Foreground="Orange" />
+                    <atlas:CheckBox Content="Check Box 3" Foreground="Yellow" />
+                    <atlas:CheckBox Content="Check Box 4" Foreground="Green" />
+                    <atlas:CheckBox Content="Check Box 5" Foreground="CornflowerBlue" />
+                    <atlas:CheckBox Content="Check Box 6" Foreground="BlueViolet" />
+                    <atlas:CheckBox Content="Check Box 7" Foreground="Violet" />
+                    <atlas:CheckBox Content="Ternary Check Box" IsThreeState="True" />
+                    <atlas:CheckBox Content="Disabled Check Box" IsEnabled="False" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Margin="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                    <atlas:Button BorderBrush="Red"
+                                  Content="Button 1"
+                                  Foreground="Red" />
+                    <atlas:Button BorderBrush="Orange"
+                                  Content="Button 2"
+                                  Foreground="Orange" />
+                    <atlas:Button BorderBrush="Yellow"
+                                  Content="Button 3"
+                                  Foreground="Yellow" />
+                    <atlas:Button BorderBrush="Green"
+                                  Content="Button 4"
+                                  Foreground="Green" />
+                    <atlas:Button BorderBrush="CornflowerBlue"
+                                  Content="Button 5"
+                                  Foreground="CornflowerBlue" />
+                    <atlas:Button BorderBrush="BlueViolet"
+                                  Content="Button 6"
+                                  Foreground="BlueViolet" />
+                    <atlas:Button BorderBrush="BlueViolet"
+                                  Content="Button 7"
+                                  Foreground="Violet" />
+                    <atlas:Button Content="Button 8" />
+                    <atlas:Button Content="Disabled Button" IsEnabled="False" />
+                </StackPanel>
+
+                <atlas:GroupBox Grid.Column="4"
+                                Margin="10"
+                                Header="GroupBox 1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <atlas:TextBox Grid.Row="0"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Top"
+                                       Placeholder="Type something..."
+                                       ShowPlaceholder="True" />
+
+                        <ScrollViewer Grid.Row="1" Margin="0,4,0,0">
+                            <atlas:TextBox Padding="3,2,0,0"
+                                           HorizontalContentAlignment="Left"
+                                           VerticalContentAlignment="Top"
+                                           AcceptsReturn="True"
+                                           BorderThickness="1,1,0,1"
+                                           HorizontalPlaceholderAlignment="Left"
+                                           Placeholder="Type a long text..."
+                                           PlaceholderPadding="4,2,0,0"
+                                           ShowPlaceholder="True"
+                                           TextWrapping="Wrap"
+                                           VerticalPlaceholderAlignment="Top" />
+                        </ScrollViewer>
+                    </Grid>
+                </atlas:GroupBox>
+            </Grid>
+        </atlas:TabItem>
+
+        <atlas:TabItem Header="Tab Item 2" />
+    </atlas:TabControl>
+</atlas:Window>
