@@ -135,12 +135,21 @@
                                 Height="24"
                                 Margin="4"
                                 HorizontalAlignment="Left"
-                                SelectedIndex="0"
-                                VerticalAlignment="Top">
+                                VerticalAlignment="Top"
+                                SelectedIndex="0">
                     <atlas:ComboBoxItem Content="ComboBoxItem 1" />
                     <atlas:ComboBoxItem Content="ComboBoxItem 2" />
                     <atlas:ComboBoxItem Content="ComboBoxItem 3" />
                 </atlas:ComboBox>
+
+                <StackPanel HorizontalAlignment="Right">
+                    <atlas:ProgressBar x:Name="Progressbar"
+                                       Width="200"
+                                       Height="24"
+                                       ProgressTextTemplate="%val% / %max%"
+                                       ShowProgressText="True" />
+                    <atlas:Button Click="Button_Click" Content="Max" />
+                </StackPanel>
             </Grid>
         </atlas:TabItem>
     </atlas:TabControl>

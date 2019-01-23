@@ -58,8 +58,11 @@
                                 <MultiBinding Converter="{StaticResource ProgressTextFormatConverter}">
                                     <Binding Path="ProgressTextTemplate"
                                              RelativeSource="{RelativeSource TemplatedParent}"
-                                             TargetNullValue="%val%" />
-                                    <Binding Path="." RelativeSource="{RelativeSource TemplatedParent}" />
+                                             TargetNullValue="%val%"
+                                             UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="."
+                                             RelativeSource="{RelativeSource TemplatedParent}"
+                                             UpdateSourceTrigger="PropertyChanged" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
