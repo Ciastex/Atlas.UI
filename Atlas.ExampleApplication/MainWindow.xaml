@@ -8,7 +8,7 @@
               Height="450"
               Background="#2D2D30">
     <atlas:Window.CaptionMenu>
-        <atlas:MenuItem Header="Menu Button 1" />
+        <atlas:MenuItem Header="Menu Button 1" ToolTip="This is a tooltip for preview." />
         <atlas:MenuItem Header="Menu 1">
             <atlas:MenuItem Header="Menu Item 1" />
             <atlas:MenuItem Header="Checkable Menu Item 1" IsCheckable="True" />
@@ -16,7 +16,9 @@
         <atlas:MenuItem Header="Menu 2">
             <atlas:MenuItem Header="Submenu 1">
                 <atlas:MenuItem Header="Submenu Item 1" />
-                <atlas:MenuItem Header="Checkable Submenu Item 1" />
+                <atlas:MenuItem Header="Checkable Submenu Item 1"
+                                IsCheckable="True"
+                                StaysOpenOnClick="True" />
             </atlas:MenuItem>
         </atlas:MenuItem>
     </atlas:Window.CaptionMenu>
@@ -127,6 +129,19 @@
             </Grid>
         </atlas:TabItem>
 
-        <atlas:TabItem Header="Tab Item 2" />
+        <atlas:TabItem Header="Tab Item 2">
+            <Grid>
+                <atlas:ComboBox Width="300"
+                                Height="24"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                SelectedIndex="0"
+                                VerticalAlignment="Top">
+                    <atlas:ComboBoxItem Content="ComboBoxItem 1" />
+                    <atlas:ComboBoxItem Content="ComboBoxItem 2" />
+                    <atlas:ComboBoxItem Content="ComboBoxItem 3" />
+                </atlas:ComboBox>
+            </Grid>
+        </atlas:TabItem>
     </atlas:TabControl>
 </atlas:Window>

@@ -50,8 +50,6 @@
         <Setter Property="CanShade" Value="True" />
         <Setter Property="CanMaximize" Value="True" />
         <Setter Property="ResizeMode" Value="CanResize" />
-        <Setter Property="MinHeight" Value="350" />
-        <Setter Property="MinWidth" Value="400" />
 
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>

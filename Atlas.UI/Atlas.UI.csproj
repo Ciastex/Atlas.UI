@@ -34,12 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+      <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -274,9 +274,6 @@
     <Resource Include="Resources\Images\expander_expanded.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\checkbox_checkmark.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\icons\refresh.png" />
   </ItemGroup>
   <ItemGroup>
@@ -302,12 +299,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\icons\select_none.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\scrollbar_arrow_d.png" />
-    <Resource Include="Resources\Images\scrollbar_arrow_l.png" />
-    <Resource Include="Resources\Images\scrollbar_arrow_r.png" />
-    <Resource Include="Resources\Images\scrollbar_arrow_u.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

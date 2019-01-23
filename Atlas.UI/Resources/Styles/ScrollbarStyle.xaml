@@ -111,12 +111,6 @@
                     </Track.Thumb>
                 </Track>
 
-                <!--<atlas:ImageButton Grid.Row="2"
-                                   Width="{TemplateBinding Width}"
-                                   Height="20"
-                                   Padding="0"
-                                   Command="ScrollBar.LineDownCommand"
-                                   Image="pack://application:,,,/Atlas.UI;component/Resources/Images/scrollbar_arrow_d.png" />-->
                 <Button Grid.Row="2"
                         Padding="0,6"
                         HorizontalAlignment="Stretch"
