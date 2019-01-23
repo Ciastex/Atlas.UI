@@ -131,7 +131,19 @@
 
         <atlas:TabItem Header="Tab Item 2">
             <Grid>
-                <atlas:ComboBox Width="300"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <atlas:ComboBox Grid.Row="1"
+                                Grid.Column="0"
+                                Width="300"
                                 Height="24"
                                 Margin="4"
                                 HorizontalAlignment="Left"
@@ -142,14 +154,40 @@
                     <atlas:ComboBoxItem Content="ComboBoxItem 3" />
                 </atlas:ComboBox>
 
-                <StackPanel HorizontalAlignment="Right">
+                <StackPanel Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left">
                     <atlas:ProgressBar x:Name="Progressbar"
                                        Width="200"
                                        Height="24"
+                                       Margin="4"
                                        ProgressTextTemplate="%val% / %max%"
-                                       ShowProgressText="True" />
-                    <atlas:Button Click="Button_Click" Content="Max" />
+                                       ShowProgressText="True"
+                                       Value="50" />
+                    <atlas:Button Click="Button_Click" Content="Set maximum to 12" />
                 </StackPanel>
+
+                <atlas:ListView Grid.Row="0"
+                                Grid.Column="0"
+                                Width="300"
+                                Height="200"
+                                Margin="4"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom">
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                </atlas:ListView>
             </Grid>
         </atlas:TabItem>
     </atlas:TabControl>

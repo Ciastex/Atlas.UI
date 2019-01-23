@@ -123,6 +123,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles\ListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\ProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +205,8 @@
     <Compile Include="GroupBox.cs" />
     <Compile Include="ImageButton.cs" />
     <Compile Include="ListBox.cs" />
+    <Compile Include="ListView.cs" />
+    <Compile Include="ListViewItem.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="ParentedPopup.cs" />
     <Compile Include="ProgressBar.cs" />

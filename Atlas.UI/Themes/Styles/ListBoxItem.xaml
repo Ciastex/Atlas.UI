@@ -16,6 +16,7 @@
                                    Fill="#1D1D20"
                                    IsHitTestVisible="False"
                                    Opacity="0" />
+
                         <Rectangle x:Name="FillColor2"
                                    Fill="#1D1D20"
                                    IsHitTestVisible="False"
