@@ -27,13 +27,13 @@
                     <Border x:Name="PART_ContainerBorder"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost"
                                           CanContentScroll="True"
                                           Focusable="False"
                                           HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
-                                          SnapsToDevicePixels="True"
                                           VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}" />
 
                             <TextBlock x:Name="PART_Placeholder"

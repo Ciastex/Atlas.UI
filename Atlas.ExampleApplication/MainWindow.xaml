@@ -108,19 +108,20 @@
                                        Placeholder="Type something..."
                                        ShowPlaceholder="True" />
 
-                        <ScrollViewer Grid.Row="1" Margin="0,4,0,0">
-                            <atlas:TextBox Padding="3,2,0,0"
-                                           HorizontalContentAlignment="Left"
-                                           VerticalContentAlignment="Top"
-                                           AcceptsReturn="True"
-                                           BorderThickness="1,1,0,1"
-                                           HorizontalPlaceholderAlignment="Left"
-                                           Placeholder="Type a long text..."
-                                           PlaceholderPadding="4,2,0,0"
-                                           ShowPlaceholder="True"
-                                           TextWrapping="Wrap"
-                                           VerticalPlaceholderAlignment="Top" />
-                        </ScrollViewer>
+                        <atlas:TextBox Grid.Row="1"
+                                       Margin="0,4,0,0"
+                                       Padding="3,2,0,0"
+                                       HorizontalContentAlignment="Left"
+                                       VerticalContentAlignment="Top"
+                                       AcceptsReturn="True"
+                                       HorizontalPlaceholderAlignment="Left"
+                                       HorizontalScrollBarVisibility="Visible"
+                                       Placeholder="Type a long text..."
+                                       PlaceholderPadding="4,2,0,0"
+                                       ShowPlaceholder="True"
+                                       TextWrapping="NoWrap"
+                                       VerticalPlaceholderAlignment="Top"
+                                       VerticalScrollBarVisibility="Visible" />
                     </Grid>
                 </atlas:GroupBox>
             </Grid>
