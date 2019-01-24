@@ -1,6 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/sqyrd90lnrbfln2g?svg=true)](https://ci.appveyor.com/project/Ciastex/atlas-ui)
 [![NuGet Release](https://img.shields.io/nuget/v/Atlas.UI.svg?colorB=%23007ACC)](https://www.nuget.org/packages/Atlas.UI)
-
+[![MIT License](https://img.shields.io/github/license/Ciastex/Atlas.UI.svg)](https://github.com/Ciastex/Atlas.UI/blob/master/LICENSE.md)
 ### Atlas.UI
 Dark and elegant UI toolkit inspired by Visual Studio design for WPF. Tries to extend on the design by chipping in its own features.
 
