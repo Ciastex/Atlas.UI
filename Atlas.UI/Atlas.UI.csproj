@@ -214,6 +214,7 @@
     <Compile Include="TabControl.cs" />
     <Compile Include="TabItem.cs" />
     <Compile Include="TextBox.cs" />
+    <Compile Include="Toggle.cs" />
     <Compile Include="UserControls\NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
@@ -245,6 +246,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Page Include="Themes\Styles\Toggle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CaptionButtons\caption_close.png" />

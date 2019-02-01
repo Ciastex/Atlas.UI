@@ -165,6 +165,27 @@
                                        ShowProgressText="True"
                                        Value="50" />
                     <atlas:Button Click="Button_Click" Content="Set maximum to 12" />
+
+                    <atlas:Toggle Margin="4"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Left"
+                                  Content="World peace"
+                                  IsChecked="False" />
+                    <atlas:Toggle Margin="4"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Left"
+                                  Content="Famine"
+                                  IsChecked="False" />
+                    <atlas:Toggle Margin="4"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Left"
+                                  Content="Evolution"
+                                  IsChecked="True" />
+                    <atlas:Toggle Margin="4"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Left"
+                                  Content="Thermal death of the universe"
+                                  IsChecked="True" />
                 </StackPanel>
 
                 <atlas:ListView Grid.Row="0"
