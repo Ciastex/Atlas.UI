@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:atlas="clr-namespace:Atlas.UI"
+                    xmlns:local="clr-namespace:Atlas.UI.Themes.Styles">
+    <Style TargetType="{x:Type atlas:Toggle}">
+        <Setter Property="BorderBrush" Value="#666666" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="#666666" />
+        <Setter Property="Background" Value="#222222" />
+        <Setter Property="ToggledStateText" Value="ON" />
+        <Setter Property="UntoggledStateText" Value="OFF" />
+        <Setter Property="ToggledStateBrush" Value="#007ACC" />
+        <Setter Property="UntoggledStateBrush" Value="#666666" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type atlas:Toggle}">
+                    <Grid x:Name="PART_MainGrid" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <ContentPresenter x:Name="PART_Label"
+                                          Grid.Column="0"
+                                          Margin="0,0,4,0"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          IsHitTestVisible="False" />
+
+                        <Border x:Name="PART_ToggleBorder"
+                                Grid.Column="1"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Opacity="0.8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                                           Margin="6,2"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding ToggledStateBrush}"
+                                           Text="{TemplateBinding ToggledStateText}" />
+
+                                <TextBlock Grid.Column="1"
+                                           Margin="6,2"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Foreground="{TemplateBinding UntoggledStateBrush}"
+                                           Text="{TemplateBinding UntoggledStateText}" />
+
+                                <Rectangle x:Name="PART_ToggleElement"
+                                           Grid.Column="0"
+                                           Margin="1"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Fill="{TemplateBinding UntoggledStateBrush}"
+                                           Stroke="{TemplateBinding UntoggledStateBrush}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="PART_ToggleBorder" Property="BorderBrush" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="PART_ToggleElement" Property="Fill" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="PART_ToggleElement" Property="Stroke" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="PART_ToggleElement" Property="Grid.Column" Value="1" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_ToggleBorder" Property="Opacity" Value="1" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_MainGrid" Property="Opacity" Value="0.4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

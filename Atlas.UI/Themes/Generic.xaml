@@ -17,5 +17,6 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ImageButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListViewItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Toggle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
