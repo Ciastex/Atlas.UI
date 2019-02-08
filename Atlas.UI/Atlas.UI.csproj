@@ -139,6 +139,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\TableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles\TableViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +221,8 @@
     <Compile Include="RadioButton.cs" />
     <Compile Include="TabControl.cs" />
     <Compile Include="TabItem.cs" />
+    <Compile Include="TableView.cs" />
+    <Compile Include="TableViewItem.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="Toggle.cs" />
     <Compile Include="UserControls\NumericUpDown.xaml.cs">

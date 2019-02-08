@@ -77,7 +77,11 @@
                             <Setter TargetName="PART_ToggleElement" Property="Grid.Column" Value="1" />
                         </Trigger>
 
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_ToggleBorder" Property="Opacity" Value="0.75" />
+                        </Trigger>
+
+                        <Trigger SourceName="PART_ToggleBorder" Property="IsMouseOver" Value="True">
                             <Setter TargetName="PART_ToggleBorder" Property="Opacity" Value="1" />
                         </Trigger>
 

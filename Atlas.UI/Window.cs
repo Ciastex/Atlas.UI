@@ -298,13 +298,9 @@ namespace Atlas.UI
         private void ToggleShadedState()
         {
             if (ShadeState == ShadeState.Shaded)
-            {
                 ShadeState = ShadeState.Unshaded;
-            }
             else
-            {
                 ShadeState = ShadeState.Shaded;
-            }
         }
 
         protected virtual void OnCloseButtonClicked(object sender, RoutedEventArgs e)
