@@ -13,6 +13,17 @@
                                       ItemTemplate="{TemplateBinding ItemTemplate}"
                                       ItemsSource="{TemplateBinding Items}" />
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="VerticalAlignment" Value="Top" />
+                                <Condition Property="HasItems" Value="True" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="BorderThickness" Value="1,1,1,0" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

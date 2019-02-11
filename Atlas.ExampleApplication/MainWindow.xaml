@@ -215,7 +215,7 @@
         <atlas:TabItem Header="Tab Item 3">
             <atlas:TableView Margin="40"
                              HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch"
+                             VerticalAlignment="Top"
                              atlas:TableView.UniformHeaderWidth="100">
                 <atlas:TableViewItem Padding="4"
                                      Content="Very complicated type"
@@ -233,6 +233,12 @@
                 <atlas:TableViewItem Padding="4"
                                      Content="Very complicated type"
                                      HeaderContent="Type" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type blah blah" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type blah blah" />
                 <atlas:TableViewItem Padding="4"
                                      Content="Very complicated type"
                                      HeaderContent="Type blah blah" />
