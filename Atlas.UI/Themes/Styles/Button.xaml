@@ -13,6 +13,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
 
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="TextBlock.Foreground" Value="White" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -39,7 +40,8 @@
                             <ContentPresenter x:Name="PART_Content"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Content="{TemplateBinding Content}" />
+                                              Content="{TemplateBinding Content}"
+                                              TextBlock.Foreground="White" />
                         </Border>
                     </Grid>
 
