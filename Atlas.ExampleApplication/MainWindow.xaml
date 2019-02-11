@@ -91,7 +91,7 @@
                     <atlas:Button BorderBrush="BlueViolet"
                                   Content="Button 7"
                                   Foreground="Violet" />
-                    <atlas:Button Content="Button 8" />
+                    <atlas:Button Content="Button 8" Click="Button_Click_1" />
                     <atlas:Button Content="Disabled Button" IsEnabled="False" />
                 </StackPanel>
 

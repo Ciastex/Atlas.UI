@@ -219,6 +219,8 @@
     <Compile Include="ParentedPopup.cs" />
     <Compile Include="ProgressBar.cs" />
     <Compile Include="RadioButton.cs" />
+    <Compile Include="SingleInstanceWindow.cs" />
+    <Compile Include="Systems\SingleInstanceWindowManager.cs" />
     <Compile Include="TabControl.cs" />
     <Compile Include="TabItem.cs" />
     <Compile Include="TableView.cs" />
