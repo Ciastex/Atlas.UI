@@ -211,5 +211,39 @@
                 </atlas:ListView>
             </Grid>
         </atlas:TabItem>
+
+        <atlas:TabItem Header="Tab Item 3">
+            <atlas:TableView Margin="40"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Top"
+                             atlas:TableView.UniformHeaderWidth="100">
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderBackground="#1E1E1E"
+                                     HeaderContent="Type REEEEEEEEEEEEEEEEEEEEE" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type blah blah" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type blah blah" />
+                <atlas:TableViewItem Padding="4"
+                                     Content="Very complicated type"
+                                     HeaderContent="Type blah blah" />
+
+            </atlas:TableView>
+        </atlas:TabItem>
     </atlas:TabControl>
 </atlas:Window>

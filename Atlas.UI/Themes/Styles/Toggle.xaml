@@ -5,7 +5,7 @@
     <Style TargetType="{x:Type atlas:Toggle}">
         <Setter Property="BorderBrush" Value="#666666" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="#666666" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Background" Value="#222222" />
         <Setter Property="ToggledStateText" Value="ON" />
         <Setter Property="UntoggledStateText" Value="OFF" />
@@ -77,7 +77,11 @@
                             <Setter TargetName="PART_ToggleElement" Property="Grid.Column" Value="1" />
                         </Trigger>
 
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_ToggleBorder" Property="Opacity" Value="0.75" />
+                        </Trigger>
+
+                        <Trigger SourceName="PART_ToggleBorder" Property="IsMouseOver" Value="True">
                             <Setter TargetName="PART_ToggleBorder" Property="Opacity" Value="1" />
                         </Trigger>
 

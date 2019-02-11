@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListBoxItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TextBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ProgressBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ComboBoxItem.xaml" />
@@ -18,5 +19,7 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ListViewItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Toggle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TableView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TableViewItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

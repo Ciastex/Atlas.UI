@@ -67,11 +67,6 @@
                             </Trigger.Setters>
                         </Trigger>
 
-                        <Trigger Property="IsPressed" Value="True">
-                            <Trigger.Setters>
-                                <Setter TargetName="PART_CheckMarkBorder" Property="Opacity" Value="0.4" />
-                            </Trigger.Setters>
-                        </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_Main" Property="Opacity" Value="0.4" />
@@ -83,6 +78,7 @@
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
+                                <Setter TargetName="PART_CheckMarkBorder" Property="Opacity" Value="0.4" />
                                 <Setter TargetName="PART_CheckMarkNull" Property="Opacity" Value="0.885" />
                                 <Setter TargetName="PART_CheckMarkTrue" Property="Opacity" Value="0.885" />
                             </MultiTrigger.Setters>
