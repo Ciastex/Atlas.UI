@@ -5,7 +5,7 @@
     <Style TargetType="{x:Type atlas:Toggle}">
         <Setter Property="BorderBrush" Value="#666666" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="#666666" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Background" Value="#222222" />
         <Setter Property="ToggledStateText" Value="ON" />
         <Setter Property="UntoggledStateText" Value="OFF" />
