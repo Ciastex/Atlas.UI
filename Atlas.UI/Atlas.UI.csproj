@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\ActivitySpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +201,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpinner.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="ComboBox.cs" />

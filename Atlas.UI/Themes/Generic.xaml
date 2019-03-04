@@ -21,5 +21,6 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Toggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TableView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/TableViewItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ActivitySpinner.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
