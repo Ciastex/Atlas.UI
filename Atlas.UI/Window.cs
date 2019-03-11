@@ -37,15 +37,13 @@ namespace Atlas.UI
         public static readonly DependencyProperty CaptionMenuAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionMenuAlignment));
         public static readonly DependencyProperty CaptionTitleAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionTitleAlignment));
         public static readonly DependencyProperty CaptionButtonsAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionButtonsAlignment));
+        public static readonly DependencyProperty CustomCaptionContentProperty = Dependency.Register<object>(nameof(CustomCaptionContent));
 
         public ShadeState ShadeState
         {
             get { return (ShadeState)GetValue(ShadeStateProperty); }
             set
             {
-                var currentValue = (ShadeState)GetValue(ShadeStateProperty);
-                if (currentValue == value) return;
-
                 if (value == ShadeState.Shaded)
                 {
                     PreviousHeight = Height;
@@ -62,7 +60,6 @@ namespace Atlas.UI
                 {
                     MainBorder.Height = double.NaN;
                     Height = PreviousHeight;
-
 
                     this.SetBorder(true);
                     this.SetResizing(true);
@@ -194,6 +191,16 @@ namespace Atlas.UI
             set
             {
                 SetValue(CaptionButtonsAlignmentProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
+            }
+        }
+
+        public object CustomCaptionContent
+        {
+            get => GetValue(CustomCaptionContentProperty);
+            set
+            {
+                SetValue(CustomCaptionContentProperty, value);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
             }
         }

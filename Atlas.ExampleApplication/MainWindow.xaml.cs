@@ -9,8 +9,15 @@ namespace Atlas.ExampleApplication
         {
 
             InitializeComponent();
-            var evs = EventManager.GetRoutedEvents();
+            ShadeStateChanged += MainWindow_ShadeStateChanged;
+        }
 
+        private void MainWindow_ShadeStateChanged(object sender, UI.Events.ShadeStateChangedEventArgs e)
+        {
+            if (e.ShadeState == UI.WindowStates.ShadeState.Shaded)
+                SearchTextBox.Visibility = Visibility.Collapsed;
+            else
+                SearchTextBox.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -31,6 +38,11 @@ namespace Atlas.ExampleApplication
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Progressbar.IsIndeterminate = false;
+        }
+
+        private void Window_ShadeStateChanged(object sender, UI.Events.ShadeStateChangedEventArgs e)
+        {
+
         }
     }
 }

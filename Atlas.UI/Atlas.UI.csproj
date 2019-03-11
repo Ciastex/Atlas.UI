@@ -195,10 +195,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\NumericUpDown.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivitySpinner.cs" />
@@ -214,6 +210,7 @@
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
     <Compile Include="Extensions\Dependency.cs" />
+    <Compile Include="Extensions\VisualTreeExtensions.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GroupBox.cs" />
     <Compile Include="ImageButton.cs" />
@@ -233,9 +230,6 @@
     <Compile Include="TextBlock.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="Toggle.cs" />
-    <Compile Include="UserControls\NumericUpDown.xaml.cs">
-      <DependentUpon>NumericUpDown.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Window.cs" />
     <Compile Include="Events\TabCloseEventArgs.cs" />
     <Compile Include="Extensions\WinAPI.cs" />

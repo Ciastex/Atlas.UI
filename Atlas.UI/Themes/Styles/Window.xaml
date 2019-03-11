@@ -16,7 +16,6 @@
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}" />
-
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -155,6 +154,12 @@
                                                    Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
                                         </Button>
                                     </StackPanel>
+
+                                    <ContentPresenter x:Name="PART_CustomContent"
+                                                      Margin="0"
+                                                      HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch"
+                                                      Content="{TemplateBinding CustomCaptionContent}" />
                                 </Grid>
                             </Border>
 

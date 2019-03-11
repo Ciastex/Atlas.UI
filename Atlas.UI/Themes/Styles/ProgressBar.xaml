@@ -59,7 +59,6 @@
                         </TextBlock>
                     </Grid>
 
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="PART_Indicator" Property="Visibility" Value="Collapsed" />

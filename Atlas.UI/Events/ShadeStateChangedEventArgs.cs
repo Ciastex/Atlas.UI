@@ -8,7 +8,7 @@ namespace Atlas.UI.Events
 
         public ShadeStateChangedEventArgs(ShadeState shadeState)
         {
-            ShadeState = ShadeState;
+            ShadeState = shadeState;
         }
     }
 }

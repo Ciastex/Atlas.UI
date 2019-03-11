@@ -6,7 +6,8 @@
               Title="MainWindow"
               Width="800"
               Height="450"
-              Background="#2D2D30">
+              Background="#2D2D30"
+              ShadeStateChanged="Window_ShadeStateChanged">
     <atlas:Window.CaptionMenu>
         <atlas:MenuItem Header="Menu Button 1" ToolTip="This is a tooltip for preview." />
         <atlas:MenuItem Header="Menu 1">
@@ -22,6 +23,18 @@
             </atlas:MenuItem>
         </atlas:MenuItem>
     </atlas:Window.CaptionMenu>
+
+    <atlas:Window.CustomCaptionContent>
+        <Grid>
+            <atlas:TextBox x:Name="SearchTextBox"
+                           Width="200"
+                           Margin="4,4,130,4"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Stretch"
+                           Placeholder="Search..."
+                           ShowPlaceholder="True" />
+        </Grid>
+    </atlas:Window.CustomCaptionContent>
 
     <atlas:TabControl NewTabBehavior="CanClose"
                       PlaceholderText="This is an empty space. Add some tabs!"
