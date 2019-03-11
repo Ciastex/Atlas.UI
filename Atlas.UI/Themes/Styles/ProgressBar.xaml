@@ -7,6 +7,7 @@
         <Setter Property="BorderBrush" Value="#9C9C9C" />
         <Setter Property="Foreground" Value="#9C9C9C" />
         <Setter Property="Background" Value="#2D2D30" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
 
@@ -23,29 +24,19 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border x:Name="PART_Indicator"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Stretch"
-                                    Background="{TemplateBinding Foreground}"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="0" />
+                            <Grid>
+                                <Border x:Name="PART_Indicator"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Stretch"
+                                        Background="{TemplateBinding Foreground}"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0" />
 
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Determinate" />
-                                    <VisualState x:Name="Indeterminate">
-                                        <Storyboard>
-                                            <DoubleAnimation AutoReverse="True"
-                                                             RepeatBehavior="Forever"
-                                                             Storyboard.TargetName="PART_Indicator"
-                                                             Storyboard.TargetProperty="Width"
-                                                             From="0"
-                                                             To="{Binding ActualWidth, ElementName=PART_Track}"
-                                                             Duration="0:0:1.5" />
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                <Rectangle x:Name="PART_IndeterminateIndicator"
+                                           VerticalAlignment="Stretch"
+                                           Fill="{TemplateBinding Foreground}"
+                                           Opacity="0" />
+                            </Grid>
                         </Border>
 
                         <TextBlock x:Name="PART_ProgressText"
@@ -71,9 +62,25 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
-                            <Setter TargetName="PART_Indicator" Property="HorizontalAlignment" Value="Stretch" />
-                        </Trigger>
+                            <Setter TargetName="PART_Indicator" Property="Visibility" Value="Collapsed" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Name="IndeterminateBreatheStoryboard">
+                                    <Storyboard>
+                                        <DoubleAnimation AutoReverse="True"
+                                                         RepeatBehavior="Forever"
+                                                         Storyboard.TargetName="PART_IndeterminateIndicator"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         From="0"
+                                                         To="1"
+                                                         Duration="0:0:1.5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
 
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="IndeterminateBreatheStoryboard" />
+                            </Trigger.ExitActions>
+                        </Trigger>
                         <Trigger Property="ShowProgressText" Value="True">
                             <Setter TargetName="PART_ProgressText" Property="Visibility" Value="Visible" />
                         </Trigger>

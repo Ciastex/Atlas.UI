@@ -174,14 +174,16 @@
 
                 <StackPanel Grid.Row="0"
                             Grid.Column="1"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Stretch">
                     <atlas:ProgressBar x:Name="Progressbar"
-                                       Width="200"
                                        Height="24"
                                        Margin="4"
-                                       ProgressTextTemplate="%val% / %max%"
+                                       HorizontalAlignment="Stretch"
+                                       IsIndeterminate="True"
+                                       ProgressTextTemplate="Gathering data..."
                                        ShowProgressText="True"
-                                       Value="50" />
+                                       Value="100" />
+                    <atlas:Button Click="Button_Click_2" Content="Set to determinate" />
                     <atlas:Button Click="Button_Click" Content="Set maximum to 12" />
 
                     <atlas:Toggle Margin="4"

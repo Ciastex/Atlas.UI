@@ -27,5 +27,10 @@ namespace Atlas.ExampleApplication
         {
             TestSpinner.IsTaskRunning = !TestSpinner.IsTaskRunning;
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Progressbar.IsIndeterminate = false;
+        }
     }
 }
