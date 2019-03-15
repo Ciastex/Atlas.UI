@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Atlas.UI">
+    <Style TargetType="{x:Type local:MessageBox}">
+        <Setter Property="Background" Value="#2D2D30" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="Icon" Value="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png" />
+        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="MinWidth" Value="200" />
+
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="0"
+                              CornerRadius="0"
+                              GlassFrameThickness="-1"
+                              ResizeBorderThickness="0"
+                              UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MessageBox}">
+                    <Border x:Name="PART_MainBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="#0079CB"
+                            BorderThickness="1"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Border x:Name="PART_Caption"
+                                    Grid.Row="0"
+                                    Height="30"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0">
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
+                                           Width="16"
+                                           Height="16"
+                                           Margin="6,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           SnapsToDevicePixels="True"
+                                           Source="{TemplateBinding Icon}">
+                                        <Image.ToolTip>
+                                            <TextBlock Foreground="#888888" Text="{TemplateBinding Title}" />
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                    <TextBlock Grid.Column="1"
+                                               Margin="4,0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="#999999"
+                                               Text="{TemplateBinding Title}" />
+                                </Grid>
+                            </Border>
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Border x:Name="PART_MessageBorder"
+                                        Grid.Row="0"
+                                        Margin="8,8,8,4"
+                                        BorderBrush="#666666"
+                                        BorderThickness="0">
+                                    <ScrollViewer x:Name="PART_MessageScroller"
+                                                  MaxHeight="300"
+                                                  HorizontalScrollBarVisibility="Hidden"
+                                                  VerticalScrollBarVisibility="Auto">
+                                        <local:TextBlock x:Name="PART_Message"
+                                                         MaxWidth="480"
+                                                         Margin="4"
+                                                         HorizontalAlignment="Stretch"
+                                                         VerticalAlignment="Center"
+                                                         Foreground="White"
+                                                         Text="{TemplateBinding Message}"
+                                                         TextAlignment="Justify"
+                                                         TextWrapping="Wrap">
+                                            <local:TextBlock.ContextMenu>
+                                                <ContextMenu>
+                                                    <local:MenuItem Command="{x:Static ApplicationCommands.Copy}" Header="Copy to clipboard" />
+                                                </ContextMenu>
+                                            </local:TextBlock.ContextMenu>
+                                        </local:TextBlock>
+                                    </ScrollViewer>
+                                </Border>
+
+                                <StackPanel Grid.Row="1"
+                                            Margin="4"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Orientation="Horizontal">
+                                    <local:Button x:Name="PART_OkButton"
+                                                  MinWidth="70"
+                                                  Content="OK" />
+
+                                    <local:Button x:Name="PART_CancelButton"
+                                                  MinWidth="70"
+                                                  Content="Cancel" />
+
+                                    <local:Button x:Name="PART_YesButton"
+                                                  MinWidth="70"
+                                                  Content="Yes" />
+
+                                    <local:Button x:Name="PART_NoButton"
+                                                  MinWidth="70"
+                                                  Content="No" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_MessageScroller" Property="ComputedVerticalScrollBarVisibility" Value="Visible">
+                            <Setter TargetName="PART_MessageBorder" Property="BorderThickness" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>

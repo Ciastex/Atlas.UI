@@ -1,5 +1,9 @@
-﻿using Atlas.UI.Systems;
+﻿using Atlas.UI.Enums;
+using Atlas.UI.Systems;
+using System;
+using System.Diagnostics;
 using System.Windows;
+using MessageBox = Atlas.UI.MessageBox;
 
 namespace Atlas.ExampleApplication
 {
@@ -7,7 +11,6 @@ namespace Atlas.ExampleApplication
     {
         public MainWindow()
         {
-
             InitializeComponent();
             ShadeStateChanged += MainWindow_ShadeStateChanged;
         }
@@ -25,12 +28,12 @@ namespace Atlas.ExampleApplication
             Progressbar.Maximum = 12;
         }
 
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SingleInstanceWindowManager.OpenOrActivate<SingleWindow>(this);
         }
 
-        private void Button_Click_3(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             TestSpinner.IsTaskRunning = !TestSpinner.IsTaskRunning;
         }
@@ -43,6 +46,18 @@ namespace Atlas.ExampleApplication
         private void Window_ShadeStateChanged(object sender, UI.Events.ShadeStateChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            new MessageBox()
+                .Titled("Important message!")
+                .WithMessage(new StackTrace().ToString())
+                .WithButtons(MessageBoxButtons.Ok)
+                .OkClickExecutes(() => TestSpinner.IsTaskRunning = false)
+                .WhenClosedAbnormally(() => Debug.WriteLine("Dialog closed abnormally."))
+                .OwnedBy(this)
+                .Show();
         }
     }
 }

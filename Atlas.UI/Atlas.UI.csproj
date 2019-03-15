@@ -55,7 +55,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Images\paths\atlas_icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Styles\ComboBoxItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ContextMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Styles\ActivitySpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles\MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +217,7 @@
     <Compile Include="Converters\CaptionElementAlignmentToHorizontalAlignmentConverter.cs" />
     <Compile Include="Converters\ProgressTextFormatConverter.cs" />
     <Compile Include="Enums\CaptionElementAlignment.cs" />
+    <Compile Include="Enums\MessageBoxButtons.cs" />
     <Compile Include="Enums\NewTabBehavior.cs" />
     <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
@@ -218,6 +231,7 @@
     <Compile Include="ListView.cs" />
     <Compile Include="ListViewItem.cs" />
     <Compile Include="MenuItem.cs" />
+    <Compile Include="MessageBox.cs" />
     <Compile Include="ParentedPopup.cs" />
     <Compile Include="ProgressBar.cs" />
     <Compile Include="RadioButton.cs" />
@@ -326,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\icons\select_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icons\atlas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

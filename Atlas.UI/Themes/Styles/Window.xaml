@@ -49,6 +49,8 @@
         <Setter Property="CanShade" Value="True" />
         <Setter Property="CanMaximize" Value="True" />
         <Setter Property="ResizeMode" Value="CanResize" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Icon" Value="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png" />
 
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
@@ -66,7 +68,8 @@
                     <Border x:Name="PART_MainBorder"
                             Background="{TemplateBinding Background}"
                             BorderBrush="#0079CB"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -187,7 +190,6 @@
                             <ContentPresenter Grid.Row="1"
                                               Margin="0"
                                               Content="{TemplateBinding Content}" />
-
                         </Grid>
                     </Border>
 

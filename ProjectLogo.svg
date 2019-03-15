@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg3764"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="ProjectLogo.svg"
+   inkscape:export-filename="F:\Visual Studio 2017\Projects\Atlas.UI\Atlas.UI\Resources\Images\icons\atlas.png"
+   inkscape:export-xdpi="3.5720932"
+   inkscape:export-ydpi="3.5720932">
+  <defs
+     id="defs3758" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="143.16939"
+     inkscape:cy="936.25416"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="-8"
+     inkscape:window-y="22"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3780" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3761">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#003788;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 113.77083,100.53881 C 80.256942,67.024934 46.743055,33.511059 13.229167,-0.00281651 c 0,7.93750151 0,15.87500251 0,23.81250451 25.57639,25.576374 51.152781,51.152748 76.729171,76.729122 7.937497,0 15.874992,0 23.812492,0 z"
+       id="path3737"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#007acc;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 13.229167,63.497171 c 0,12.347213 0,24.694426 0,37.041639 -4.409722,0 -8.819444,0 -13.22916603333334,0 0,-33.513876 0,-67.027751 0,-100.54162651 4.40972203333334,0 8.81944403333334,0 13.22916603333334,0 0,18.52082951 0,37.04165851 0,55.56248751 10.054166,0 20.108333,0 30.162499,0 2.645833,2.645833 5.291666,5.291667 7.937499,7.9375 -12.699999,0 -25.399999,0 -38.099998,0 z"
+       id="path3741"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
