@@ -23,6 +23,7 @@ namespace Atlas.UI
 
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
+        private Menu CaptionMenuControl { get; set; }
 
         public static readonly DependencyProperty ShadeStateProperty = Dependency.Register<ShadeState>(nameof(ShadeState));
         public static readonly DependencyProperty CaptionMenuProperty = Dependency.Register<ObservableCollection<MenuItem>>(nameof(CaptionMenu));
@@ -243,6 +244,8 @@ namespace Atlas.UI
             CaptionBorder = GetTemplateChild("PART_Caption") as Border;
             MainBorder = GetTemplateChild("PART_MainBorder") as Border;
 
+            CaptionMenuControl = GetTemplateChild("PART_CaptionMenu") as Menu;
+
             if (CloseButton != null)
                 CloseButton.Click += CloseButton_Click;
 
@@ -264,10 +267,7 @@ namespace Atlas.UI
 
         public void SetWindowBorderColor(Color color)
         {
-            Application.Current?.Dispatcher.Invoke(() =>
-            {
-                MainBorder.BorderBrush = new SolidColorBrush(color);
-            });
+            Application.Current?.Dispatcher.Invoke(() => MainBorder.BorderBrush = new SolidColorBrush(color));
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -275,13 +275,13 @@ namespace Atlas.UI
             if (e.ChangedButton == MouseButton.Left)
                 DragMove();
 
-            if (e.ClickCount == 2 && CanMaximize)
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2 && CanMaximize)
                 ToggleMaximizedState();
         }
 
         private void CaptionBorder_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && WindowState == WindowState.Maximized)
+            if (e.LeftButton == MouseButtonState.Pressed && WindowState == WindowState.Maximized && !CaptionMenuControl.IsMouseOver)
             {
                 Top = e.MouseDevice.GetPosition(e.Device.Target).Y;
 
