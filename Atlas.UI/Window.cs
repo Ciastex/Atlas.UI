@@ -38,6 +38,7 @@ namespace Atlas.UI
         public static readonly DependencyProperty CaptionTitleAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionTitleAlignment));
         public static readonly DependencyProperty CaptionButtonsAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionButtonsAlignment));
         public static readonly DependencyProperty CustomCaptionContentProperty = Dependency.Register<object>(nameof(CustomCaptionContent));
+        public static readonly DependencyProperty ShowIconProperty = Dependency.Register<bool>(nameof(ShowIcon));
 
         public ShadeState ShadeState
         {
@@ -203,6 +204,12 @@ namespace Atlas.UI
                 SetValue(CustomCaptionContentProperty, value);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
             }
+        }
+
+        public bool ShowIcon
+        {
+            get => (bool)GetValue(ShowIconProperty);
+            set => SetValue(ShowIconProperty, value);
         }
 
         public event System.EventHandler<ShadeStateChangedEventArgs> ShadeStateChanged;

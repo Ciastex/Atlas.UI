@@ -82,90 +82,112 @@
                                     BorderBrush="Transparent"
                                     BorderThickness="0">
                                 <Grid HorizontalAlignment="Stretch">
-                                    <Menu x:Name="PART_CaptionMenu"
-                                          Margin="6,0"
-                                          HorizontalAlignment="{TemplateBinding CaptionMenuAlignment,
-                                                                                Converter={StaticResource CaptionToHorizontalConverter}}"
-                                          VerticalAlignment="Center"
-                                          Background="{TemplateBinding Background}"
-                                          DockPanel.Dock="Left"
-                                          ItemsSource="{TemplateBinding CaptionMenu}" />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                    <TextBlock x:Name="PART_Title"
-                                               Margin="6,0"
-                                               HorizontalAlignment="{TemplateBinding CaptionTitleAlignment,
-                                                                                     Converter={StaticResource CaptionToHorizontalConverter}}"
-                                               VerticalAlignment="Center"
-                                               DockPanel.Dock="Left"
-                                               Foreground="#999999"
-                                               Text="{TemplateBinding Title}" />
+                                    <Image x:Name="PART_Icon"
+                                           Grid.Column="0"
+                                           Width="16"
+                                           Height="16"
+                                           Margin="6,0,0,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           SnapsToDevicePixels="True"
+                                           Source="{TemplateBinding Icon}">
+                                        <Image.ToolTip>
+                                            <TextBlock Foreground="#888888" Text="{TemplateBinding Title}" />
+                                        </Image.ToolTip>
+                                    </Image>
 
-                                    <StackPanel HorizontalAlignment="{TemplateBinding CaptionButtonsAlignment,
-                                                                                      Converter={StaticResource CaptionToHorizontalConverter}}"
-                                                VerticalAlignment="Top"
-                                                Orientation="Horizontal">
-                                        <Button x:Name="PART_Shade"
-                                                Width="30"
-                                                Height="30"
-                                                Style="{StaticResource CaptionButtonStyle}">
-                                            <Image x:Name="PART_ShadeImage"
-                                                   Width="17"
-                                                   Height="16"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                   SnapsToDevicePixels="True"
-                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_shade.png" />
-                                        </Button>
-                                        <Button x:Name="PART_Minimize"
-                                                Width="30"
-                                                Height="30"
-                                                Style="{StaticResource CaptionButtonStyle}">
-                                            <Image Width="17"
-                                                   Height="16"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                   SnapsToDevicePixels="True"
-                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_minimize.png" />
-                                        </Button>
-                                        <Button x:Name="PART_Maximize"
-                                                Width="30"
-                                                Height="30"
-                                                Style="{StaticResource CaptionButtonStyle}">
-                                            <Image Width="17"
-                                                   Height="16"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                   SnapsToDevicePixels="True"
-                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_maximize.png" />
-                                        </Button>
-                                        <Button x:Name="PART_Close"
-                                                Width="30"
-                                                Height="30"
-                                                Style="{StaticResource CaptionButtonStyle}">
-                                            <Image Width="17"
-                                                   Height="16"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                   SnapsToDevicePixels="True"
-                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
-                                        </Button>
-                                    </StackPanel>
+                                    <Grid Grid.Column="1">
+                                        <Menu x:Name="PART_CaptionMenu"
+                                              Margin="6,0"
+                                              HorizontalAlignment="{TemplateBinding CaptionMenuAlignment,
+                                                                                    Converter={StaticResource CaptionToHorizontalConverter}}"
+                                              VerticalAlignment="Center"
+                                              Background="{TemplateBinding Background}"
+                                              DockPanel.Dock="Left"
+                                              ItemsSource="{TemplateBinding CaptionMenu}" />
 
-                                    <ContentPresenter x:Name="PART_CustomContent"
-                                                      Margin="0"
-                                                      HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Stretch"
-                                                      Content="{TemplateBinding CustomCaptionContent}" />
+                                        <TextBlock x:Name="PART_Title"
+                                                   Margin="6,0"
+                                                   HorizontalAlignment="{TemplateBinding CaptionTitleAlignment,
+                                                                                         Converter={StaticResource CaptionToHorizontalConverter}}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="#999999"
+                                                   Text="{TemplateBinding Title}" />
+
+                                        <StackPanel HorizontalAlignment="{TemplateBinding CaptionButtonsAlignment,
+                                                                                          Converter={StaticResource CaptionToHorizontalConverter}}"
+                                                    VerticalAlignment="Top"
+                                                    Orientation="Horizontal">
+                                            <Button x:Name="PART_Shade"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Style="{StaticResource CaptionButtonStyle}">
+                                                <Image x:Name="PART_ShadeImage"
+                                                       Width="17"
+                                                       Height="16"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                       SnapsToDevicePixels="True"
+                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_shade.png" />
+                                            </Button>
+                                            <Button x:Name="PART_Minimize"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Style="{StaticResource CaptionButtonStyle}">
+                                                <Image Width="17"
+                                                       Height="16"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                       SnapsToDevicePixels="True"
+                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_minimize.png" />
+                                            </Button>
+                                            <Button x:Name="PART_Maximize"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Style="{StaticResource CaptionButtonStyle}">
+                                                <Image Width="17"
+                                                       Height="16"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                       SnapsToDevicePixels="True"
+                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_maximize.png" />
+                                            </Button>
+                                            <Button x:Name="PART_Close"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Style="{StaticResource CaptionButtonStyle}">
+                                                <Image Width="17"
+                                                       Height="16"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                       SnapsToDevicePixels="True"
+                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
+                                            </Button>
+                                        </StackPanel>
+
+                                        <ContentPresenter x:Name="PART_CustomContent"
+                                                          Margin="0"
+                                                          HorizontalAlignment="Stretch"
+                                                          VerticalAlignment="Stretch"
+                                                          Content="{TemplateBinding CustomCaptionContent}" />
+                                    </Grid>
                                 </Grid>
                             </Border>
 
                             <ContentPresenter Grid.Row="1"
                                               Margin="0"
                                               Content="{TemplateBinding Content}" />
+
                         </Grid>
                     </Border>
 
@@ -221,6 +243,10 @@
 
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="PART_MainBorder" Property="Padding" Value="7" />
+                        </Trigger>
+
+                        <Trigger Property="ShowIcon" Value="False">
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

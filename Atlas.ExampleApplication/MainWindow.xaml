@@ -7,7 +7,9 @@
               Width="800"
               Height="450"
               Background="#2D2D30"
-              ShadeStateChanged="Window_ShadeStateChanged">
+              Icon="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/upload.png"
+              ShadeStateChanged="Window_ShadeStateChanged"
+              ShowIcon="True">
     <atlas:Window.CaptionMenu>
         <atlas:MenuItem Header="Menu Button 1" ToolTip="This is a tooltip for preview." />
         <atlas:MenuItem Header="Menu 1">
@@ -33,6 +35,12 @@
                            VerticalAlignment="Stretch"
                            Placeholder="Search..."
                            ShowPlaceholder="True" />
+
+            <atlas:ActivitySpinner Width="16"
+                                   Height="16"
+                                   Margin="4,4,190,4"
+                                   Foreground="Pink"
+                                   IsTaskRunning="True" />
         </Grid>
     </atlas:Window.CustomCaptionContent>
 
