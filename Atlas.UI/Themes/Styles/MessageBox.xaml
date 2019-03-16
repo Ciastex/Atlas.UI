@@ -88,7 +88,6 @@
                                                   VerticalScrollBarVisibility="Auto">
                                         <local:TextBlock x:Name="PART_Message"
                                                          MaxWidth="480"
-                                                         Margin="4"
                                                          HorizontalAlignment="Stretch"
                                                          VerticalAlignment="Center"
                                                          Focusable="True"
@@ -105,27 +104,45 @@
                                     </ScrollViewer>
                                 </Border>
 
-                                <StackPanel Grid.Row="1"
-                                            Margin="4"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            Orientation="Horizontal">
-                                    <local:Button x:Name="PART_OkButton"
-                                                  MinWidth="70"
-                                                  Content="OK" />
+                                <Grid Grid.Row="1" Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                    <local:Button x:Name="PART_CancelButton"
-                                                  MinWidth="70"
-                                                  Content="Cancel" />
+                                    <local:TextBlock Grid.Column="0"
+                                                     MaxWidth="300"
+                                                     Margin="4"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="#888888"
+                                                     Text="{TemplateBinding AdditionalDescription}"
+                                                     TextTrimming="CharacterEllipsis"
+                                                     TextWrapping="NoWrap" />
 
-                                    <local:Button x:Name="PART_YesButton"
-                                                  MinWidth="70"
-                                                  Content="Yes" />
+                                    <StackPanel Grid.Column="1"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Bottom"
+                                                Orientation="Horizontal">
 
-                                    <local:Button x:Name="PART_NoButton"
-                                                  MinWidth="70"
-                                                  Content="No" />
-                                </StackPanel>
+                                        <local:Button x:Name="PART_OkButton"
+                                                      MinWidth="70"
+                                                      Content="OK" />
+
+                                        <local:Button x:Name="PART_CancelButton"
+                                                      MinWidth="70"
+                                                      Content="Cancel" />
+
+                                        <local:Button x:Name="PART_YesButton"
+                                                      MinWidth="70"
+                                                      Content="Yes" />
+
+                                        <local:Button x:Name="PART_NoButton"
+                                                      MinWidth="70"
+                                                      Content="No" />
+                                    </StackPanel>
+                                </Grid>
+
                             </Grid>
                         </Grid>
                     </Border>
@@ -133,6 +150,8 @@
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_MessageScroller" Property="ComputedVerticalScrollBarVisibility" Value="Visible">
                             <Setter TargetName="PART_MessageBorder" Property="BorderThickness" Value="1" />
+                            <Setter TargetName="PART_Message" Property="Margin" Value="4" />
+                            <Setter TargetName="PART_Message" Property="TextAlignment" Value="Left" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -10,6 +10,7 @@ namespace Atlas.UI
     public class MessageBox : System.Windows.Window
     {
         public static readonly DependencyProperty MessageProperty = Dependency.Register<string>(nameof(Message));
+        public static readonly DependencyProperty AdditionalDescriptionProperty = Dependency.Register<string>(nameof(AdditionalDescription));
         public static readonly DependencyProperty WindowStartupLocationProperty = Dependency.Register<WindowStartupLocation>(nameof(WindowStartupLocation));
 
         private bool WasClosedGracefully { get; set; }
@@ -32,6 +33,12 @@ namespace Atlas.UI
         {
             get => (string)GetValue(MessageProperty);
             set => SetValue(MessageProperty, value);
+        }
+
+        public string AdditionalDescription
+        {
+            get => (string)GetValue(AdditionalDescriptionProperty);
+            set => SetValue(AdditionalDescriptionProperty, value);
         }
 
         public new WindowStartupLocation WindowStartupLocation
@@ -133,6 +140,12 @@ namespace Atlas.UI
         public MessageBox WithButtons(MessageBoxButtons buttons)
         {
             ShownButtons = buttons;
+            return this;
+        }
+
+        public MessageBox WithAdditionalDescription(string description)
+        {
+            AdditionalDescription = description;
             return this;
         }
 
