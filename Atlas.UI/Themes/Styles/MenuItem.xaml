@@ -120,7 +120,8 @@
                    SnapsToDevicePixels="True"
                    Source="{TemplateBinding Icon}" />
 
-            <TextBlock Grid.Column="2"
+            <TextBlock x:Name="HeaderTextBlock"
+                       Grid.Column="2"
                        Padding="5,4,10,4"
                        Foreground="WhiteSmoke"
                        Text="{TemplateBinding Header}" />
@@ -142,6 +143,10 @@
 
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="CheckMark" Property="Fill" Value="#007ACC" />
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="HeaderTextBlock" Property="Opacity" Value="0.4" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

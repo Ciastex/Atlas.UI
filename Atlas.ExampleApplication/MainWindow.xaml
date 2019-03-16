@@ -9,6 +9,9 @@
               Icon="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png"
               ShadeStateChanged="Window_ShadeStateChanged"
               ShowIcon="True">
+    <atlas:Window.ContextMenu>
+        <ContextMenu x:Name="ContextMenuMenu" />
+    </atlas:Window.ContextMenu>
     <atlas:Window.CaptionMenu>
         <atlas:MenuItem Header="Menu Button 1" ToolTip="This is a tooltip for preview." />
         <atlas:MenuItem Header="Menu 1">
@@ -96,8 +99,9 @@
                                   Content="Button 2"
                                   Foreground="Orange" />
                     <atlas:Button BorderBrush="Yellow"
+                                  Click="Button_Click_4"
                                   Content="Button 3"
-                                  Foreground="Yellow" Click="Button_Click_4" />
+                                  Foreground="Yellow" />
                     <atlas:Button BorderBrush="Green"
                                   Content="Button 4"
                                   Foreground="Green" />

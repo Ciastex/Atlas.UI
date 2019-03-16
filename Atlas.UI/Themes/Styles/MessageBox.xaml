@@ -91,6 +91,7 @@
                                                          Margin="4"
                                                          HorizontalAlignment="Stretch"
                                                          VerticalAlignment="Center"
+                                                         Focusable="True"
                                                          Foreground="White"
                                                          Text="{TemplateBinding Message}"
                                                          TextAlignment="Justify"

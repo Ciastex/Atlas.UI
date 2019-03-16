@@ -20,6 +20,7 @@ namespace Atlas.UI
         private Action OnAbnormalClosure { get; set; }
 
         private Border CaptionBorder { get; set; }
+        private TextBlock MessageTextBlock { get; set; }
         private Button OkButton { get; set; }
         private Button CancelButton { get; set; }
         private Button YesButton { get; set; }
@@ -63,6 +64,8 @@ namespace Atlas.UI
                 Left = (Owner.Left + Owner.Width / 2) - ActualWidth / 2;
                 Top = (Owner.Top + Owner.Height / 2) - ActualHeight / 2;
             }
+
+            MessageTextBlock?.Focus();
         }
 
         public override void OnApplyTemplate()
@@ -74,6 +77,7 @@ namespace Atlas.UI
             YesButton = GetTemplateChild("PART_YesButton") as Button;
             NoButton = GetTemplateChild("PART_NoButton") as Button;
             CaptionBorder = GetTemplateChild("PART_Caption") as Border;
+            MessageTextBlock = GetTemplateChild("PART_Message") as TextBlock;
 
             if (OkButton != null)
             {
