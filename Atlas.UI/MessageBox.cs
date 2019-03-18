@@ -200,6 +200,24 @@ namespace Atlas.UI
         {
             if (!WasClosedGracefully)
                 OnAbnormalClosure?.Invoke();
+
+            OnAbnormalClosure = null;
+            OnCancelClicked = null;
+            OnOkClicked = null;
+            OnNoClicked = null;
+            OnYesClicked = null;
+
+            if (OkButton != null)
+                OkButton.Click -= OkButton_Click;
+
+            if (CancelButton != null)
+                CancelButton.Click -= CancelButton_Click;
+
+            if (YesButton != null)
+                YesButton.Click -= YesButton_Click;
+
+            if (NoButton != null)
+                NoButton.Click -= NoButton_Click;
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
