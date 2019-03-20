@@ -10,6 +10,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Width" Value="120" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -23,23 +24,25 @@
                                 Padding="{TemplateBinding Padding}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <Border x:Name="PART_Indicator"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Stretch"
-                                        Background="{TemplateBinding Foreground}"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="0" />
+                                BorderThickness="{TemplateBinding BorderThickness}" />
 
-                                <Rectangle x:Name="PART_IndeterminateIndicator"
-                                           VerticalAlignment="Stretch"
-                                           Fill="{TemplateBinding Foreground}"
-                                           Opacity="0" />
-                            </Grid>
+                        <Border x:Name="PART_Indicator"
+                                Padding="1"
+                                HorizontalAlignment="Left"
+                                ClipToBounds="True">
+                            <Rectangle Name="Indicator"
+                                       Margin="1"
+                                       ClipToBounds="True"
+                                       Fill="{TemplateBinding Foreground}"
+                                       SnapsToDevicePixels="True" />
                         </Border>
 
-                        <TextBlock x:Name="PART_ProgressText"
+                        <Rectangle Name="IndeterminateIndicator"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{TemplateBinding Foreground}"
+                                   Opacity="0" />
+
+                        <TextBlock Name="ProgressText"
                                    Margin="0,0,0,1"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -61,13 +64,13 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsIndeterminate" Value="True">
-                            <Setter TargetName="PART_Indicator" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Indicator" Property="Visibility" Value="Collapsed" />
                             <Trigger.EnterActions>
                                 <BeginStoryboard Name="IndeterminateBreatheStoryboard">
                                     <Storyboard>
                                         <DoubleAnimation AutoReverse="True"
                                                          RepeatBehavior="Forever"
-                                                         Storyboard.TargetName="PART_IndeterminateIndicator"
+                                                         Storyboard.TargetName="IndeterminateIndicator"
                                                          Storyboard.TargetProperty="Opacity"
                                                          From="0"
                                                          To="1"
@@ -80,8 +83,9 @@
                                 <StopStoryboard BeginStoryboardName="IndeterminateBreatheStoryboard" />
                             </Trigger.ExitActions>
                         </Trigger>
+
                         <Trigger Property="ShowProgressText" Value="True">
-                            <Setter TargetName="PART_ProgressText" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ProgressText" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
