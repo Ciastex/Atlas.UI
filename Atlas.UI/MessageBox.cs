@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Atlas.UI
 {
@@ -27,7 +28,7 @@ namespace Atlas.UI
         private Button YesButton { get; set; }
         private Button NoButton { get; set; }
 
-        public MessageBoxButtons ShownButtons { get; private set; }
+        public MessageBoxButtons ShownButtons { get; private set; } = MessageBoxButtons.Ok;
 
         public string Message
         {
@@ -182,6 +183,19 @@ namespace Atlas.UI
         public MessageBox OwnedBy(System.Windows.Window owner)
         {
             Owner = owner;
+
+            if (owner.Icon != null)
+                Icon = owner.Icon;
+
+            return this;
+        }
+
+        public MessageBox WithIcon(ImageSource icon, bool overrideOwnerIcon = false)
+        {
+            if (Owner != null && !overrideOwnerIcon)
+                throw new InvalidOperationException("Cannot override the owner icon when overrideOwnerIcon flag is false.");
+
+            Icon = icon;
             return this;
         }
 
