@@ -52,8 +52,6 @@ namespace Atlas.ExampleApplication
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show(new StackTrace().ToString());
-
             new MessageBox()
                 .Titled("Important message!")
                 .WithMessage(new StackTrace().ToString())
@@ -65,13 +63,7 @@ namespace Atlas.ExampleApplication
                 .Show();
 
             new MessageBox()
-                .Titled("Important message!")
-                .WithMessage("Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.")
-                .WithAdditionalDescription("Click OK to close.Click OK to close.Click OK to close.Click OK to close.Click OK to close.Click OK to close.Click OK to close.Click OK to close.")
-                .WithButtons(MessageBoxButtons.Yes | MessageBoxButtons.No)
-                .OkClickExecutes(() => TestSpinner.IsTaskRunning = false)
-                .WhenClosedAbnormally(() => Debug.WriteLine("Dialog closed abnormally."))
-                .OwnedBy(this)
+                .WithMessage("This is a short message to show simple variant of message display.")
                 .Show();
         }
     }

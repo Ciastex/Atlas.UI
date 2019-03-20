@@ -283,5 +283,27 @@
 
             </atlas:TableView>
         </atlas:TabItem>
+
+        <atlas:TabItem Header="Tab Item 4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <atlas:ProgressBar Grid.Column="0"
+                                   Height="22"
+                                   Margin="2"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Top"
+                                   Maximum="100"
+                                   ProgressTextTemplate="%val% / %max%"
+                                   Value="100" />
+
+                <atlas:TextBlock VerticalAlignment="Bottom"
+                                 Foreground="White"
+                                 Text="Lorem ipsum dolor sit amet, consectetur adipisici elit." />
+            </Grid>
+        </atlas:TabItem>
     </atlas:TabControl>
 </atlas:Window>
