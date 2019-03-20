@@ -90,8 +90,6 @@
                         </Popup>
                     </Grid>
 
-
-
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
