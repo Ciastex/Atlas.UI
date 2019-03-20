@@ -10,67 +10,52 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type atlas:ActivitySpinner}">
-                    <Grid x:Name="PART_Container"
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="SpinStoryboard">
+                            <DoubleAnimation RepeatBehavior="Forever"
+                                             Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)"
+                                             To="360"
+                                             Duration="0:0:1" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <Path Name="SpinnerElement"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
+                          Fill="{TemplateBinding Foreground}"
                           Opacity="0"
-                          RenderTransformOrigin="0.5 0.5">
-                        <Grid.RenderTransform>
+                          RenderTransformOrigin="0.5, 0.5"
+                          Stretch="Fill">
+                        <Path.RenderTransform>
                             <RotateTransform x:Name="Rotation_AntiFreeze" />
-                        </Grid.RenderTransform>
+                        </Path.RenderTransform>
 
-                        <Path Fill="{TemplateBinding Foreground}" Stretch="Fill">
-                            <Path.Data>
-                                <PathGeometry Figures="M 40.93481 7.0372106 C 36.597559 2.6849518 30.609447 -0.01645022 23.976003 -0.01645022 c -13.26689 0 -23.98245322 10.74557722 -23.98245322 24.01246322 0 13.266884 10.71556322 24.012462 23.98245322 24.012462 11.180807 0 20.545669 -7.653973 23.202049 -18.009348 H 40.93481 c -2.476287 6.99363 -9.109731 12.006231 -16.958807 12.006231 -9.950167 0 -18.0093514 -8.059182 -18.0093514 -18.009345 0 -9.950165 8.0591844 -18.0093477 18.0093514 -18.0093477 4.967581 0 9.424895 2.071075 12.681586 5.3277657 l -9.680027 9.680023 H 47.988473 V -0.01645022 Z" FillRule="NonZero" />
-                            </Path.Data>
-                        </Path>
-                    </Grid>
+                        <Path.Data>
+                            <PathGeometry Figures="M 40.93481 7.0372106 C 36.597559 2.6849518 30.609447 -0.01645022 23.976003 -0.01645022 c -13.26689 0 -23.98245322 10.74557722 -23.98245322 24.01246322 0 13.266884 10.71556322 24.012462 23.98245322 24.012462 11.180807 0 20.545669 -7.653973 23.202049 -18.009348 H 40.93481 c -2.476287 6.99363 -9.109731 12.006231 -16.958807 12.006231 -9.950167 0 -18.0093514 -8.059182 -18.0093514 -18.009345 0 -9.950165 8.0591844 -18.0093477 18.0093514 -18.0093477 4.967581 0 9.424895 2.071075 12.681586 5.3277657 l -9.680027 9.680023 H 47.988473 V -0.01645022 Z" FillRule="NonZero" />
+                        </Path.Data>
 
-                    <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard Name="TaskRunningStoryboard">
-                                <Storyboard>
-                                    <DoubleAnimation RepeatBehavior="Forever"
-                                                     Storyboard.TargetName="PART_Container"
-                                                     Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)"
-                                                     To="360"
-                                                     Duration="0:0:1" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-
-                        <EventTrigger RoutedEvent="Unloaded">
-                            <StopStoryboard BeginStoryboardName="TaskRunningStoryboard" />
-                        </EventTrigger>
-
-                        <Trigger Property="IsTaskRunning" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SpinStates">
+                                <VisualState x:Name="FadeIn">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_Container"
+                                        <DoubleAnimation Storyboard.TargetName="SpinnerElement"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
-                                                         Duration="0:0:1" />
+                                                         Duration="0:0:0.5" />
                                     </Storyboard>
-                                </BeginStoryboard>
+                                </VisualState>
 
-                                <ResumeStoryboard BeginStoryboardName="TaskRunningStoryboard" />
-                            </Trigger.EnterActions>
-
-                            <Trigger.ExitActions>
-                                <PauseStoryboard BeginStoryboardName="TaskRunningStoryboard" />
-
-                                <BeginStoryboard>
+                                <VisualState x:Name="FadeOut">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_Container"
+                                        <DoubleAnimation Storyboard.TargetName="SpinnerElement"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0"
-                                                         Duration="0:0:1" />
+                                                         Duration="0:0:0.5" />
                                     </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Path>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
