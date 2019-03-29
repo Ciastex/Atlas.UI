@@ -27,6 +27,7 @@ namespace Atlas.ExampleApplication
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            Progressbar.Value = 6;
             Progressbar.Maximum = 12;
         }
 
@@ -43,6 +44,7 @@ namespace Atlas.ExampleApplication
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Progressbar.IsIndeterminate = false;
+            Progressbar.ProgressTextTemplate = "%val% / %max%";
         }
 
         private void Window_ShadeStateChanged(object sender, UI.Events.ShadeStateChangedEventArgs e)

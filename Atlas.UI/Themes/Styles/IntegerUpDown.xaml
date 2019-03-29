@@ -1,0 +1,87 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:atlas="clr-namespace:Atlas.UI">
+    <PathGeometry x:Key="Atlas_ArrowPath"
+                  Figures=""
+                  FillRule="NonZero" />
+
+    <Style x:Key="IntegerUpDownButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="#666666" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#01FFFFFF">
+                        <Path Name="ButtonPath"
+                              Width="16"
+                              Height="16"
+                              HorizontalAlignment="Center"
+                              Data="m 9.0389489 296.86722 h 1.0583251 l -4.8056073 -4.89433 -4.98397063 4.89433 H 1.3660325 l 3.9256342 -3.836 z"
+                              Fill="{TemplateBinding Foreground}"
+                              Stretch="Uniform"
+                              StrokeThickness="0" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonPath" Property="Fill" Value="#AAAAAA" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonPath" Property="Fill" Value="#007ACC" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type atlas:IntegerUpDown}">
+        <Setter Property="Minimum" Value="0" />
+        <Setter Property="Maximum" Value="20" />
+        <Setter Property="Value" Value="0" />
+        <Setter Property="ValueAlignment" Value="Center" />
+        <Setter Property="ValueOverflowBehavior" Value="RollOver" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type atlas:IntegerUpDown}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="PART_Up"
+                                Grid.Row="0"
+                                Width="24"
+                                Style="{StaticResource IntegerUpDownButtonStyle}" />
+
+                        <atlas:TextBox x:Name="PART_InputBox"
+                                       Grid.Row="1"
+                                       Width="32"
+                                       Height="18"
+                                       MinWidth="24"
+                                       HorizontalAlignment="Center"
+                                       IsReadOnly="{TemplateBinding DisallowUserInput}"
+                                       IsReadOnlyCaretVisible="False"
+                                       SnapsToDevicePixels="True"
+                                       Text="{Binding Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type atlas:IntegerUpDown}}, FallbackValue='0', Mode=TwoWay}"
+                                       TextAlignment="{TemplateBinding ValueAlignment}" />
+
+                        <Button x:Name="PART_Down"
+                                Grid.Row="2"
+                                Width="24"
+                                RenderTransformOrigin="0.5,0.5"
+                                Style="{StaticResource IntegerUpDownButtonStyle}">
+                            <Button.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </Button.RenderTransform>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

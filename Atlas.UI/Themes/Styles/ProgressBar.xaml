@@ -38,6 +38,7 @@
                         </Border>
 
                         <Rectangle Name="IndeterminateIndicator"
+                                   Margin="2"
                                    VerticalAlignment="Stretch"
                                    Fill="{TemplateBinding Foreground}"
                                    Opacity="0" />

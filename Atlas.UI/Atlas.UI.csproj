@@ -107,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\IntegerUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,8 +221,11 @@
     <Compile Include="Converters\CaptionElementAlignmentToHorizontalAlignmentConverter.cs" />
     <Compile Include="Converters\ProgressTextFormatConverter.cs" />
     <Compile Include="Enums\CaptionElementAlignment.cs" />
+    <Compile Include="Enums\IntegerOverflowBehavior.cs" />
     <Compile Include="Enums\MessageBoxButtons.cs" />
     <Compile Include="Enums\NewTabBehavior.cs" />
+    <Compile Include="Enums\RollOverDirection.cs" />
+    <Compile Include="Events\IntegerUpDownRollOverEventArgs.cs" />
     <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
@@ -227,6 +234,7 @@
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="GroupBox.cs" />
     <Compile Include="ImageButton.cs" />
+    <Compile Include="IntegerUpDown.cs" />
     <Compile Include="ListBox.cs" />
     <Compile Include="ListView.cs" />
     <Compile Include="ListViewItem.cs" />

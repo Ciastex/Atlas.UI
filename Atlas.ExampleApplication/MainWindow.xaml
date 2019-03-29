@@ -305,5 +305,14 @@
                                  Text="Lorem ipsum dolor sit amet, consectetur adipisici elit." />
             </Grid>
         </atlas:TabItem>
+
+        <atlas:TabItem Header="Tab Item 5">
+            <Grid>
+                <atlas:IntegerUpDown Width="100"
+                                     Height="100"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" />
+            </Grid>
+        </atlas:TabItem>
     </atlas:TabControl>
 </atlas:Window>
