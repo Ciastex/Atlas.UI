@@ -1,10 +1,14 @@
 ﻿using Atlas.UI.Enums;
 using Atlas.UI.Systems;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
+using System.Xml;
 using MessageBox = Atlas.UI.MessageBox;
 
 namespace Atlas.ExampleApplication
