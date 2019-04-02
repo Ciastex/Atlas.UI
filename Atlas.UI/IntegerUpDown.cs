@@ -89,13 +89,13 @@ namespace Atlas.UI
             if (_incrementButton != null)
             {
                 _incrementButton.PreviewMouseDown += _incrementButton_MouseDown;
-                _incrementButton.PreviewMouseUp += _incrementButton_MouseUp;
+                _incrementButton.PreviewMouseUp += _anyButton_MouseUp;
             }
 
             if (_decrementButton != null)
             {
                 _decrementButton.PreviewMouseDown += _decrementButton_MouseDown;
-                _decrementButton.PreviewMouseUp += _decrementButton_MouseUp;
+                _decrementButton.PreviewMouseUp += _anyButton_MouseUp;
             }
 
             if (_inputTextBox != null)
@@ -117,7 +117,7 @@ namespace Atlas.UI
             _buttonHoldTimer.Start();
         }
 
-        private void _incrementButton_MouseUp(object sender, MouseButtonEventArgs e)
+        private void _anyButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton != MouseButton.Left) return;
 
@@ -135,16 +135,6 @@ namespace Atlas.UI
 
             _countingUp = false;
             _buttonHoldTimer.Start();
-        }
-
-        private void _decrementButton_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton != MouseButton.Left) return;
-
-            _buttonHoldTimer.Stop();
-            _spinTimer.Stop();
-
-            _spinTimer.Interval = 75;
         }
 
         private void _inputTextBox_TextChanged(object sender, TextChangedEventArgs e)

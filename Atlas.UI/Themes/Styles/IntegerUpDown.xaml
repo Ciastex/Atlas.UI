@@ -48,9 +48,9 @@
                 <ControlTemplate TargetType="{x:Type atlas:IntegerUpDown}">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="24" />
+                            <RowDefinition Height="18" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="24" />
+                            <RowDefinition Height="18" />
                         </Grid.RowDefinitions>
 
                         <Button x:Name="PART_Up"
