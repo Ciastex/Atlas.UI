@@ -14,11 +14,18 @@ namespace Atlas.UI
         private System.Windows.Window _parentWindow;
 
         public static DependencyProperty IsTopMostProperty = Dependency.Register<bool>(nameof(IsTopMost));
+        public static DependencyProperty HideIfParentLocationChangesProperty = Dependency.Register<bool>(nameof(HideIfParentLocationChanges));
 
         public bool IsTopMost
         {
             get => (bool)GetValue(IsTopMostProperty);
             set => SetValue(IsTopMostProperty, value);
+        }
+
+        public bool HideIfParentLocationChanges
+        {
+            get => (bool)GetValue(HideIfParentLocationChangesProperty);
+            set => SetValue(HideIfParentLocationChangesProperty, value);
         }
 
         public ParentedPopup()
@@ -42,8 +49,15 @@ namespace Atlas.UI
             if (_parentWindow == null)
                 return;
 
+            _parentWindow.LocationChanged += OnParentWindowLocationChanged;
             _parentWindow.Activated += OnParentWindowActivated;
             _parentWindow.Deactivated += OnParentWindowDeactivated;
+        }
+
+        private void OnParentWindowLocationChanged(object sender, EventArgs e)
+        {
+            if (HideIfParentLocationChanges)
+                IsOpen = false;
         }
 
         private void OnPopupUnloaded(object sender, RoutedEventArgs e)
@@ -51,6 +65,7 @@ namespace Atlas.UI
             if (_parentWindow == null)
                 return;
 
+            _parentWindow.LocationChanged -= OnParentWindowLocationChanged;
             _parentWindow.Activated -= OnParentWindowActivated;
             _parentWindow.Deactivated -= OnParentWindowDeactivated;
         }
