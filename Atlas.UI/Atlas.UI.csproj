@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\ToggleImageButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Styles\IntegerUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +203,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +264,8 @@
     <Compile Include="TextBlock.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="Toggle.cs" />
+    <Compile Include="ToggleButton.cs" />
+    <Compile Include="ToggleImageButton.cs" />
     <Compile Include="Window.cs" />
     <Compile Include="Events\TabCloseEventArgs.cs" />
     <Compile Include="Extensions\WinAPI.cs" />

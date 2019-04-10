@@ -10,10 +10,12 @@
               ShadeStateChanged="Window_ShadeStateChanged"
               ShowIcon="True">
     <atlas:Window.CaptionMenu>
-        <atlas:MenuItem Header="Menu Button 1" ToolTip="This is a tooltip for preview." />
+        <atlas:MenuItem Header="Menu Button 1"
+                        ToolTip="This is a tooltip for preview." />
         <atlas:MenuItem Header="Menu 1">
             <atlas:MenuItem Header="Menu Item 1" />
-            <atlas:MenuItem Header="Checkable Menu Item 1" IsCheckable="True" />
+            <atlas:MenuItem Header="Checkable Menu Item 1"
+                            IsCheckable="True" />
         </atlas:MenuItem>
         <atlas:MenuItem Header="Menu 2">
             <atlas:MenuItem Header="Submenu 1">
@@ -59,30 +61,54 @@
                             Margin="4"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
-                    <atlas:RadioButton Content="Radio Button 1" Foreground="Red" />
-                    <atlas:RadioButton Content="Radio Button 2" Foreground="Orange" />
-                    <atlas:RadioButton Content="Radio Button 3" Foreground="Yellow" />
-                    <atlas:RadioButton Content="Radio Button 4" Foreground="Green" />
-                    <atlas:RadioButton Content="Radio Button 5" Foreground="CornflowerBlue" />
-                    <atlas:RadioButton Content="Radio Button 6" Foreground="BlueViolet" />
-                    <atlas:RadioButton Content="Radio Button 7" Foreground="Violet" />
+                    <atlas:RadioButton Content="Radio Button 1"
+                                       Foreground="Red" />
+                    <atlas:RadioButton Content="Radio Button 2"
+                                       Foreground="Orange" />
+                    <atlas:RadioButton Content="Radio Button 3"
+                                       Foreground="Yellow" />
+                    <atlas:RadioButton Content="Radio Button 4"
+                                       Foreground="Green" />
+                    <atlas:RadioButton Content="Radio Button 5"
+                                       Foreground="CornflowerBlue" />
+                    <atlas:RadioButton Content="Radio Button 6"
+                                       Foreground="BlueViolet" />
+                    <atlas:RadioButton Content="Radio Button 7"
+                                       Foreground="Violet" />
                     <atlas:RadioButton Content="Radio Button 8" />
-                    <atlas:RadioButton Content="Disabled Radio Button" IsEnabled="False" />
+                    <atlas:RadioButton Content="Disabled Radio Button"
+                                       IsEnabled="False" />
+
+                    <atlas:ToggleImageButton HorizontalAlignment="Left"
+                                             VerticalAlignment="Stretch"
+                                             Content="hello"
+                                             Image="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/file.png"
+                                             ImageHeight="16"
+                                             ImageWidth="16" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"
                             Margin="4"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
-                    <atlas:CheckBox Content="Check Box 1" Foreground="Red" />
-                    <atlas:CheckBox Content="Check Box 2" Foreground="Orange" />
-                    <atlas:CheckBox Content="Check Box 3" Foreground="Yellow" />
-                    <atlas:CheckBox Content="Check Box 4" Foreground="Green" />
-                    <atlas:CheckBox Content="Check Box 5" Foreground="CornflowerBlue" />
-                    <atlas:CheckBox Content="Check Box 6" Foreground="BlueViolet" />
-                    <atlas:CheckBox Content="Check Box 7" Foreground="Violet" />
-                    <atlas:CheckBox Content="Ternary Check Box" IsThreeState="True" />
-                    <atlas:CheckBox Content="Disabled Check Box" IsEnabled="False" />
+                    <atlas:CheckBox Content="Check Box 1"
+                                    Foreground="Red" />
+                    <atlas:CheckBox Content="Check Box 2"
+                                    Foreground="Orange" />
+                    <atlas:CheckBox Content="Check Box 3"
+                                    Foreground="Yellow" />
+                    <atlas:CheckBox Content="Check Box 4"
+                                    Foreground="Green" />
+                    <atlas:CheckBox Content="Check Box 5"
+                                    Foreground="CornflowerBlue" />
+                    <atlas:CheckBox Content="Check Box 6"
+                                    Foreground="BlueViolet" />
+                    <atlas:CheckBox Content="Check Box 7"
+                                    Foreground="Violet" />
+                    <atlas:CheckBox Content="Ternary Check Box"
+                                    IsThreeState="True" />
+                    <atlas:CheckBox Content="Disabled Check Box"
+                                    IsEnabled="False" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="2"
@@ -106,6 +132,8 @@
                                   Content="Button 5"
                                   Foreground="CornflowerBlue" />
 
+                    <atlas:ToggleButton Content="ToggleButton" />
+
                     <StackPanel Orientation="Horizontal">
                         <atlas:Button Width="80"
                                       BorderBrush="BlueViolet"
@@ -124,8 +152,10 @@
                     <atlas:Button BorderBrush="BlueViolet"
                                   Content="Button 7"
                                   Foreground="Violet" />
-                    <atlas:Button Click="Button_Click_1" Content="Button 8" />
-                    <atlas:Button Content="Disabled Button" IsEnabled="False" />
+                    <atlas:Button Click="Button_Click_1"
+                                  Content="Button 8" />
+                    <atlas:Button Content="Disabled Button"
+                                  IsEnabled="False" />
                 </StackPanel>
 
                 <atlas:GroupBox Grid.Column="4"
@@ -177,21 +207,31 @@
                 <atlas:ParentedPopup IsOpen="{Binding IsChecked, ElementName=WorldPeaceToggle, Mode=TwoWay}"
                                      Placement="Right"
                                      PlacementTarget="{Binding ElementName=WorldPeaceToggle}">
-                    <Grid Width="200" Height="200" />
+                    <Grid Width="200"
+                          Height="200" />
                 </atlas:ParentedPopup>
 
-                <atlas:ComboBox Grid.Row="1"
+                <atlas:ListView Grid.Row="0"
                                 Grid.Column="0"
                                 Width="300"
-                                Height="24"
+                                Height="200"
                                 Margin="4"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                SelectedIndex="0">
-                    <atlas:ComboBoxItem Content="ComboBoxItem 1" />
-                    <atlas:ComboBoxItem Content="ComboBoxItem 2" />
-                    <atlas:ComboBoxItem Content="ComboBoxItem 3" />
-                </atlas:ComboBox>
+                                VerticalAlignment="Bottom">
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                    <atlas:ListViewItem Content="Test" />
+                </atlas:ListView>
 
                 <StackPanel Grid.Row="0"
                             Grid.Column="1"
@@ -204,8 +244,10 @@
                                        ProgressTextTemplate="Gathering data..."
                                        ShowProgressText="True"
                                        Value="100" />
-                    <atlas:Button Click="Button_Click_2" Content="Set to determinate" />
-                    <atlas:Button Click="Button_Click" Content="Set maximum to 12" />
+                    <atlas:Button Click="Button_Click_2"
+                                  Content="Set to determinate" />
+                    <atlas:Button Click="Button_Click"
+                                  Content="Set maximum to 12" />
 
                     <atlas:Toggle Name="WorldPeaceToggle"
                                   Margin="4"
@@ -230,29 +272,21 @@
                                   IsChecked="True" />
                 </StackPanel>
 
-                <atlas:ListView Grid.Row="0"
+                <atlas:ComboBox Grid.Row="1"
                                 Grid.Column="0"
                                 Width="300"
-                                Height="200"
+                                Height="24"
                                 Margin="4"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom">
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                    <atlas:ListViewItem Content="Test" />
-                </atlas:ListView>
+                                VerticalAlignment="Top"
+                                SelectedIndex="0">
+                    <atlas:ComboBoxItem Content="ComboBoxItem 1" />
+                    <atlas:ComboBoxItem Content="ComboBoxItem 2" />
+                    <atlas:ComboBoxItem Content="ComboBoxItem 3" />
+                </atlas:ComboBox>
 
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="1"
+                      Grid.Column="1">
                     <Calendar HorizontalAlignment="Left" />
                 </Grid>
             </Grid>
@@ -299,6 +333,10 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <atlas:TextBlock VerticalAlignment="Bottom"
+                                 Foreground="White"
+                                 Text="Lorem ipsum dolor sit amet, consectetur adipisici elit." />
+
                 <atlas:ProgressBar Grid.Column="0"
                                    Height="22"
                                    Margin="2"
@@ -307,10 +345,6 @@
                                    Maximum="100"
                                    ProgressTextTemplate="%val% / %max%"
                                    Value="100" />
-
-                <atlas:TextBlock VerticalAlignment="Bottom"
-                                 Foreground="White"
-                                 Text="Lorem ipsum dolor sit amet, consectetur adipisici elit." />
             </Grid>
         </atlas:TabItem>
 

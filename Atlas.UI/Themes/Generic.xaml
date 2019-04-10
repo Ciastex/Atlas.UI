@@ -24,5 +24,7 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ActivitySpinner.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/MessageBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/IntegerUpDown.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ToggleImageButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
