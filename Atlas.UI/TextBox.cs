@@ -56,8 +56,6 @@ namespace Atlas.UI
             set => SetValue(PlaceholderPaddingProperty, value);
         }
 
-        private System.Windows.Controls.Button ClearButton { get; set; }
-
         static TextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));

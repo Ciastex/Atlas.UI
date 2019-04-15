@@ -85,6 +85,13 @@
                                              Image="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/file.png"
                                              ImageHeight="16"
                                              ImageWidth="16" />
+
+                    <atlas:PasswordBox Name="PasswordBox_TEST"
+                                       Width="100"
+                                       Placeholder="Password"
+                                       ShowPlaceholder="True" />
+
+                    <atlas:TextBlock Text="{Binding ElementName=PasswordBox_TEST, Path=Password}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"

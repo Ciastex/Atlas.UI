@@ -253,6 +253,7 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="ParentedPopup.cs" />
+    <Compile Include="PasswordBox.cs" />
     <Compile Include="ProgressBar.cs" />
     <Compile Include="RadioButton.cs" />
     <Compile Include="SingleInstanceWindow.cs" />
