@@ -2,36 +2,36 @@
 <package>
   <metadata>
     <id>Atlas.UI</id>
-    <version>0.7.2</version>
+    <version>0.7.3</version>
     <title>Atlas.UI</title>
     <authors>Ciastex</authors>
     <owners>Ciastex</owners>
     <license type="expression">MIT</license>
-	<repository type="git" url="https://github.com/Ciastex/Atlas.UI" />
+    <repository type="git" url="https://github.com/Ciastex/Atlas.UI" />
     <iconUrl>https://github.com/Ciastex/Atlas.UI/raw/master/ProjectLogo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</description>
     <releaseNotes>
-		Fixed issues related to ActivitySpinner and ProgressBar, added some more MessageBox customization capabilities.
-	</releaseNotes>
+      Added ToggleButton and ToggleImageButton
+    </releaseNotes>
     <copyright>Copyright (c) 2019</copyright>
     <tags>UI toolkit wpf GUI</tags>
-	
-	<references>
-		<group targetFramework="net461">
-			<reference file="Atlas.UI.dll" />
-		</group>
-	</references>
-	
-	<dependencies>
-		<group targetFramework="net461">
-			<dependency id="Expression.Blend.Sdk.WPF" version="1.0.1" />
-		</group>
-	</dependencies>
+
+    <references>
+      <group targetFramework="net461">
+        <reference file="Atlas.UI.dll" />
+      </group>
+    </references>
+
+    <dependencies>
+      <group targetFramework="net461">
+        <dependency id="Expression.Blend.Sdk.WPF" version="1.0.1" />
+      </group>
+    </dependencies>
   </metadata>
-  
+
   <files>
-	<file src="bin\Release\**\*.dll" target="lib\net461" />
-	<file src="bin\Release\**\*.pdb" target="lib\net461" />
+    <file src="bin\Release\**\*.dll" target="lib\net461" />
+    <file src="bin\Release\**\*.pdb" target="lib\net461" />
   </files>
 </package>
