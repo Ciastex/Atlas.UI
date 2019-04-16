@@ -26,5 +26,6 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/IntegerUpDown.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/ToggleImageButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/PasswordBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

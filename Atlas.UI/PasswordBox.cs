@@ -1,16 +1,71 @@
 ﻿using Atlas.UI.Extensions;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Atlas.UI
 {
-    public class PasswordBox : TextBox
+    public class PasswordBox : System.Windows.Controls.TextBox
     {
-        public static DependencyProperty CharacterMaskProperty = Dependency.Register<char>(nameof(CharacterMask));
-        public static DependencyProperty PasswordProperty = Dependency.Register<string>(nameof(Password));
-
+        private Timer _capsCheckTimer;
         private readonly List<char> _password;
+
+        public static readonly DependencyProperty CharacterMaskProperty = Dependency.Register<char>(nameof(CharacterMask));
+        public static readonly DependencyProperty IsCapsLockOnProperty = Dependency.Register<bool>(nameof(IsCapsLockOn));
+        public static readonly DependencyProperty ShowPlaceholderProperty = Dependency.Register<bool>(nameof(ShowPlaceholder));
+        public static readonly DependencyProperty PlaceholderProperty = Dependency.Register<string>(nameof(Placeholder));
+        public static readonly DependencyProperty HasTextProperty = Dependency.Register<bool>(nameof(HasText));
+        public static readonly DependencyProperty HorizontalPlaceholderAlignmentProperty = Dependency.Register<HorizontalAlignment>(nameof(HorizontalPlaceholderAlignment));
+        public static readonly DependencyProperty VerticalPlaceholderAlignmentProperty = Dependency.Register<VerticalAlignment>(nameof(VerticalPlaceholderAlignment));
+        public static readonly DependencyProperty PlaceholderTextAlignmentProperty = Dependency.Register<TextAlignment>(nameof(PlaceholderTextAlignment));
+        public static readonly DependencyProperty PlaceholderPaddingProperty = Dependency.Register<Thickness>(nameof(PlaceholderPadding));
+
+        public bool ShowPlaceholder
+        {
+            get => (bool)GetValue(ShowPlaceholderProperty);
+            set => SetValue(ShowPlaceholderProperty, value);
+        }
+
+        public string Placeholder
+        {
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
+        }
+
+        public bool HasText
+        {
+            get => (bool)GetValue(HasTextProperty);
+            private set => SetValue(HasTextProperty, value);
+        }
+
+        public HorizontalAlignment HorizontalPlaceholderAlignment
+        {
+            get => (HorizontalAlignment)GetValue(HorizontalPlaceholderAlignmentProperty);
+            set => SetValue(HorizontalPlaceholderAlignmentProperty, value);
+        }
+
+        public VerticalAlignment VerticalPlaceholderAlignment
+        {
+            get => (VerticalAlignment)GetValue(VerticalPlaceholderAlignmentProperty);
+            set => SetValue(VerticalPlaceholderAlignmentProperty, value);
+        }
+
+        public TextAlignment PlaceholderTextAlignment
+        {
+            get => (TextAlignment)GetValue(VerticalPlaceholderAlignmentProperty);
+            set => SetValue(VerticalPlaceholderAlignmentProperty, value);
+        }
+
+        public Thickness PlaceholderPadding
+        {
+            get => (Thickness)GetValue(PlaceholderPaddingProperty);
+            set => SetValue(PlaceholderPaddingProperty, value);
+        }
 
         public char CharacterMask
         {
@@ -18,32 +73,55 @@ namespace Atlas.UI
             set => SetValue(CharacterMaskProperty, value);
         }
 
-        public string Password
+        public char[] PasswordCharArray => _password.ToArray();
+
+        public bool IsCapsLockOn
         {
-            get
-            {
-                SetValue(PasswordProperty, string.Join("", _password));
-                return (string)GetValue(PasswordProperty);
-            }
+            get => (bool)GetValue(IsCapsLockOnProperty);
+            set => SetValue(IsCapsLockOnProperty, value);
         }
 
         public PasswordBox()
         {
+            _capsCheckTimer = new Timer(1);
+            _capsCheckTimer.Elapsed += CapsCheckTimer_Elapsed;
+            _capsCheckTimer.Start();
+
             _password = new List<char>();
+
             CharacterMask = '•';
 
             CommandManager.AddPreviewExecutedHandler(this, OnCommandExecuted);
         }
 
-        static PasswordBox()
+        private async void CapsCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PasswordBox), new FrameworkPropertyMetadata(typeof(TextBox)));
+            try
+            {
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    if (HasEffectiveKeyboardFocus)
+                        IsCapsLockOn = Keyboard.IsKeyToggled(Key.CapsLock);
+                });
+            }
+            catch (TaskCanceledException) { /* don't care */ }
         }
 
-        public void ClearAll()
+        static PasswordBox()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(PasswordBox), new FrameworkPropertyMetadata(typeof(PasswordBox)));
+        }
+
+        public new void Clear()
         {
             _password.Clear();
-            Clear();
+            base.Clear();
+        }
+
+        public byte[] ComputeHash(HashAlgorithm algorithm)
+        {
+            var arr = _password.Select(x => (byte)x).ToArray();
+            return algorithm.ComputeHash(arr);
         }
 
         protected virtual void OnCommandExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -94,6 +172,16 @@ namespace Atlas.UI
 
                     break;
             }
+        }
+
+        protected override void OnTextChanged(TextChangedEventArgs e)
+        {
+            if (Text.Length > 0)
+                HasText = true;
+            else
+                HasText = false;
+
+            base.OnTextChanged(e);
         }
 
         private void RemoveFromPassword(int startIndex, int length)
