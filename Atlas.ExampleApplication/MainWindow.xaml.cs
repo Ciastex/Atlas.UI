@@ -72,5 +72,14 @@ namespace Atlas.ExampleApplication
                 .WithMessage("This is a short message to show simple variant of message display.")
                 .Show();
         }
+
+        private void PasswordBox_TEST_PasswordEntered(object sender, UI.Events.PasswordInputEntryEventArgs e)
+        {
+            new MessageBox()
+                .WithMessage(new string(e.Password))
+                .WithButtons(MessageBoxButtons.Ok)
+                .OwnedBy(this)
+                .Show();
+        }
     }
 }

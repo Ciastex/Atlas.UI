@@ -89,7 +89,9 @@
                     <atlas:PasswordBox Name="PasswordBox_TEST"
                                        Width="100"
                                        Placeholder="Password"
-                                       ShowPlaceholder="True" />
+                                       AcceptsReturn="True"
+                                       ShowPlaceholder="True" 
+                                       PasswordEntered="PasswordBox_TEST_PasswordEntered"/>
 
                     <atlas:TextBlock Text="{Binding ElementName=PasswordBox_TEST, Path=Password}" />
                 </StackPanel>

@@ -1,4 +1,6 @@
-﻿using Atlas.UI.Extensions;
+﻿using Atlas.UI.Events;
+using Atlas.UI.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,7 +14,7 @@ namespace Atlas.UI
 {
     public class PasswordBox : System.Windows.Controls.TextBox
     {
-        private Timer _capsCheckTimer;
+        private readonly Timer _capsCheckTimer;
         private readonly List<char> _password;
 
         public static readonly DependencyProperty CharacterMaskProperty = Dependency.Register<char>(nameof(CharacterMask));
@@ -81,6 +83,8 @@ namespace Atlas.UI
             set => SetValue(IsCapsLockOnProperty, value);
         }
 
+        public event EventHandler<PasswordInputEntryEventArgs> PasswordEntered;
+
         public PasswordBox()
         {
             _capsCheckTimer = new Timer(1);
@@ -128,6 +132,12 @@ namespace Atlas.UI
         {
             if (e.Command == ApplicationCommands.Cut || e.Command == ApplicationCommands.Copy)
                 e.Handled = true;
+
+            if (e.Command == ApplicationCommands.Paste)
+            {
+                AddToPassword(Clipboard.GetData(DataFormats.Text) as string);
+                e.Handled = true;
+            }
         }
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
@@ -169,6 +179,16 @@ namespace Atlas.UI
                 case Key.Return:
                     if (!AcceptsReturn)
                         e.Handled = true;
+                    else
+                    {
+                        var eventArgs = new PasswordInputEntryEventArgs(_password.ToArray());
+                        PasswordEntered.Invoke(this, eventArgs);
+
+                        if (eventArgs.ClearPassword)
+                            Clear();
+
+                        e.Handled = true;
+                    }
 
                     break;
             }

@@ -242,6 +242,7 @@
     <Compile Include="Enums\NewTabBehavior.cs" />
     <Compile Include="Enums\RollOverDirection.cs" />
     <Compile Include="Events\IntegerUpDownRollOverEventArgs.cs" />
+    <Compile Include="Events\PasswordInputEntryEventArgs.cs" />
     <Compile Include="Events\ShadeStateChangedEventArgs.cs" />
     <Compile Include="Events\TabAddButtonClickEventArgs.cs" />
     <Compile Include="Events\TabCreatedEventArgs.cs" />
