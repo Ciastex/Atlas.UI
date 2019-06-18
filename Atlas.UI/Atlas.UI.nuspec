@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Atlas.UI</id>
-    <version>0.7.5</version>
+    <version>0.7.6</version>
     <title>Atlas.UI</title>
     <authors>Ciastex</authors>
     <owners>Ciastex</owners>
@@ -12,9 +12,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</description>
     <releaseNotes>
-      Fixed pasting handling in PasswordBox and added enter key support
+      Added cursor behavior customization to ListBoxItems and content/header copying support for
+      TableViewItems. TextBox now supports clear command in context menu.
     </releaseNotes>
-    <copyright>Copyright (c) 2019</copyright>
+    <copyright>(c) 2019 Ciastex</copyright>
     <tags>UI toolkit wpf GUI</tags>
 
     <references>
