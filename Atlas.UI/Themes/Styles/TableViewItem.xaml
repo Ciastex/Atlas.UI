@@ -10,7 +10,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TableViewItem}">
-                    <Border BorderBrush="#999999" BorderThickness="0,0,0,1">
+                    <Border BorderBrush="#999999"
+                            BorderThickness="0,0,0,1">
+                        <Border.ContextMenu>
+                            <ContextMenu>
+                                <local:MenuItem Command="{TemplateBinding CopyContentCommand}"
+                                                CommandParameter="{TemplateBinding Content}"
+                                                Header="Copy content" />
+
+                                <local:MenuItem Command="{TemplateBinding CopyHeaderCommand}"
+                                                CommandParameter="{TemplateBinding HeaderContent}"
+                                                Header="Copy header" />
+                            </ContextMenu>
+                        </Border.ContextMenu>
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -34,9 +47,11 @@
                                                  ToolTip="{TemplateBinding HeaderContent}" />
                             </Border>
 
-                            <Grid Grid.Column="1" Background="#999999" />
+                            <Grid Grid.Column="1"
+                                  Background="#999999" />
 
-                            <Border Grid.Column="2" Background="{TemplateBinding Background}">
+                            <Border Grid.Column="2"
+                                    Background="{TemplateBinding Background}">
                                 <local:TextBlock Margin="{TemplateBinding Padding}"
                                                  HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Stretch"
@@ -48,7 +63,6 @@
                                                  TextWrapping="NoWrap"
                                                  ToolTip="{TemplateBinding Content}" />
                             </Border>
-
                         </Grid>
                     </Border>
                 </ControlTemplate>

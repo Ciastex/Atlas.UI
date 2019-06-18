@@ -1,6 +1,8 @@
 ﻿using Atlas.UI.Extensions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Atlas.UI
@@ -12,6 +14,20 @@ namespace Atlas.UI
         public static readonly DependencyProperty HeaderForegroundProperty = Dependency.Register<Brush>(nameof(HeaderForeground));
         public static readonly DependencyProperty HeaderBackgroundProperty = Dependency.Register<Brush>(nameof(HeaderBackground));
         public static readonly DependencyProperty UniformHeaderWidthProperty = Dependency.Register<double>(nameof(UniformHeaderWidth));
+        public static readonly DependencyProperty CopyHeaderCommandProperty = Dependency.Register<ICommand>(nameof(CopyHeaderCommand));
+        public static readonly DependencyProperty CopyContentCommandProperty = Dependency.Register<ICommand>(nameof(CopyContentCommand));
+
+        public ICommand CopyHeaderCommand
+        {
+            get => (ICommand)GetValue(CopyHeaderCommandProperty);
+            set => SetValue(CopyHeaderCommandProperty, value);
+        }
+
+        public ICommand CopyContentCommand
+        {
+            get => (ICommand)GetValue(CopyContentCommandProperty);
+            set => SetValue(CopyContentCommandProperty, value);
+        }
 
         public double UniformHeaderWidth
         {
@@ -46,6 +62,19 @@ namespace Atlas.UI
         static TableViewItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TableViewItem), new FrameworkPropertyMetadata(typeof(TableViewItem)));
+        }
+
+        public TableViewItem()
+        {
+            CopyHeaderCommand = new RelayCommand((obj) =>
+            {
+                Clipboard.SetText((string)obj);
+            });
+
+            CopyContentCommand = new RelayCommand((obj) =>
+            {
+                Clipboard.SetText((string)obj);
+            });
         }
     }
 }

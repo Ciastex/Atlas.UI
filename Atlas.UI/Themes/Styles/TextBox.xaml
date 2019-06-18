@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Atlas.UI">
+
     <Style TargetType="{x:Type local:TextBox}">
         <Setter Property="BorderBrush" Value="#4E4E4E" />
         <Setter Property="Background" Value="#1D1D20" />
@@ -27,6 +28,7 @@
                     <local:MenuItem Command="ApplicationCommands.Copy" />
                     <local:MenuItem Command="ApplicationCommands.Cut" />
                     <local:MenuItem Command="ApplicationCommands.Paste" />
+                    <local:MenuItem Command="{x:Static local:TextBox.ClearCommand}" />
                 </ContextMenu>
             </Setter.Value>
         </Setter>

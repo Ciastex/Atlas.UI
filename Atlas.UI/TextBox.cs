@@ -1,11 +1,14 @@
 ﻿using Atlas.UI.Extensions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Atlas.UI
 {
     public class TextBox : System.Windows.Controls.TextBox
     {
+        public static readonly ICommand ClearCommand = new RoutedUICommand("Clear", "Clear", typeof(TextBox));
+
         public static readonly DependencyProperty ShowPlaceholderProperty = Dependency.Register<bool>(nameof(ShowPlaceholder));
         public static readonly DependencyProperty PlaceholderProperty = Dependency.Register<string>(nameof(Placeholder));
         public static readonly DependencyProperty HasTextProperty = Dependency.Register<bool>(nameof(HasText));
@@ -59,6 +62,14 @@ namespace Atlas.UI
         static TextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
+        }
+
+        public TextBox()
+        {
+            CommandBindings.Add(new CommandBinding(ClearCommand,
+                (sender, eventArgs) => Clear(),
+                (sender, eventArgs) => eventArgs.CanExecute = true
+            ));
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)

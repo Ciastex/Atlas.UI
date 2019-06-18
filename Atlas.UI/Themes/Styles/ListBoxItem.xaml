@@ -8,17 +8,21 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        <Setter Property="HoverBackgroundBrush" Value="#881D1D20" />
+        <Setter Property="SelectionBackgroundBrush" Value="#DD1D1D20" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ListBoxItem}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle x:Name="FillColor"
-                                   Fill="#1D1D20"
+                        <Rectangle x:Name="HoverVisualElement"
+                                   Fill="{TemplateBinding HoverBackgroundBrush}"
                                    IsHitTestVisible="False"
                                    Opacity="0" />
 
-                        <Rectangle x:Name="FillColor2"
-                                   Fill="#1D1D20"
+                        <Rectangle x:Name="SelectionVisualElement"
+                                   Fill="{TemplateBinding SelectionBackgroundBrush}"
                                    IsHitTestVisible="False"
                                    Opacity="0" />
 
@@ -30,16 +34,21 @@
                     </Grid>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="FillColor" Property="Opacity" Value="0.50" />
-                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter TargetName="HoverVisualElement" Property="Opacity" Value="1" />
+                        </MultiTrigger>
 
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="ContentPresenter" Property="Opacity" Value="0.55" />
                         </Trigger>
 
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="FillColor2" Property="Opacity" Value="0.75" />
+                            <Setter TargetName="SelectionVisualElement" Property="Opacity" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
