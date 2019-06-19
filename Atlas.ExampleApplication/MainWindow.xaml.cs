@@ -70,6 +70,7 @@ namespace Atlas.ExampleApplication
 
             new MessageBox()
                 .WithMessage("This is a short message to show simple variant of message display.")
+                .OwnedBy(this)
                 .Show();
         }
 

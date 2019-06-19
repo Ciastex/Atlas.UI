@@ -2,6 +2,7 @@
 using Atlas.UI.Events;
 using Atlas.UI.Extensions;
 using Atlas.UI.WindowStates;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -335,6 +336,14 @@ namespace Atlas.UI
         protected virtual void OnShadeButtonClicked(object sender, RoutedEventArgs e)
         {
             ToggleShadedState();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            if (Owner != null)
+                Owner.Activate();
         }
     }
 }

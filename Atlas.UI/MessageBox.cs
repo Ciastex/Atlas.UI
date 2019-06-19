@@ -232,6 +232,9 @@ namespace Atlas.UI
 
             if (NoButton != null)
                 NoButton.Click -= NoButton_Click;
+
+            if (Owner != null)
+                Owner.Activate();
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
