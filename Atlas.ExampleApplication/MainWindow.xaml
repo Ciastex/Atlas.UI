@@ -17,7 +17,8 @@
             <atlas:MenuItem Header="Checkable Menu Item 1"
                             IsCheckable="True" />
         </atlas:MenuItem>
-        <atlas:MenuItem Header="Menu 2">
+        <atlas:MenuItem Header="Menu 2"
+                        IsEnabled="False">
             <atlas:MenuItem Header="Submenu 1">
                 <atlas:MenuItem Header="Submenu Item 1" />
                 <atlas:MenuItem Header="Checkable Submenu Item 1"
