@@ -219,12 +219,13 @@ namespace Atlas.UI
             if (SelectionLength > 0)
                 RemoveFromPassword(SelectionStart, SelectionLength);
 
+            var maskString = CharacterMask.ToString();
             foreach (var c in text)
             {
                 var caretIndex = CaretIndex;
                 _password.Insert(caretIndex, c);
 
-                Text = Text.Insert(caretIndex++, CharacterMask.ToString());
+                Text = Text.Insert(caretIndex++, maskString);
                 CaretIndex = caretIndex;
             }
         }

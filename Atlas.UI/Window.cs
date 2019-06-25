@@ -261,7 +261,7 @@ namespace Atlas.UI
 
             if (CaptionBorder != null)
             {
-                CaptionBorder.MouseDown += Border_MouseDown;
+                CaptionBorder.MouseDown += CaptionBorder_MouseDown;
                 CaptionBorder.MouseMove += CaptionBorder_MouseMove;
             }
         }
@@ -271,22 +271,28 @@ namespace Atlas.UI
             Application.Current?.Dispatcher.Invoke(() => MainBorder.BorderBrush = new SolidColorBrush(color));
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void CaptionBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
-
             if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2 && CanMaximize)
                 ToggleMaximizedState();
         }
 
         private void CaptionBorder_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && WindowState == WindowState.Maximized && !CaptionMenuControl.IsMouseOver)
+            if (!CaptionBorder.IsMouseDirectlyOver)
             {
-                Top = e.MouseDevice.GetPosition(e.Device.Target).Y;
+                e.Handled = true;
+                return;
+            }
 
-                ToggleMaximizedState();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (WindowState == WindowState.Maximized && !CaptionMenuControl.IsMouseOver)
+                {
+                    Top = e.MouseDevice.GetPosition(e.Device.Target).Y;
+                    ToggleMaximizedState();
+                }
+
                 DragMove();
             }
         }

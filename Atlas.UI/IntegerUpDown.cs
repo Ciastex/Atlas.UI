@@ -3,6 +3,7 @@ using Atlas.UI.Events;
 using Atlas.UI.Extensions;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -100,6 +101,7 @@ namespace Atlas.UI
 
             if (_inputTextBox != null)
             {
+                CommandManager.AddPreviewExecutedHandler(_inputTextBox, _inputTextBox_PreviewCommandExecuted);
                 _inputTextBox.PreviewTextInput += _inputTextBox_PreviewTextInput;
                 _inputTextBox.TextChanged += _inputTextBox_TextChanged;
             }
@@ -135,6 +137,20 @@ namespace Atlas.UI
 
             _countingUp = false;
             _buttonHoldTimer.Start();
+        }
+
+        private void _inputTextBox_PreviewCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste)
+            {
+                var text = Clipboard.GetText();
+
+                if (string.IsNullOrEmpty(text))
+                    e.Handled = true;
+
+                if (text.Any(x => !char.IsDigit(x)))
+                    e.Handled = true;
+            }
         }
 
         private void _inputTextBox_TextChanged(object sender, TextChangedEventArgs e)
