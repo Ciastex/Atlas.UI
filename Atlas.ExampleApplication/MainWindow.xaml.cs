@@ -1,14 +1,7 @@
 ﻿using Atlas.UI.Enums;
 using Atlas.UI.Systems;
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Markup;
-using System.Xml;
 using MessageBox = Atlas.UI.MessageBox;
 
 namespace Atlas.ExampleApplication
@@ -29,7 +22,7 @@ namespace Atlas.ExampleApplication
                 SearchTextBox.Visibility = Visibility.Visible;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             Progressbar.Value = 6;
             Progressbar.Maximum = 12;
@@ -37,7 +30,7 @@ namespace Atlas.ExampleApplication
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SingleInstanceWindowManager.OpenOrActivate<SingleWindow>(this);
+            SingleInstanceWindowManager.OpenOrActivateDialog<SingleWindow>(this, WindowStartupLocation.CenterScreen);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -49,11 +42,6 @@ namespace Atlas.ExampleApplication
         {
             Progressbar.IsIndeterminate = false;
             Progressbar.ProgressTextTemplate = "%val% / %max%";
-        }
-
-        private void Window_ShadeStateChanged(object sender, UI.Events.ShadeStateChangedEventArgs e)
-        {
-
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -82,6 +70,7 @@ namespace Atlas.ExampleApplication
                 .WithMessage(new string(e.Password))
                 .WithButtons(MessageBoxButtons.Ok)
                 .OwnedBy(this)
+                .CenterOwner()
                 .Show();
         }
     }

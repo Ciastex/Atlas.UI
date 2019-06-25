@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Atlas.UI.Systems
 {
@@ -13,12 +14,17 @@ namespace Atlas.UI.Systems
             Windows = new ObservableCollection<SingleInstanceWindow>();
         }
 
-        public static void OpenOrActivate<T>(Window owner = null) where T : SingleInstanceWindow
+        public static void OpenOrActivate<T>(Window owner = null, WindowStartupLocation startupLocation = WindowStartupLocation.Manual) where T : SingleInstanceWindow
         {
             if (!IsWindowOpen<T>())
             {
+                if (owner == null && startupLocation == WindowStartupLocation.CenterOwner)
+                    throw new InvalidOperationException("Startup location of CenterOwner is invalid when Owner is not specified.");
+
                 var instance = Activator.CreateInstance<T>();
+
                 instance.Owner = owner;
+                instance.WindowStartupLocation = startupLocation;
 
                 Windows.Add(instance);
                 instance.Show();
@@ -32,14 +38,18 @@ namespace Atlas.UI.Systems
             }
         }
 
-        public static bool? OpenOrActivateDialog<T>(Window owner = null) where T : SingleInstanceWindow
+        public static bool? OpenOrActivateDialog<T>(Window owner = null, WindowStartupLocation startupLocation = WindowStartupLocation.Manual) where T : SingleInstanceWindow
         {
             if (!IsWindowOpen<T>())
             {
-                var instance = Activator.CreateInstance<T>();
-                instance.Owner = null;
-                Windows.Add(instance);
+                if (owner == null && startupLocation == WindowStartupLocation.CenterOwner)
+                    throw new InvalidOperationException("Startup location of CenterOwner is invalid when Owner is not specified.");
 
+                var instance = Activator.CreateInstance<T>();
+                instance.Owner = owner;
+                instance.WindowStartupLocation = startupLocation;
+
+                Windows.Add(instance);
                 return instance.ShowDialog();
             }
             else throw new InvalidOperationException("This window is already open in dialog mode.");

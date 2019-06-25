@@ -7,7 +7,7 @@
               Height="500"
               Background="#2D2D30"
               Icon="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png"
-              ShadeStateChanged="Window_ShadeStateChanged"
+              ShadeStateChanged="MainWindow_ShadeStateChanged"
               ShowIcon="True">
     <atlas:Window.CaptionMenu>
         <atlas:MenuItem Header="Menu Button 1"

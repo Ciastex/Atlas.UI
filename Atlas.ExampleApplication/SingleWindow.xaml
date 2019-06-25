@@ -5,18 +5,11 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             Title="SingleWindow"
-                            Width="800"
-                            Height="450"
+                            Width="400"
+                            Height="300"
                             mc:Ignorable="d">
     <Grid>
         <atlas:TabControl>
-            <atlas:TabItem Header="Test">
-                <atlas:ActivitySpinner Width="100"
-                                       Height="100"
-                                       Foreground="#007ACC"
-                                       IsTaskRunning="False" />
-            </atlas:TabItem>
-
             <atlas:TabItem Header="Test 2">
                 <Grid>
                     <atlas:ActivitySpinner x:Name="ActivitySpinner"
