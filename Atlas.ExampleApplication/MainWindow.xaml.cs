@@ -66,11 +66,13 @@ namespace Atlas.ExampleApplication
                 .OkClickExecutes(() => TestSpinner.IsTaskRunning = false)
                 .WhenClosedAbnormally(() => Debug.WriteLine("Dialog closed abnormally."))
                 .OwnedBy(this)
+                .CenterOwner()
                 .Show();
 
             new MessageBox()
                 .WithMessage("This is a short message to show simple variant of message display.")
                 .OwnedBy(this)
+                .CenterScreen()
                 .Show();
         }
 

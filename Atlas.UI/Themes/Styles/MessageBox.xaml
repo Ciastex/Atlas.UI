@@ -6,7 +6,6 @@
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="SizeToContent" Value="WidthAndHeight" />
         <Setter Property="Icon" Value="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png" />
-        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="MinWidth" Value="200" />
 
@@ -58,7 +57,8 @@
                                            SnapsToDevicePixels="True"
                                            Source="{TemplateBinding Icon}">
                                         <Image.ToolTip>
-                                            <TextBlock Foreground="#888888" Text="{TemplateBinding Title}" />
+                                            <TextBlock Foreground="#888888"
+                                                       Text="{TemplateBinding Title}" />
                                         </Image.ToolTip>
                                     </Image>
 
@@ -97,14 +97,16 @@
                                                          TextWrapping="Wrap">
                                             <local:TextBlock.ContextMenu>
                                                 <ContextMenu>
-                                                    <local:MenuItem Command="{x:Static ApplicationCommands.Copy}" Header="Copy to clipboard" />
+                                                    <local:MenuItem Command="{x:Static ApplicationCommands.Copy}"
+                                                                    Header="Copy to clipboard" />
                                                 </ContextMenu>
                                             </local:TextBlock.ContextMenu>
                                         </local:TextBlock>
                                     </ScrollViewer>
                                 </Border>
 
-                                <Grid Grid.Row="1" Margin="4">
+                                <Grid Grid.Row="1"
+                                      Margin="4">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />

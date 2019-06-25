@@ -12,7 +12,6 @@ namespace Atlas.UI
     {
         public static readonly DependencyProperty MessageProperty = Dependency.Register<string>(nameof(Message));
         public static readonly DependencyProperty AdditionalDescriptionProperty = Dependency.Register<string>(nameof(AdditionalDescription));
-        public static readonly DependencyProperty WindowStartupLocationProperty = Dependency.Register<WindowStartupLocation>(nameof(WindowStartupLocation));
 
         private bool WasClosedGracefully { get; set; }
         private Action OnOkClicked { get; set; }
@@ -42,12 +41,6 @@ namespace Atlas.UI
             set => SetValue(AdditionalDescriptionProperty, value);
         }
 
-        public new WindowStartupLocation WindowStartupLocation
-        {
-            get => (WindowStartupLocation)GetValue(WindowStartupLocationProperty);
-            set => SetValue(WindowStartupLocationProperty, value);
-        }
-
         static MessageBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MessageBox), new FrameworkPropertyMetadata(typeof(MessageBox)));
@@ -66,13 +59,6 @@ namespace Atlas.UI
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-
-            if (WindowStartupLocation == WindowStartupLocation.CenterOwner && Owner != null)
-            {
-                Left = (Owner.Left + Owner.Width / 2) - ActualWidth / 2;
-                Top = (Owner.Top + Owner.Height / 2) - ActualHeight / 2;
-            }
-
             MessageTextBlock?.Focus();
         }
 
@@ -129,6 +115,31 @@ namespace Atlas.UI
         public MessageBox Titled(string title)
         {
             Title = title;
+            return this;
+        }
+
+        public MessageBox CenterOwner()
+        {
+            if (Owner == null)
+                throw new InvalidOperationException("This message box has no owner.");
+
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            return this;
+        }
+
+        public MessageBox CenterScreen()
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            return this;
+        }
+
+        public MessageBox PositionedAt(int top, int left)
+        {
+            WindowStartupLocation = WindowStartupLocation.Manual;
+
+            Top = top;
+            Left = left;
+
             return this;
         }
 
