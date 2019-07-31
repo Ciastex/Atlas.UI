@@ -1,5 +1,4 @@
 ﻿using Atlas.UI.Extensions;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -68,12 +67,30 @@ namespace Atlas.UI
         {
             CopyHeaderCommand = new RelayCommand((obj) =>
             {
-                Clipboard.SetText((string)obj);
+                var str = obj as string;
+
+                if (string.IsNullOrEmpty(str))
+                {
+                    Clipboard.SetText(string.Empty);
+                }
+                else
+                {
+                    Clipboard.SetText((string)obj);
+                }
             });
 
             CopyContentCommand = new RelayCommand((obj) =>
             {
-                Clipboard.SetText((string)obj);
+                var str = obj as string;
+
+                if (string.IsNullOrEmpty(str))
+                {
+                    Clipboard.SetText(string.Empty);
+                }
+                else
+                {
+                    Clipboard.SetText((string)obj);
+                }
             });
         }
     }
