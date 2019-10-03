@@ -26,6 +26,7 @@ namespace Atlas.UI
         private Border MainBorder { get; set; }
         private Menu CaptionMenuControl { get; set; }
 
+        public static readonly DependencyProperty ResizeBorderThicknessProperty = Dependency.Register<double>(nameof(ResizeBorderThickness));
         public static readonly DependencyProperty ShadeStateProperty = Dependency.Register<ShadeState>(nameof(ShadeState));
         public static readonly DependencyProperty CaptionMenuProperty = Dependency.Register<ObservableCollection<MenuItem>>(nameof(CaptionMenu));
         public static readonly DependencyProperty ShowCaptionBorderProperty = Dependency.Register<bool>(nameof(ShowCaptionBorder));
@@ -41,6 +42,12 @@ namespace Atlas.UI
         public static readonly DependencyProperty CaptionButtonsAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionButtonsAlignment));
         public static readonly DependencyProperty CustomCaptionContentProperty = Dependency.Register<object>(nameof(CustomCaptionContent));
         public static readonly DependencyProperty ShowIconProperty = Dependency.Register<bool>(nameof(ShowIcon));
+
+        public double ResizeBorderThickness
+        {
+            get => (double)GetValue(ResizeBorderThicknessProperty);
+            set => SetValue(ResizeBorderThicknessProperty, value);
+        }
 
         public ShadeState ShadeState
         {

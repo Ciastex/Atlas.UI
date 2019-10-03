@@ -5,14 +5,16 @@
 
     <converters:CaptionElementAlignmentToHorizontalAlignmentConverter x:Key="CaptionToHorizontalConverter" />
 
-    <Style x:Key="CaptionButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="CaptionButtonStyle"
+           TargetType="{x:Type Button}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="PART_MainGrid" Background="Transparent">
+                    <Grid x:Name="PART_MainGrid"
+                          Background="Transparent">
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}" />
@@ -50,6 +52,7 @@
         <Setter Property="CanMaximize" Value="True" />
         <Setter Property="ResizeMode" Value="CanResize" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="ResizeBorderThickness" Value="4" />
         <Setter Property="Icon" Value="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png" />
 
         <Setter Property="WindowChrome.WindowChrome">
@@ -57,7 +60,7 @@
                 <WindowChrome CaptionHeight="0"
                               CornerRadius="0"
                               GlassFrameThickness="-1"
-                              ResizeBorderThickness="4"
+                              ResizeBorderThickness="{Binding ResizeBorderThickness, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Window}}}"
                               UseAeroCaptionButtons="False" />
             </Setter.Value>
         </Setter>
@@ -101,7 +104,8 @@
                                            SnapsToDevicePixels="True"
                                            Source="{TemplateBinding Icon}">
                                         <Image.ToolTip>
-                                            <TextBlock Foreground="#888888" Text="{TemplateBinding Title}" />
+                                            <TextBlock Foreground="#888888"
+                                                       Text="{TemplateBinding Title}" />
                                         </Image.ToolTip>
                                     </Image>
 
