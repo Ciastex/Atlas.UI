@@ -290,24 +290,13 @@
                                 Margin="4"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                SelectedIndex="0">
+                                Placeholder="&lt;select an item&gt;"
+                                UsePlaceholder="True">
                     <atlas:ComboBoxItem Content="ComboBoxItem 1" />
                     <atlas:ComboBoxItem Content="ComboBoxItem 2" />
                     <atlas:ComboBoxItem Content="ComboBoxItem 3" />
                 </atlas:ComboBox>
 
-                <atlas:ListBox Grid.Row="1"
-                               Grid.Column="0"
-                               Width="120"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Stretch">
-                    <atlas:ListBoxItem HoverBackgroundBrush="#2D2D30"
-                                       SelectionBackgroundBrush="#2D2D30">
-                        Test
-                    </atlas:ListBoxItem>
-                    <atlas:ListBoxItem HoverBackgroundBrush="#2D2D30">Test</atlas:ListBoxItem>
-                    <atlas:ListBoxItem HoverBackgroundBrush="#2D2D30">Test</atlas:ListBoxItem>
-                </atlas:ListBox>
 
                 <Grid Grid.Row="1"
                       Grid.Column="1">
