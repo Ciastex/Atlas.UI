@@ -329,9 +329,7 @@
                 <atlas:TableViewItem Padding="4"
                                      Content="Very complicated type"
                                      HeaderContent="Type blah blah" />
-                <atlas:TableViewItem Padding="4"
-                                     Content="Very complicated type"
-                                     HeaderContent="Type blah blah" />
+                <atlas:TableViewItem Padding="4" />
                 <atlas:TableViewItem Padding="4"
                                      Content="Very complicated type"
                                      HeaderContent="Type blah blah" />
