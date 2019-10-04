@@ -73,5 +73,15 @@ namespace Atlas.ExampleApplication
                 .CenterOwner()
                 .Show();
         }
+
+        private void Toggle_Checked(object sender, RoutedEventArgs e)
+        {
+            CanResize = true;
+        }
+
+        private void Toggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CanResize = false;
+        }
     }
 }

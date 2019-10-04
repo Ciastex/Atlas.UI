@@ -6,6 +6,7 @@
               Width="800"
               Height="500"
               Background="#2D2D30"
+              CanResize="False"
               Icon="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/atlas.png"
               ShadeStateChanged="MainWindow_ShadeStateChanged"
               ShowIcon="True">
@@ -279,8 +280,10 @@
                     <atlas:Toggle Margin="4"
                                   HorizontalAlignment="Stretch"
                                   HorizontalContentAlignment="Left"
+                                  Checked="Toggle_Checked"
                                   Content="Thermal death of the universe"
-                                  IsChecked="True" />
+                                  IsChecked="True"
+                                  Unchecked="Toggle_Unchecked" />
                 </StackPanel>
 
                 <atlas:ComboBox Grid.Row="1"

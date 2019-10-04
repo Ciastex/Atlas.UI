@@ -14,6 +14,8 @@ namespace Atlas.UI
 {
     public class Window : System.Windows.Window, INotifyPropertyChanged
     {
+        public const int ShadedWindowHeight = 31;
+
         private System.Windows.Controls.Button CloseButton { get; set; }
         private System.Windows.Controls.Button MaximizeButton { get; set; }
         private System.Windows.Controls.Button MinimizeButton { get; set; }
@@ -21,6 +23,7 @@ namespace Atlas.UI
 
         private double PreviousHeight { get; set; }
         private bool PreviousCanMaximize { get; set; }
+        private bool PreviousCanResize { get; set; }
 
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
@@ -58,12 +61,14 @@ namespace Atlas.UI
                 {
                     PreviousHeight = Height;
                     PreviousCanMaximize = CanMaximize;
+                    PreviousCanResize = CanResize;
 
-                    Height = 31;
-                    MainBorder.Height = 31;
+                    Height = ShadedWindowHeight;
+                    MainBorder.Height = ShadedWindowHeight;
 
                     this.SetBorder(false);
                     this.SetResizing(false);
+
                     CanMaximize = false;
                 }
                 else
@@ -73,10 +78,13 @@ namespace Atlas.UI
 
                     this.SetBorder(true);
                     this.SetResizing(true);
+
                     CanMaximize = PreviousCanMaximize;
+                    CanResize = PreviousCanResize;
                 }
 
                 SetValue(ShadeStateProperty, value);
+
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShadeState)));
                 ShadeStateChanged?.Invoke(this, new ShadeStateChangedEventArgs(value));
             }
@@ -238,6 +246,7 @@ namespace Atlas.UI
         private void Window_SourceInitialized(object sender, System.EventArgs e)
         {
             this.SetMaximization(CanMaximize);
+            this.SetResizing(CanResize);
         }
 
         public override void OnApplyTemplate()
