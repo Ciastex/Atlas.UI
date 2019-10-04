@@ -1,6 +1,7 @@
 ﻿using Atlas.UI.Enums;
 using Atlas.UI.Events;
 using Atlas.UI.Extensions;
+using Atlas.UI.Internal;
 using Atlas.UI.WindowStates;
 using System;
 using System.Collections.ObjectModel;
@@ -21,9 +22,12 @@ namespace Atlas.UI
         private System.Windows.Controls.Button MinimizeButton { get; set; }
         private System.Windows.Controls.Button ShadeButton { get; set; }
 
+        private GlowWindow Glow { get; set; }
+
         private double PreviousHeight { get; set; }
         private bool PreviousCanMaximize { get; set; }
         private bool PreviousCanResize { get; set; }
+        private SolidColorBrush PreviousGlowBrush { get; set; }
 
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
@@ -45,6 +49,8 @@ namespace Atlas.UI
         public static readonly DependencyProperty CaptionButtonsAlignmentProperty = Dependency.Register<CaptionElementAlignment>(nameof(CaptionButtonsAlignment));
         public static readonly DependencyProperty CustomCaptionContentProperty = Dependency.Register<object>(nameof(CustomCaptionContent));
         public static readonly DependencyProperty ShowIconProperty = Dependency.Register<bool>(nameof(ShowIcon));
+        public static readonly DependencyProperty UseGlowEffectProperty = Dependency.Register<bool>(nameof(UseGlowEffect));
+        public static readonly DependencyProperty GlowEffectBrushProperty = Dependency.Register<SolidColorBrush>(nameof(GlowEffectBrush));
 
         public double ResizeBorderThickness
         {
@@ -226,10 +232,61 @@ namespace Atlas.UI
         public bool ShowIcon
         {
             get => (bool)GetValue(ShowIconProperty);
-            set => SetValue(ShowIconProperty, value);
+            set
+            {
+                SetValue(ShowIconProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowIcon)));
+            }
         }
 
-        public event System.EventHandler<ShadeStateChangedEventArgs> ShadeStateChanged;
+        public bool UseGlowEffect
+        {
+            get => (bool)GetValue(UseGlowEffectProperty);
+            set
+            {
+                if (!value && Glow != null)
+                {
+                    Glow.Close();
+                    Glow = null;
+                }
+                else if (value && Glow == null)
+                {
+                    Glow = new GlowWindow(this)
+                    {
+                        GlowBrush = GlowEffectBrush
+                    };
+                    Glow.Show();
+                }
+
+                SetValue(UseGlowEffectProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UseGlowEffect)));
+            }
+        }
+
+        public SolidColorBrush GlowEffectBrush
+        {
+            get => (SolidColorBrush)GetValue(GlowEffectBrushProperty);
+            set
+            {
+                SetValue(GlowEffectBrushProperty, value);
+
+                if (UseGlowEffect)
+                {
+                    if (IsActive)
+                    {
+                        Glow.GlowBrush = GlowEffectBrush;
+                    }
+                    else
+                    {
+                        PreviousGlowBrush = value;
+                    }
+                }
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GlowEffectBrush)));
+            }
+        }
+
+        public event EventHandler<ShadeStateChangedEventArgs> ShadeStateChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
         static Window()
@@ -243,10 +300,19 @@ namespace Atlas.UI
             SourceInitialized += Window_SourceInitialized;
         }
 
-        private void Window_SourceInitialized(object sender, System.EventArgs e)
+        private void Window_SourceInitialized(object sender, EventArgs e)
         {
             this.SetMaximization(CanMaximize);
             this.SetResizing(CanResize);
+
+            if (UseGlowEffect)
+            {
+                Glow = new GlowWindow(this)
+                {
+                    GlowBrush = GlowEffectBrush
+                };
+                Glow.Show();
+            }
         }
 
         public override void OnApplyTemplate()
@@ -285,6 +351,11 @@ namespace Atlas.UI
         public void SetWindowBorderColor(Color color)
         {
             Application.Current?.Dispatcher.Invoke(() => MainBorder.BorderBrush = new SolidColorBrush(color));
+        }
+
+        public void SetWindowGlowColor(Color color)
+        {
+            Application.Current?.Dispatcher.Invoke(() => GlowEffectBrush = new SolidColorBrush(color));
         }
 
         private void CaptionBorder_MouseDown(object sender, MouseButtonEventArgs e)
@@ -358,6 +429,32 @@ namespace Atlas.UI
         protected virtual void OnShadeButtonClicked(object sender, RoutedEventArgs e)
         {
             ToggleShadedState();
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            if (UseGlowEffect)
+            {
+                if (PreviousGlowBrush != null)
+                {
+                    GlowEffectBrush = PreviousGlowBrush;
+                    PreviousGlowBrush = null;
+                }
+                Glow.MoveBehindParent();
+            }
+        }
+
+        protected override void OnDeactivated(EventArgs e)
+        {
+            base.OnDeactivated(e);
+
+            if (UseGlowEffect)
+            {
+                PreviousGlowBrush = GlowEffectBrush;
+                GlowEffectBrush = new SolidColorBrush(Color.FromRgb(0x42, 0x42, 0x45));
+            }
         }
 
         protected override void OnClosed(EventArgs e)

@@ -26,12 +26,10 @@ namespace Atlas.UI.Extensions
             SetWindowStyle(window, 0x00400000, true);
         }
 
-        private static void SetWindowStyle(Window window, int styleConst, bool enable)
+        private static void SetWindowStyle(Window window, uint styleConst, bool enable)
         {
-            int style = -16;
-
             var handle = new WindowInteropHelper(window).Handle;
-            var currentWindowLong = WinAPI.GetWindowLong(handle, style);
+            var currentWindowLong = WinAPI.GetWindowLong(handle, WinAPI.GWL_STYLE);
 
             if (!enable)
             {
@@ -42,7 +40,7 @@ namespace Atlas.UI.Extensions
                 currentWindowLong |= styleConst;
             }
 
-            WinAPI.SetWindowLong(handle, style, currentWindowLong);
+            WinAPI.SetWindowLong(handle, WinAPI.GWL_STYLE, currentWindowLong);
         }
     }
 }

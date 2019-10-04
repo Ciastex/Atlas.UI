@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Internal/GlowWindow.xaml" />
+
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Window.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/MenuItem.xaml" />

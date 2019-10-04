@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Atlas.UI.Extensions
 {
     internal static class WinAPI
-    {       
+    {
         [StructLayout(LayoutKind.Sequential)]
         internal struct Margins
         {
@@ -41,19 +41,31 @@ namespace Atlas.UI.Extensions
         internal const uint SWP_NOOWNERZORDER = 0x0200;
         internal const uint SWP_NOSENDCHANGING = 0x0400;
 
+        internal const uint GWL_STYLE = 0xFFFFFFF0;
+        internal const uint GWL_EXSTYLE = 0xFFFFFFEC;
+
         internal const uint TOPMOST_FLAGS = SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_NOSIZE | SWP_NOMOVE | SWP_NOREDRAW | SWP_NOSENDCHANGING;
 
         [DllImport("dwmapi.dll", PreserveSig = true)]
         internal static extern int DwmSetWindowAttribute(IntPtr handle, int attributes, ref int attrValue, int attrSize);
 
         [DllImport("dwmapi.dll")]
-        internal static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref Margins pMarInset);
+        internal static extern int DwmExtendFrameIntoClientArea(IntPtr handle, ref Margins margins);
 
         [DllImport("user32.dll")]
-        internal static extern int GetWindowLong(IntPtr handle, int index);
+        internal static extern uint GetWindowLong(IntPtr handle, uint index);
 
         [DllImport("user32.dll")]
-        internal static extern int SetWindowLong(IntPtr handle, int index, int newLong);
+        internal static extern int SetWindowLong(IntPtr handle, uint index, uint newLong);
+
+        [DllImport("user32.dll")]
+        internal static extern bool SetForegroundWindow(IntPtr handle);
+
+        [DllImport("user32.dll")]
+        internal static extern IntPtr SetActiveWindow(IntPtr handle);
+
+        [DllImport("user32.dll")]
+        internal static extern bool BringWindowToTop(IntPtr handle);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]

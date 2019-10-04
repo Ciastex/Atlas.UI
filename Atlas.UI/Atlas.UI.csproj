@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Styles\Internal\GlowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Styles\PasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,6 +257,7 @@
     <Compile Include="GroupBox.cs" />
     <Compile Include="ImageButton.cs" />
     <Compile Include="IntegerUpDown.cs" />
+    <Compile Include="Internal\GlowWindow.cs" />
     <Compile Include="ListBox.cs" />
     <Compile Include="ListView.cs" />
     <Compile Include="ListViewItem.cs" />
