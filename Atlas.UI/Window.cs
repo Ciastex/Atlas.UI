@@ -272,14 +272,7 @@ namespace Atlas.UI
 
                 if (UseGlowEffect)
                 {
-                    if (IsActive)
-                    {
-                        Glow.GlowBrush = GlowEffectBrush;
-                    }
-                    else
-                    {
-                        PreviousGlowBrush = value;
-                    }
+                    Glow.GlowBrush = GlowEffectBrush;
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GlowEffectBrush)));
@@ -433,8 +426,6 @@ namespace Atlas.UI
 
         protected override void OnActivated(EventArgs e)
         {
-            base.OnActivated(e);
-
             if (UseGlowEffect)
             {
                 if (PreviousGlowBrush != null)
@@ -442,19 +433,25 @@ namespace Atlas.UI
                     GlowEffectBrush = PreviousGlowBrush;
                     PreviousGlowBrush = null;
                 }
+
                 Glow.MoveBehindParent();
             }
+
+            base.OnActivated(e);
         }
 
         protected override void OnDeactivated(EventArgs e)
         {
-            base.OnDeactivated(e);
-
             if (UseGlowEffect)
             {
-                PreviousGlowBrush = GlowEffectBrush;
-                GlowEffectBrush = new SolidColorBrush(Color.FromRgb(0x42, 0x42, 0x45));
+                if (PreviousGlowBrush == null)
+                {
+                    PreviousGlowBrush = GlowEffectBrush;
+                    GlowEffectBrush = new SolidColorBrush(Color.FromRgb(0x42, 0x42, 0x45));
+                }
             }
+
+            base.OnDeactivated(e);
         }
 
         protected override void OnClosed(EventArgs e)
