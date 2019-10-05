@@ -349,9 +349,14 @@ namespace Atlas.UI
             }
         }
 
-        public void SetWindowBorderColor(Color color)
+        public void SetWindowBorderColor(Color color, bool matchGlowToBorder = false)
         {
             Application.Current?.Dispatcher.Invoke(() => MainBorder.BorderBrush = new SolidColorBrush(color));
+
+            if (matchGlowToBorder)
+            {
+                SetWindowGlowColor(color);
+            }
         }
 
         public void SetWindowGlowColor(Color color)
