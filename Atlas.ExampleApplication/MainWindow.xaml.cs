@@ -1,10 +1,9 @@
 ﻿using Atlas.UI.Enums;
+using Atlas.UI.Extensions;
 using Atlas.UI.Systems;
-using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
-using System.Windows.Media;
 using MessageBox = Atlas.UI.MessageBox;
 
 namespace Atlas.ExampleApplication
@@ -98,37 +97,12 @@ namespace Atlas.ExampleApplication
                     v++;
                     v %= 360;
 
-                    SetWindowGlowColor(ColorFromHSV(v, 1, 1));
-                    SetWindowBorderColor(ColorFromHSV(v, 1, 1));
+                    SetWindowGlowColor(ColorEx.FromHSV(v, 1, 1));
+                    SetWindowBorderColor(ColorEx.FromHSV(v, 1, 1));
 
-                    Thread.Sleep(1);
+                    Thread.Sleep(10);
                 }
             }).Start();
-        }
-
-        private static Color ColorFromHSV(double hue, double saturation, double value)
-        {
-            int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
-            double f = hue / 60 - Math.Floor(hue / 60);
-
-            value *= 255;
-            byte v = Convert.ToByte(value);
-            byte p = Convert.ToByte(value * (1 - saturation));
-            byte q = Convert.ToByte(value * (1 - f * saturation));
-            byte t = Convert.ToByte(value * (1 - (1 - f) * saturation));
-
-            if (hi == 0)
-                return Color.FromArgb(255, v, t, p);
-            else if (hi == 1)
-                return Color.FromArgb(255, q, v, p);
-            else if (hi == 2)
-                return Color.FromArgb(255, p, v, t);
-            else if (hi == 3)
-                return Color.FromArgb(255, p, q, v);
-            else if (hi == 4)
-                return Color.FromArgb(255, t, p, v);
-            else
-                return Color.FromArgb(255, v, p, q);
         }
     }
 }

@@ -61,7 +61,6 @@
                 <WindowChrome CaptionHeight="0"
                               CornerRadius="0"
                               GlassFrameThickness="-1"
-                              ResizeBorderThickness="{Binding ResizeBorderThickness, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Window}}}"
                               UseAeroCaptionButtons="False" />
             </Setter.Value>
         </Setter>

@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace Atlas.UI
 {
@@ -21,6 +22,7 @@ namespace Atlas.UI
         private System.Windows.Controls.Button MaximizeButton { get; set; }
         private System.Windows.Controls.Button MinimizeButton { get; set; }
         private System.Windows.Controls.Button ShadeButton { get; set; }
+        private WindowChrome WindowChrome { get; set; }
 
         private GlowWindow Glow { get; set; }
 
@@ -33,7 +35,7 @@ namespace Atlas.UI
         private Border MainBorder { get; set; }
         private Menu CaptionMenuControl { get; set; }
 
-        public static readonly DependencyProperty ResizeBorderThicknessProperty = Dependency.Register<double>(nameof(ResizeBorderThickness));
+        public static readonly DependencyProperty ResizeBorderThicknessProperty = Dependency.Register<Thickness>(nameof(ResizeBorderThickness));
         public static readonly DependencyProperty ShadeStateProperty = Dependency.Register<ShadeState>(nameof(ShadeState));
         public static readonly DependencyProperty CaptionMenuProperty = Dependency.Register<ObservableCollection<MenuItem>>(nameof(CaptionMenu));
         public static readonly DependencyProperty ShowCaptionBorderProperty = Dependency.Register<bool>(nameof(ShowCaptionBorder));
@@ -52,9 +54,9 @@ namespace Atlas.UI
         public static readonly DependencyProperty UseGlowEffectProperty = Dependency.Register<bool>(nameof(UseGlowEffect));
         public static readonly DependencyProperty GlowEffectBrushProperty = Dependency.Register<SolidColorBrush>(nameof(GlowEffectBrush));
 
-        public double ResizeBorderThickness
+        public Thickness ResizeBorderThickness
         {
-            get => (double)GetValue(ResizeBorderThicknessProperty);
+            get => (Thickness)GetValue(ResizeBorderThicknessProperty);
             set => SetValue(ResizeBorderThicknessProperty, value);
         }
 
@@ -306,10 +308,16 @@ namespace Atlas.UI
                 };
                 Glow.Show();
             }
+
+            // Doesn't work from XAML, WindowChrome has no idea of a visual tree parent
+            // that's this window, hence it's set in here instead of a binding.
+            WindowChrome.ResizeBorderThickness = ResizeBorderThickness;
         }
 
         public override void OnApplyTemplate()
         {
+            WindowChrome = WindowChrome.GetWindowChrome(this);
+
             base.OnApplyTemplate();
 
             CloseButton = GetTemplateChild("PART_Close") as System.Windows.Controls.Button;
@@ -446,6 +454,10 @@ namespace Atlas.UI
             {
                 if (PreviousGlowBrush == null)
                 {
+                    // Has to be handled like this, binding-based approach *would* techincally
+                    // work, but it would be much more error-prone and confusing.
+                    //
+                    // Additionally, triggers seem to give no fucks about the glow window.
                     PreviousGlowBrush = GlowEffectBrush;
                     GlowEffectBrush = new SolidColorBrush(Color.FromRgb(0x42, 0x42, 0x45));
                 }

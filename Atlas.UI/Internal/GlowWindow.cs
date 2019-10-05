@@ -36,7 +36,6 @@ namespace Atlas.UI.Internal
         public GlowWindow(Window parent)
         {
             _parentWindow = parent;
-            _parentWindow.PropertyChanged += ParentWindow_PropertyChanged;
             _parentWindow.LocationChanged += ParentWindow_LocationChanged;
             _parentWindow.SizeChanged += ParentWindow_SizeChanged;
             _parentWindow.Closing += ParentWindow_Closing;
@@ -48,11 +47,6 @@ namespace Atlas.UI.Internal
             Focusable = false;
             IsEnabled = false;
             ShowInTaskbar = false;
-        }
-
-        public void UpdateGlowBrush(Brush brush)
-        {
-            GlowBrush = brush;
         }
 
         public void MoveBehindParent()
@@ -92,20 +86,11 @@ namespace Atlas.UI.Internal
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            _parentWindow.PropertyChanged -= ParentWindow_PropertyChanged;
             _parentWindow.LocationChanged -= ParentWindow_LocationChanged;
             _parentWindow.SizeChanged -= ParentWindow_SizeChanged;
             _parentWindow.Closing -= ParentWindow_Closing;
 
             base.OnClosing(e);
-        }
-
-        private void ParentWindow_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Window.GlowEffectBrush))
-            {
-                GlowBrush = _parentWindow.GlowEffectBrush;
-            }
         }
 
         private void ParentWindow_Closing(object sender, CancelEventArgs e)
