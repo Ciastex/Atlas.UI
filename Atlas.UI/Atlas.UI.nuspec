@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Atlas.UI</id>
-    <version>0.7.11</version>
+    <version>0.8.0</version>
     <title>Atlas.UI</title>
     <authors>Ciastex</authors>
     <owners>Ciastex</owners>
@@ -12,7 +12,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</description>
     <releaseNotes>
-    Fixed an issue where copying null TableViewItem contents would bring the whole application down.
+      Added optional window glow known from Microsoft apps like Outlook or Visual Studio, as well as
+      many minor fixes and improvements here and there.
     </releaseNotes>
     <copyright>(c) 2019 Ciastex</copyright>
     <tags>UI toolkit wpf GUI</tags>
@@ -33,5 +34,7 @@
   <files>
     <file src="bin\Release\**\*.dll" target="lib\net461" />
     <file src="bin\Release\**\*.pdb" target="lib\net461" />
+    
+    <file src="readme.txt" target="" />
   </files>
 </package>
