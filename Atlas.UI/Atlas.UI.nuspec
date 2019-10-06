@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Atlas.UI</id>
-    <version>0.8.0</version>
+    <version>0.8.1</version>
     <title>Atlas.UI</title>
     <authors>Ciastex</authors>
     <owners>Ciastex</owners>
@@ -12,8 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</description>
     <releaseNotes>
-      Added optional window glow known from Microsoft apps like Outlook or Visual Studio, as well as
-      many minor fixes and improvements here and there.
+Fixed a minimization issue for windows with glow effect enabled.
     </releaseNotes>
     <copyright>(c) 2019 Ciastex</copyright>
     <tags>UI toolkit wpf GUI</tags>
