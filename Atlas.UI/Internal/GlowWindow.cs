@@ -1,6 +1,7 @@
 ﻿using Atlas.UI.Extensions;
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -37,6 +38,7 @@ namespace Atlas.UI.Internal
         {
             _parentWindow = parent;
             _parentWindow.LocationChanged += ParentWindow_LocationChanged;
+            _parentWindow.StateChanged += ParentWindow_StateChanged;
             _parentWindow.SizeChanged += ParentWindow_SizeChanged;
             _parentWindow.Closing += ParentWindow_Closing;
 
@@ -51,9 +53,6 @@ namespace Atlas.UI.Internal
 
         public void MoveBehindParent()
         {
-            Reposition();
-            Resize();
-
             var handle = new WindowInteropHelper(this).Handle;
             var ownerHandle = new WindowInteropHelper(_parentWindow).Handle;
 
@@ -70,6 +69,9 @@ namespace Atlas.UI.Internal
 
         protected override void OnActivated(EventArgs e)
         {
+            Reposition();
+            Resize();
+
             MoveBehindParent();
         }
 
@@ -77,9 +79,13 @@ namespace Atlas.UI.Internal
         {
             base.OnSourceInitialized(e);
 
+            // FIXME: Investigate if the SetWindowLong calls make any sense.
             var handle = new WindowInteropHelper(this).Handle;
             WinAPI.SetWindowLong(handle, WinAPI.GWL_STYLE, 0x96000000);
             WinAPI.SetWindowLong(handle, WinAPI.GWL_EXSTYLE, 0x00080080 | 0x00000020);
+
+            Reposition();
+            Resize();
 
             MoveBehindParent();
         }
@@ -87,17 +93,39 @@ namespace Atlas.UI.Internal
         protected override void OnClosing(CancelEventArgs e)
         {
             _parentWindow.LocationChanged -= ParentWindow_LocationChanged;
+            _parentWindow.StateChanged -= ParentWindow_StateChanged;
             _parentWindow.SizeChanged -= ParentWindow_SizeChanged;
             _parentWindow.Closing -= ParentWindow_Closing;
 
             base.OnClosing(e);
         }
 
-        private void ParentWindow_Closing(object sender, CancelEventArgs e)
+        private void ParentWindow_LocationChanged(object sender, EventArgs e)
         {
-            if (!e.Cancel)
+            Reposition();
+            MoveBehindParent();
+        }
+
+        private void ParentWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (_parentWindow.WindowState == WindowState.Minimized)
             {
-                Close();
+                WindowState = WindowState.Minimized;
+            }
+            else if (_parentWindow.WindowState == WindowState.Normal)
+            {
+                Reposition();
+                Resize();
+
+                // FIXME: Assumes DWM is on by default and animations are enabled.
+                Thread.Sleep(150);
+
+                WindowState = WindowState.Normal;
+                MoveBehindParent();
+            }
+            else if (_parentWindow.WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Minimized;
             }
         }
 
@@ -107,10 +135,12 @@ namespace Atlas.UI.Internal
             MoveBehindParent();
         }
 
-        private void ParentWindow_LocationChanged(object sender, EventArgs e)
+        private void ParentWindow_Closing(object sender, CancelEventArgs e)
         {
-            Reposition();
-            MoveBehindParent();
+            if (!e.Cancel)
+            {
+                Close();
+            }
         }
 
         private void Reposition()

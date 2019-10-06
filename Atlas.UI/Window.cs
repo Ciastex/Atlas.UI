@@ -400,17 +400,23 @@ namespace Atlas.UI
             if (WindowState == WindowState.Maximized)
             {
                 CanShade = true;
+
                 WindowState = WindowState.Normal;
+                Activate();
             }
             else
             {
                 CanShade = false;
                 WindowState = WindowState.Maximized;
             }
+
         }
 
         private void ToggleShadedState()
         {
+            if (!CanShade)
+                throw new InvalidOperationException("Cannot toggle shaded state while CanShade is set to false.");
+
             if (ShadeState == ShadeState.Shaded)
                 ShadeState = ShadeState.Unshaded;
             else
