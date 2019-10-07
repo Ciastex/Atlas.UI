@@ -158,14 +158,16 @@ namespace Atlas.UI.Internal
 
         private void Reposition()
         {
-            TargetLeft = (int)_parentWindow.Left - 10;
-            TargetTop = (int)_parentWindow.Top - 10;
+            double factor = System.Windows.PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
+            TargetLeft = (int)((_parentWindow.Left - 10) * factor);
+            TargetTop = (int)((_parentWindow.Top - 10) * factor);
         }
 
         private void Resize()
         {
-            TargetWidth = (int)_parentWindow.Width + 20;
-            TargetHeight = (int)_parentWindow.Height + 20;
+            double factor = System.Windows.PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
+            TargetWidth = (int)((_parentWindow.Width + 20) * factor);
+            TargetHeight = (int)((_parentWindow.Height + 20) * factor);
         }
     }
 }
