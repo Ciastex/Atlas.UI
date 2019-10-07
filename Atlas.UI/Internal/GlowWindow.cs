@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 
@@ -11,6 +12,7 @@ namespace Atlas.UI.Internal
     internal class GlowWindow : System.Windows.Window
     {
         private readonly Window _parentWindow;
+        private Border _border;
 
         private int TargetLeft { get; set; }
         private int TargetTop { get; set; }
@@ -67,6 +69,12 @@ namespace Atlas.UI.Internal
             );
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            _border = GetTemplateChild("PART_MainBorder") as Border;
+        }
+
         protected override void OnActivated(EventArgs e)
         {
             Reposition();
@@ -110,7 +118,9 @@ namespace Atlas.UI.Internal
         {
             if (_parentWindow.WindowState == WindowState.Minimized)
             {
-                WindowState = WindowState.Minimized;
+                Height = 0;
+                Width = 0;
+                Opacity = 0;
             }
             else if (_parentWindow.WindowState == WindowState.Normal)
             {
@@ -120,12 +130,15 @@ namespace Atlas.UI.Internal
                 // FIXME: Assumes DWM is on by default and animations are enabled.
                 Thread.Sleep(150);
 
+                Opacity = 1;
                 WindowState = WindowState.Normal;
                 MoveBehindParent();
             }
             else if (_parentWindow.WindowState == WindowState.Maximized)
             {
-                WindowState = WindowState.Minimized;
+                Height = 0;
+                Width = 0;
+                Opacity = 0;
             }
         }
 
