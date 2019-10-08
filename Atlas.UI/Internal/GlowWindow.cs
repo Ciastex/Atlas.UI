@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 
@@ -12,7 +11,6 @@ namespace Atlas.UI.Internal
     internal class GlowWindow : System.Windows.Window
     {
         private readonly Window _parentWindow;
-        private Border _border;
 
         private int TargetLeft { get; set; }
         private int TargetTop { get; set; }
@@ -39,6 +37,7 @@ namespace Atlas.UI.Internal
         public GlowWindow(Window parent)
         {
             _parentWindow = parent;
+            _parentWindow.IsVisibleChanged += ParentWindow_IsVisibleChanged;
             _parentWindow.LocationChanged += ParentWindow_LocationChanged;
             _parentWindow.StateChanged += ParentWindow_StateChanged;
             _parentWindow.SizeChanged += ParentWindow_SizeChanged;
@@ -51,6 +50,19 @@ namespace Atlas.UI.Internal
             Focusable = false;
             IsEnabled = false;
             ShowInTaskbar = false;
+        }
+
+        private void ParentWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (!_parentWindow.IsVisible)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+                MoveBehindParent();
+            }
         }
 
         public void MoveBehindParent()
@@ -67,12 +79,6 @@ namespace Atlas.UI.Internal
                 TargetHeight,
                 WinAPI.SWP_NOOWNERZORDER | WinAPI.SWP_NOACTIVATE
             );
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-            _border = GetTemplateChild("PART_MainBorder") as Border;
         }
 
         protected override void OnActivated(EventArgs e)
@@ -100,6 +106,7 @@ namespace Atlas.UI.Internal
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            _parentWindow.IsVisibleChanged -= ParentWindow_IsVisibleChanged;
             _parentWindow.LocationChanged -= ParentWindow_LocationChanged;
             _parentWindow.StateChanged -= ParentWindow_StateChanged;
             _parentWindow.SizeChanged -= ParentWindow_SizeChanged;
@@ -158,14 +165,18 @@ namespace Atlas.UI.Internal
 
         private void Reposition()
         {
-            TargetLeft = (int)_parentWindow.Left - 10;
-            TargetTop = (int)_parentWindow.Top - 10;
+            var source = PresentationSource.FromVisual(this);
+
+            TargetLeft = (int)((_parentWindow.Left - 10) * source.CompositionTarget.TransformToDevice.M11);
+            TargetTop = (int)((_parentWindow.Top - 10) * source.CompositionTarget.TransformToDevice.M22);
         }
 
         private void Resize()
         {
-            TargetWidth = (int)_parentWindow.Width + 20;
-            TargetHeight = (int)_parentWindow.Height + 20;
+            var source = PresentationSource.FromVisual(this);
+
+            TargetWidth = (int)((_parentWindow.Width + 20) * source.CompositionTarget.TransformToDevice.M11);
+            TargetHeight = (int)((_parentWindow.Height + 20) * source.CompositionTarget.TransformToDevice.M22);
         }
     }
 }
